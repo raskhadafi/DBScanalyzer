@@ -12,6 +12,8 @@ Public Class PingIPRange
         ips = createIPs(txtIPRangeStart.Text, txtIPRangeEnd.Text)
         'ipRangeEnd = txtIPRangeEnd.Text
         For Each ip In ips
+            txtOutput.Text += "ping: " + ip.ToString + Environment.NewLine
+            txtOutput.Text += "--------------" + Environment.NewLine
             pingResponse = ping.Send(ip, 50)
             If pingResponse Is Nothing Then
                 txtOutput.Text += "No reply" + Environment.NewLine
@@ -20,6 +22,7 @@ Public Class PingIPRange
             Else
                 txtOutput.Text += "Ping was unsuccessful: " + pingResponse.Status.ToString() + Environment.NewLine
             End If
+            txtOutput.Text += "--------------" + Environment.NewLine
         Next ip
     End Sub
     ' creates array with ips from ip range
