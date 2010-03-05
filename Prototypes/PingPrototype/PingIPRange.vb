@@ -12,8 +12,8 @@ Public Class PingIPRange
         ips = createIPs(txtIPRangeStart.Text, txtIPRangeEnd.Text)
         'ipRangeEnd = txtIPRangeEnd.Text
         For Each ip In ips
-            txtOutput.Text += "ping: " + ip.ToString + Environment.NewLine
             txtOutput.Text += "--------------" + Environment.NewLine
+            txtOutput.Text += "ping: " + ip.ToString + Environment.NewLine
             pingResponse = ping.Send(ip, 50)
             If pingResponse Is Nothing Then
                 txtOutput.Text += "No reply" + Environment.NewLine

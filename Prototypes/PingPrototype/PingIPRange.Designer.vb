@@ -45,6 +45,7 @@ Partial Class PingIPRange
         Me.txtOutput.Location = New System.Drawing.Point(12, 87)
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
+        Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
         Me.txtOutput.Size = New System.Drawing.Size(268, 259)
         Me.txtOutput.TabIndex = 4
         '
