@@ -46,6 +46,7 @@ Partial Class cmdPing
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.Size = New System.Drawing.Size(414, 20)
         Me.txtOutput.TabIndex = 1
+        Me.txtOutput.Text = "-sV --open 10.3.115.80"
         '
         'txtStdout
         '
