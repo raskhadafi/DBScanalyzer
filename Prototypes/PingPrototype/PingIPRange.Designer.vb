@@ -23,22 +23,13 @@ Partial Class PingIPRange
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PingIPRange))
-        Me.txtIPRangeStart = New System.Windows.Forms.TextBox
         Me.txtOutput = New System.Windows.Forms.TextBox
         Me.Button1 = New System.Windows.Forms.Button
         Me.Label1 = New System.Windows.Forms.Label
         Me.Label2 = New System.Windows.Forms.Label
         Me.txtIPRangeEnd = New System.Windows.Forms.TextBox
+        Me.txtIPRangeStart = New System.Windows.Forms.TextBox
         Me.SuspendLayout()
-        '
-        'txtIPRangeStart
-        '
-        Me.txtIPRangeStart.Location = New System.Drawing.Point(93, 18)
-        Me.txtIPRangeStart.Name = "txtIPRangeStart"
-        Me.txtIPRangeStart.Size = New System.Drawing.Size(187, 20)
-        Me.txtIPRangeStart.TabIndex = 5
-        Me.txtIPRangeStart.Tag = ""
-        Me.txtIPRangeStart.Text = "10.0.2.15"
         '
         'txtOutput
         '
@@ -85,6 +76,15 @@ Partial Class PingIPRange
         Me.txtIPRangeEnd.Tag = ""
         Me.txtIPRangeEnd.Text = "10.0.2.15"
         '
+        'txtIPRangeStart
+        '
+        Me.txtIPRangeStart.Location = New System.Drawing.Point(93, 18)
+        Me.txtIPRangeStart.Name = "txtIPRangeStart"
+        Me.txtIPRangeStart.Size = New System.Drawing.Size(187, 20)
+        Me.txtIPRangeStart.TabIndex = 5
+        Me.txtIPRangeStart.Tag = ""
+        Me.txtIPRangeStart.Text = "10.0.2.15"
+        '
         'PingIPRange
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -103,10 +103,10 @@ Partial Class PingIPRange
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtIPRangeStart As System.Windows.Forms.TextBox
     Friend WithEvents txtOutput As System.Windows.Forms.TextBox
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtIPRangeEnd As System.Windows.Forms.TextBox
+    Friend WithEvents txtIPRangeStart As System.Windows.Forms.TextBox
 End Class

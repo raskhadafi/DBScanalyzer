@@ -7,4 +7,14 @@
         Dim ipRangePingForm As New PingIPRange()
         ipRangePingForm.Show()
     End Sub
+
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Dim scanalyzerForm As New ScanalyzerForm()
+        scanalyzerForm.Show()
+    End Sub
+
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Dim cmdPingForm As New cmdPing()
+        cmdPingForm.Show()
+    End Sub
 End Class

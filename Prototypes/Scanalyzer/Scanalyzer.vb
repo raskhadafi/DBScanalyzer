@@ -23,10 +23,18 @@
     Public Function scanIps()
         ipScanner = New IPScanner(ips)
         computers = ipScanner.getComputers()
-        Return printScanResult()
+        Return printIpScanResult()
     End Function
 
-    Private Function printScanResult()
+    Public Function scanPorts()
+        Return printPortScanResult()
+    End Function
+
+    Private Function printPortScanResult()
+        Return "portscan done" + Environment.NewLine
+    End Function
+
+    Private Function printIpScanResult()
         Dim text As String
         text = "scan finished" + Environment.NewLine
         For Each computer In computers

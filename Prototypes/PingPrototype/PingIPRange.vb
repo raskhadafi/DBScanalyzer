@@ -4,66 +4,33 @@ Imports System.Net.NetworkInformation
 Public Class PingIPRange
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim ping As New NetworkInformation.Ping
-        Dim pingResponse As NetworkInformation.PingReply
-        'Dim ipRangeStart As String
-        'Dim ipRangeEnd As String
-        Dim ips() As String
-
-        ips = createIPs(txtIPRangeStart.Text, txtIPRangeEnd.Text)
-        'ipRangeEnd = txtIPRangeEnd.Text
-        For Each ip In ips
-            txtOutput.Text += "--------------" + Environment.NewLine
-            txtOutput.Text += "ping: " + ip.ToString + Environment.NewLine
-            pingResponse = ping.Send(ip, 50)
-            If pingResponse Is Nothing Then
-                txtOutput.Text += "No reply" + Environment.NewLine
-            ElseIf pingResponse.Status = IPStatus.Success Then
-                txtOutput.Text += "Reply from " + pingResponse.Address.ToString() + Environment.NewLine
-            Else
-                txtOutput.Text += "Ping was unsuccessful: " + pingResponse.Status.ToString() + Environment.NewLine
-            End If
-            txtOutput.Text += "--------------" + Environment.NewLine
-        Next ip
+        'Dim pingResponse As NetworkInformation.PingReply
+        Dim ipRangeStart(3) As Integer
+        Dim ipRangeEnd(3) As Integer
+        'Dim ips()() As Integer
+        Dim startIpInput(), endIpInput() As String
+        startIpInput = Split(txtIPRangeStart.Text, ".")
+        endIpInput = Split(txtIPRangeEnd.Text, ".")
+        For index As Integer = 0 To 3
+            ipRangeStart(index) = Convert.ToInt32(startIpInput(index))
+            ipRangeEnd(index) = Convert.ToInt32(endIpInput(index))
+        Next
+        createIPs(ipRangeStart, ipRangeEnd)
     End Sub
     ' creates array with ips from ip range
-    Private Function createIPs(ByVal startIP As String, ByVal endIP As String)
-        Dim datas(0) As String
-        Dim startIpArray(4) As String
-        Dim endIpArray(4) As String
-        Dim i As Integer
-
-        If startIP = endIP Then
-            datas(0) = startIP
-            Return datas
+    Private Sub createIPs(ByVal startIP() As Integer, ByVal endIP() As Integer)
+        Dim ips()() As Integer
+        Dim count As Integer
+        count = (endIP(0) - startIP(0)) * 255 * 255 * 255 + (endIP(1) - startIP(1)) * 255 * 255 + (endIP(2) - startIP(2)) * 255 + (endIP(3) - startIP(3))
+        ReDim ips(0)
+        If startIP(3) = endIP(3) Then
+            ReDim ips(0)(3)
+            For index As Integer = 0 To 3
+                ips(0)(index) = startIP(index)
+            Next
+            Exit Sub
         End If
-
-        i = 0
-        startIpArray = Split(startIP, ".")
-        endIpArray = Split(endIP, ".")
-
-        For first As Integer = startIpArray(0) To endIpArray(0)
-            For second As Integer = startIpArray(1) To endIpArray(1)
-                For third As Integer = startIpArray(2) To endIpArray(2)
-                    For fourth As Integer = startIpArray(3) To endIpArray(3)
-                        i += 1
-                    Next
-                Next
-            Next
-        Next
-        i = i - 1
-        ReDim datas(0 To i)
-        i = 0
-        For first As Integer = startIpArray(0) To endIpArray(0)
-            For second As Integer = startIpArray(1) To endIpArray(1)
-                For third As Integer = startIpArray(2) To endIpArray(2)
-                    For fourth As Integer = startIpArray(3) To endIpArray(3)
-                        datas(i) = first.ToString + "." + second.ToString + "." + third.ToString + "." + fourth.ToString
-                        i += 1
-                    Next
-                Next
-            Next
-        Next
-
-        Return datas
-    End Function
+        ReDim ips(count)
+        ReDim ips(count)(3)
+    End Sub
 End Class
