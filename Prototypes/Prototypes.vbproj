@@ -41,6 +41,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core">
@@ -95,7 +96,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Scanalyzer\DBScanner.vb" />
-    <Compile Include="Scanalyzer\Computer.vb" />
+    <Compile Include="Scanalyzer\objects\Computer.vb" />
     <Compile Include="Scanalyzer\IPScanner.vb" />
     <Compile Include="PingPrototype\PingIPRange.Designer.vb">
       <DependentUpon>PingIPRange.vb</DependentUpon>
@@ -103,6 +104,7 @@
     <Compile Include="PingPrototype\PingIPRange.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Scanalyzer\objects\Database.vb" />
     <Compile Include="Scanalyzer\Scanalyzer.vb" />
     <Compile Include="Scanalyzer\ScanalyzerForm.Designer.vb">
       <DependentUpon>ScanalyzerForm.vb</DependentUpon>
