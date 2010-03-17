@@ -24,7 +24,7 @@ Partial Class cmdPing
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(cmdPing))
         Me.Button1 = New System.Windows.Forms.Button
-        Me.txtOutput = New System.Windows.Forms.TextBox
+        Me.txtIPRange = New System.Windows.Forms.TextBox
         Me.txtStdout = New System.Windows.Forms.TextBox
         Me.txtStderr = New System.Windows.Forms.TextBox
         Me.Label1 = New System.Windows.Forms.Label
@@ -32,6 +32,7 @@ Partial Class cmdPing
         Me.Label3 = New System.Windows.Forms.Label
         Me.Button2 = New System.Windows.Forms.Button
         Me.nmapOutputText = New System.Windows.Forms.TextBox
+        Me.Button3 = New System.Windows.Forms.Button
         Me.SuspendLayout()
         '
         'Button1
@@ -43,13 +44,13 @@ Partial Class cmdPing
         Me.Button1.Text = "nmap.exe"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'txtOutput
+        'txtIPRange
         '
-        Me.txtOutput.Location = New System.Drawing.Point(140, 14)
-        Me.txtOutput.Name = "txtOutput"
-        Me.txtOutput.Size = New System.Drawing.Size(414, 20)
-        Me.txtOutput.TabIndex = 1
-        Me.txtOutput.Text = "-sV --open 10.3.115.80"
+        Me.txtIPRange.Location = New System.Drawing.Point(140, 14)
+        Me.txtIPRange.Name = "txtIPRange"
+        Me.txtIPRange.Size = New System.Drawing.Size(414, 20)
+        Me.txtIPRange.TabIndex = 1
+        Me.txtIPRange.Text = "10.3.115.80"
         '
         'txtStdout
         '
@@ -112,11 +113,21 @@ Partial Class cmdPing
         Me.nmapOutputText.TabIndex = 8
         Me.nmapOutputText.Text = resources.GetString("nmapOutputText.Text")
         '
+        'Button3
+        '
+        Me.Button3.Location = New System.Drawing.Point(609, 38)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.TabIndex = 9
+        Me.Button3.Text = "DBAnalyzer"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
         'cmdPing
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(770, 345)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.nmapOutputText)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Label3)
@@ -124,7 +135,7 @@ Partial Class cmdPing
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.txtStderr)
         Me.Controls.Add(Me.txtStdout)
-        Me.Controls.Add(Me.txtOutput)
+        Me.Controls.Add(Me.txtIPRange)
         Me.Controls.Add(Me.Button1)
         Me.Name = "cmdPing"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -134,7 +145,7 @@ Partial Class cmdPing
 
     End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
-    Friend WithEvents txtOutput As System.Windows.Forms.TextBox
+    Friend WithEvents txtIPRange As System.Windows.Forms.TextBox
     Friend WithEvents txtStdout As System.Windows.Forms.TextBox
     Friend WithEvents txtStderr As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -142,4 +153,5 @@ Partial Class cmdPing
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents nmapOutputText As System.Windows.Forms.TextBox
+    Friend WithEvents Button3 As System.Windows.Forms.Button
 End Class

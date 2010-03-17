@@ -17,4 +17,9 @@
         Dim cmdPingForm As New cmdPing()
         cmdPingForm.Show()
     End Sub
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim connectForm As New Samples.ConnectForm()
+        connectForm.Show()
+    End Sub
 End Class

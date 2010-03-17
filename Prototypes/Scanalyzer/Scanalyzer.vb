@@ -3,7 +3,7 @@
     Private amountOfIps As Integer
     Private ips() As String
     Private startIp(3), endIp(3) As Integer
-    Private ipScanner As IPScanner
+    Private ipScanner As DBAnalyzer
     Private computers As New ArrayList()
 
     Public Sub New(ByVal startIp As String, ByVal endIp As String)
@@ -21,8 +21,8 @@
     End Sub
 
     Public Function scanIps()
-        ipScanner = New IPScanner(ips)
-        computers = ipScanner.getComputers()
+        'ipScanner = New DBAnalyzer(ips)
+        'computers = ipScanner.getComputers()
         Return printIpScanResult()
     End Function
 
