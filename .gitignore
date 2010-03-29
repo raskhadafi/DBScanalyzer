@@ -2,3 +2,4 @@
 */obj/*
 *.suo
 Scanalyzer/TestResults/*
+Scanalyzer/LocalTestRun.testrunconfig
