@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controller\Scanalyzer.vb" />
+    <Compile Include="logic\ComputerPing.vb" />
     <Compile Include="logic\DBAnalyzer.vb" />
     <Compile Include="logic\DBAnalyzer\DataAnalyzer.vb" />
     <Compile Include="logic\DBAnalyzer\DBAccessStrategy.vb" />

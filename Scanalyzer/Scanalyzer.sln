@@ -3,7 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Scanalyzer", "Scanalyzer.vbproj", "{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ScanalyzerUnitTests", "ScanalyzerUnitTests\ScanalyzerUnitTests.vbproj", "{83DBEA97-B360-46CC-8B52-B9208001F014}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{FBD0CF55-4BC6-430E-B8C0-D30C4565D825}"
+	ProjectSection(SolutionItems) = preProject
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+		Scanalyzer.vsmdi = Scanalyzer.vsmdi
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Scanalyzer.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -13,6 +24,10 @@ Global
 		{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83DBEA97-B360-46CC-8B52-B9208001F014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83DBEA97-B360-46CC-8B52-B9208001F014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83DBEA97-B360-46CC-8B52-B9208001F014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83DBEA97-B360-46CC-8B52-B9208001F014}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

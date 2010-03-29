@@ -1,0 +1,25 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+ScanalyzerUnitTests
+</name>
+</assembly>
+<members>
+<member name="P:ScanalyzerUnitTests.ComputerPingTest.TestContext">
+	<summary>
+Gets or sets the test context which provides
+information about and functionality for the current test run.
+</summary>
+</member><member name="M:ScanalyzerUnitTests.ComputerPingTest.pingHostTest">
+	<summary>
+A test for pingHost
+</summary>
+</member><member name="T:ScanalyzerUnitTests.ComputerPingTest">
+	<summary>
+This is a test class for ComputerPingTest and is intended
+to contain all ComputerPingTest Unit Tests
+</summary>
+</member>
+</members>
+</doc>
