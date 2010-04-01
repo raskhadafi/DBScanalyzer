@@ -4,3 +4,4 @@
 Scanalyzer/TestResults/*
 Scanalyzer/LocalTestRun.testrunconfig
 *Thumbs.db
+Scanalyzer/ScanalyzerUnitTests/obj/*
