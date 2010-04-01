@@ -48,7 +48,14 @@ Public Class MySQLAccessStrategy
         Try
             connection.Open()
             Return True
-        Catch ex As Exception
+        Catch ex As MySqlException
+            Select Case ex.Number
+                Case 0
+                    MessageBox.Show("Cannot connect to server. Contact administrator")
+                Case 1045
+                    MessageBox.Show("Invalid username/password, please try again")
+            End Select
+
             Return False
         End Try
 
