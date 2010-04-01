@@ -3,3 +3,4 @@
 *.suo
 Scanalyzer/TestResults/*
 Scanalyzer/LocalTestRun.testrunconfig
+*Thumbs.db
