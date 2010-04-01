@@ -61,16 +61,15 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub openAndCloseConnectionTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim computer As Computer = Nothing ' TODO: Initialize to an appropriate value
-        Dim computerExpected As Computer = Nothing ' TODO: Initialize to an appropriate value
-        Dim databaseInstance As Integer = 0 ' TODO: Initialize to an appropriate value
-        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim computer As Computer = New Computer("192.168.1.1")
+        Dim expected As Boolean = True
         Dim actual As Boolean
-        actual = target.openConnection(computer, databaseInstance)
-        Assert.AreEqual(computerExpected, computer)
+
+        computer.addDatabaseInstance(3306, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
+        
+        actual = target.openConnection(computer, 0)
         Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
     '''<summary>

@@ -3,9 +3,9 @@
 Public Class MySQLAccessStrategy
     Inherits DBAccessStrategy
 
-    Private connection As MySqlConnection
+    Private connection As New MySqlConnection
+    Private command As MySqlCommand
     Private connectionString As String
-    Private databaseInstance As DatabaseInstance
 
     Public Overrides Function closeConnection() As Boolean
 
@@ -19,29 +19,50 @@ Public Class MySQLAccessStrategy
     End Function
 
     Public Overrides Function getColumn() As System.Collections.ArrayList
-        Return Nothing
+        Dim reader As MySqlDataReader
+        Dim returnList As New ArrayList
+        Try
+            command = New MySqlCommand
+            command.CommandText = "show databases"
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+            While reader.HasRows
+                returnList.Add("test")
+            End While
+        Catch ex As Exception
+
+        End Try
+        Return New ArrayList
+
     End Function
 
     Public Overrides Function getColumnNames() As System.Collections.ArrayList
-        Return Nothing
+
+        Return New ArrayList
+
     End Function
 
     Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
-        Return Nothing
+
+        Return New ArrayList
+
     End Function
 
     Public Overrides Function getInformationSchema() As System.Collections.ArrayList
-        Return Nothing
+
+        Return New ArrayList
+
     End Function
 
-    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstance As Integer) As Boolean
-
-        Me.databaseInstance = computer.getInstance(databaseInstance)
+    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+        Dim databaseInstance As DatabaseInstance
+        databaseInstance = computer.getInstance(databaseInstancePosition)
 
         connectionString = "server=" + computer.ip + ";" _
-                         & "uid=" + Me.databaseInstance.user + ";" _
-                         & "pwd=" + Me.databaseInstance.pwd + ";" _
-                         & "port=" + Me.databaseInstance.port + ";"
+                         & "uid=" + databaseInstance.user + ";" _
+                         & "pwd=" + databaseInstance.pwd + ";" _
+                         & "port=" + databaseInstance.port + ";"
 
         connection.ConnectionString = connectionString
 
