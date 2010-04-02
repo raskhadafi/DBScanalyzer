@@ -74,7 +74,7 @@ Public Class MySQLPingStrategyTest
     Public Sub tryAllPortsTest()
         Dim target As MySQLPingStrategy = New MySQLPingStrategy
         Dim actual As ArrayList
-        actual = target.tryDefaultPort("192.168.1.5")
+        actual = target.tryAllPorts("192.168.1.5")
         Assert.IsNotNull(actual)
     End Sub
 End Class
