@@ -151,19 +151,6 @@ Public Class MySQLAccessStrategyTest
     End Sub
 
     '''<summary>
-    '''A test for getInformationSchema
-    '''</summary>
-    <TestMethod()> _
-    Public Sub getInformationSchemaTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList
-        actual = target.getInformationSchema
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
     '''A test for getColumn
     '''</summary>
     <TestMethod()> _
