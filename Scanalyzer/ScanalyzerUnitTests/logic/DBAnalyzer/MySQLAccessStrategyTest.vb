@@ -155,11 +155,29 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getColumnTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList = Nothing
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim computer As Computer = mysqlServer
+        Dim expected As Boolean = True
+        Dim actualOpen As Boolean
+        Dim actualClose As Boolean
+        Dim actualDatabaseNames As ArrayList
+        Dim actualTableNames As ArrayList
+        Dim actualColumnNames As ArrayList
+        Dim actualColumn As ArrayList
+
+        actualOpen = target.openConnection(computer, 0)
+        actualDatabaseNames = target.getDatabaseNames()
+        actualTableNames = target.getTableNames(actualDatabaseNames(0))
+        actualColumnNames = target.getColumnNames(actualDatabaseNames(0), actualTableNames(0))
+        actualColumn = target.getColumn(actualDatabaseNames(0), actualTableNames(0), actualColumnNames(0))
+        actualClose = target.closeConnection()
+
+        Assert.AreEqual(expected, actualOpen)
+        Assert.AreEqual(expected, actualClose)
+        Assert.IsNotNull(actualDatabaseNames)
+        Assert.IsNotNull(actualTableNames)
+        Assert.IsNotNull(actualColumnNames)
+        Assert.IsNotNull(actualColumn)
     End Sub
 
     '''<summary>
