@@ -55,16 +55,14 @@ Public Class MySQLAccessStrategy
 
     End Function
 
-    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+    Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstancePosition As Integer) As Boolean
         Dim databaseInstance As DatabaseInstance
+        Dim computer As Computer = computerIn
         databaseInstance = computer.getInstance(databaseInstancePosition)
 
-        connectionString = "server=" + computer.ip + ";" _
-                         & "uid=" + databaseInstance.user + ";" _
-                         & "pwd=" + databaseInstance.pwd + ";" _
-                         & "port=" + databaseInstance.port + ";"
+        Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort() + ";"
 
-        connection.ConnectionString = connectionString
+        connection.ConnectionString = Me.connectionString
 
         Try
             connection.Open()

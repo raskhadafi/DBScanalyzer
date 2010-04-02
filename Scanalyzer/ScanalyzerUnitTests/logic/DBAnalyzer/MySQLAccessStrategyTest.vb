@@ -15,6 +15,7 @@ Public Class MySQLAccessStrategyTest
 
 
     Private testContextInstance As TestContext
+    Private mysqlServer As Computer
 
     '''<summary>
     '''Gets or sets the test context which provides
@@ -44,9 +45,12 @@ Public Class MySQLAccessStrategyTest
     'End Sub
     '
     'Use TestInitialize to run code before running each test
-    '<TestInitialize()>  _
-    'Public Sub MyTestInitialize()
-    'End Sub
+    <TestInitialize()> _
+    Public Sub MyTestInitialize()
+        Me.mysqlServer = New Computer("192.168.1.5")
+        Me.mysqlServer.addDatabaseInstance(3306, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
+        Me.mysqlServer.addCredentials("dbtest", "dbtest", 0)
+    End Sub
     '
     'Use TestCleanup to run code after each test has run
     '<TestCleanup()>  _
@@ -62,14 +66,16 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub openAndCloseConnectionTest()
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = New Computer("192.168.1.1")
+        Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
-        Dim actual As Boolean
+        Dim actualOpen As Boolean
+        Dim actualClose As Boolean
 
-        computer.addDatabaseInstance(3306, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
-        
-        actual = target.openConnection(computer, 0)
-        Assert.AreEqual(expected, actual)
+        actualOpen = target.openConnection(computer, 0)
+        actualClose = target.closeConnection()
+
+        Assert.AreEqual(expected, actualOpen)
+        Assert.AreEqual(expected, actualClose)
     End Sub
 
     '''<summary>
@@ -90,11 +96,8 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getDatabaseNamesTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList
-        actual = target.getDatabaseNames
-        Assert.AreEqual(expected, actual)
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
