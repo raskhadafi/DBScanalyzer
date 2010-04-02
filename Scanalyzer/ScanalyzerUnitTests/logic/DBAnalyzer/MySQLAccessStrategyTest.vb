@@ -97,8 +97,19 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub getDatabaseNamesTest()
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim computer As Computer = mysqlServer
+        Dim expected As Boolean = True
+        Dim actualOpen As Boolean
+        Dim actualClose As Boolean
+        Dim actualDatabaseNames As ArrayList
 
-        Assert.Inconclusive("Verify the correctness of this test method.")
+        actualOpen = target.openConnection(computer, 0)
+        actualDatabaseNames = target.getDatabaseNames()
+        actualClose = target.closeConnection()
+
+        Assert.AreEqual(expected, actualOpen)
+        Assert.AreEqual(expected, actualClose)
+        Assert.IsNotNull(actualDatabaseNames)
     End Sub
 
     '''<summary>

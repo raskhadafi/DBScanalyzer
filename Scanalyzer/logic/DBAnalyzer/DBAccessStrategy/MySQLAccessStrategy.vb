@@ -45,7 +45,22 @@ Public Class MySQLAccessStrategy
 
     Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
 
-        Return New ArrayList
+        Dim reader As MySqlDataReader
+        Dim returnList As New ArrayList
+        Try
+            command = New MySqlCommand
+            command.CommandText = "show databases"
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+            While reader.Read
+                returnList.Add(reader.GetValue(reader.GetOrdinal("Database")))
+            End While
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        removeMysqlDatabases(returnList)
+        Return returnList
 
     End Function
 
@@ -79,4 +94,9 @@ Public Class MySQLAccessStrategy
         End Try
 
     End Function
+
+    Private Sub removeMysqlDatabases(ByRef databases As ArrayList)
+        databases.Remove("mysql")
+        databases.Remove("information_schema")
+    End Sub
 End Class
