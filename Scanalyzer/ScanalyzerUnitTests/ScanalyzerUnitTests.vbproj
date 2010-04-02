@@ -63,7 +63,7 @@
     <Compile Include="logic\ComputerPingTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="logic\DBAnalyzer\MySQLAccessStrategyTest.vb" />
-    <Compile Include="MySQLPingStrategyTest.vb" />
+    <Compile Include="logic\DBScanner\DBPingStrategy\MySQLPingStrategyTest.vb" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AuthoringTests.txt" />
@@ -73,9 +73,6 @@
       <Project>{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}</Project>
       <Name>Scanalyzer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="logic\DBScanner\DBPingStrategy\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

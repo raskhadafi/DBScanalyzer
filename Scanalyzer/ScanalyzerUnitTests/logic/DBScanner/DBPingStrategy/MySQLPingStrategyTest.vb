@@ -61,15 +61,10 @@ Public Class MySQLPingStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub tryDefaultPortTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy ' TODO: Initialize to an appropriate value
-        Dim ip As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim ipExpected As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
+        Dim target As MySQLPingStrategy = New MySQLPingStrategy
         Dim actual As ArrayList
-        actual = target.tryDefaultPort(ip)
-        Assert.AreEqual(ipExpected, ip)
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+        actual = target.tryDefaultPort("192.168.1.5")
+        Assert.IsNotNull(actual)
     End Sub
 
     '''<summary>
@@ -77,14 +72,9 @@ Public Class MySQLPingStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub tryAllPortsTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy ' TODO: Initialize to an appropriate value
-        Dim ip As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim ipExpected As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
+        Dim target As MySQLPingStrategy = New MySQLPingStrategy
         Dim actual As ArrayList
-        actual = target.tryAllPorts(ip)
-        Assert.AreEqual(ipExpected, ip)
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+        actual = target.tryDefaultPort("192.168.1.5")
+        Assert.IsNotNull(actual)
     End Sub
 End Class
