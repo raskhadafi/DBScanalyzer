@@ -23,13 +23,14 @@ Public Class MySQLAccessStrategy
         Dim returnList As New ArrayList
         Try
             command = New MySqlCommand
-            command.CommandText = "show databases"
+            command.CommandText = "select " + columName + " from " + databaseName + "." + tableName
             command.Connection = connection
             command.Prepare()
             reader = command.ExecuteReader()
             While reader.HasRows
-                returnList.Add("test")
+                returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
             End While
+            reader.Close()
         Catch ex As Exception
 
         End Try
