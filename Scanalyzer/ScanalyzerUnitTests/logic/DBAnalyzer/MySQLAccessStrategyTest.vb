@@ -79,19 +79,6 @@ Public Class MySQLAccessStrategyTest
     End Sub
 
     '''<summary>
-    '''A test for getInformationSchema
-    '''</summary>
-    <TestMethod()> _
-    Public Sub getInformationSchemaTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList
-        actual = target.getInformationSchema
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
     '''A test for getDatabaseNames
     '''</summary>
     <TestMethod()> _
@@ -110,6 +97,43 @@ Public Class MySQLAccessStrategyTest
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
         Assert.IsNotNull(actualDatabaseNames)
+    End Sub
+
+    '''<summary>
+    '''A test for getTableNames
+    '''</summary>
+    <TestMethod()> _
+    Public Sub getTableNamesTest()
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim computer As Computer = mysqlServer
+        Dim expected As Boolean = True
+        Dim actualOpen As Boolean
+        Dim actualClose As Boolean
+        Dim actualDatabaseNames As ArrayList
+        Dim actualTableNames As ArrayList
+
+        actualOpen = target.openConnection(computer, 0)
+        actualDatabaseNames = target.getDatabaseNames()
+        actualTableNames = target.getTableNames(actualDatabaseNames(0))
+        actualClose = target.closeConnection()
+
+        Assert.AreEqual(expected, actualOpen)
+        Assert.AreEqual(expected, actualClose)
+        Assert.IsNotNull(actualDatabaseNames)
+        Assert.IsNotNull(actualTableNames)
+    End Sub
+
+    '''<summary>
+    '''A test for getInformationSchema
+    '''</summary>
+    <TestMethod()> _
+    Public Sub getInformationSchemaTest()
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
+        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
+        Dim actual As ArrayList
+        actual = target.getInformationSchema
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
 
     '''<summary>
