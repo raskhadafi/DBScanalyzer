@@ -1,7 +1,7 @@
 ﻿Public Class Table
 
-    Public name As String
-    Public columns As ArrayList
-    Public equalsToData As Integer
+    Private name As String
+    Private columns As ArrayList
+    Private equalsToData As Integer
 
 End Class

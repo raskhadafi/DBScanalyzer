@@ -1,9 +1,9 @@
 ﻿Public Class DatabaseInstance
 
-    Public port As Integer
-    Public user As String
-    Public password As String
-    Public type As DatabaseEnum
+    Private port As Integer
+    Private user As String
+    Private password As String
+    Private type As DatabaseEnum
 
     Public Sub New(ByVal port As Integer, ByVal type As DatabaseEnum)
         Me.port = port

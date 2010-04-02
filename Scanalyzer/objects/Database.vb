@@ -1,7 +1,7 @@
 ﻿Public Class Database
 
-    Public name As String
-    Public tables As ArrayList
-    Public equalsToData As Integer
+    Private name As String
+    Private tables As ArrayList
+    Private equalsToData As Integer
 
 End Class

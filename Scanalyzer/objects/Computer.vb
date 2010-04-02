@@ -1,7 +1,7 @@
 ﻿Public Class Computer
 
-    Public ip As String
-    Public databasesInstances As ArrayList
+    Private ip As String
+    Private databasesInstances As ArrayList
 
     Public Sub New(ByVal ip As String)
         Me.ip = ip
