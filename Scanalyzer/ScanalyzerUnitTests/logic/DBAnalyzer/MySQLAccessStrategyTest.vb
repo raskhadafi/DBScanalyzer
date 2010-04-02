@@ -124,6 +124,33 @@ Public Class MySQLAccessStrategyTest
     End Sub
 
     '''<summary>
+    '''A test for getColumnNames
+    '''</summary>
+    <TestMethod()> _
+    Public Sub getColumnNamesTest()
+        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim computer As Computer = mysqlServer
+        Dim expected As Boolean = True
+        Dim actualOpen As Boolean
+        Dim actualClose As Boolean
+        Dim actualDatabaseNames As ArrayList
+        Dim actualTableNames As ArrayList
+        Dim actualColumnNames As ArrayList
+
+        actualOpen = target.openConnection(computer, 0)
+        actualDatabaseNames = target.getDatabaseNames()
+        actualTableNames = target.getTableNames(actualDatabaseNames(0))
+        actualColumnNames = target.getColumnNames(actualDatabaseNames(0), actualTableNames(0))
+        actualClose = target.closeConnection()
+
+        Assert.AreEqual(expected, actualOpen)
+        Assert.AreEqual(expected, actualClose)
+        Assert.IsNotNull(actualDatabaseNames)
+        Assert.IsNotNull(actualTableNames)
+        Assert.IsNotNull(actualColumnNames)
+    End Sub
+
+    '''<summary>
     '''A test for getInformationSchema
     '''</summary>
     <TestMethod()> _
@@ -132,18 +159,6 @@ Public Class MySQLAccessStrategyTest
         Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
         Dim actual As ArrayList
         actual = target.getInformationSchema
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
-    '''A test for getColumnNames
-    '''</summary>
-    <TestMethod()> _
-    Public Sub getColumnNamesTest()
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
-        Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList = Nothing
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -166,6 +181,6 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub MySQLAccessStrategyConstructorTest()
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Assert.Inconclusive("TODO: Implement code to verify target")
+        Assert.IsNotNull(target)
     End Sub
 End Class

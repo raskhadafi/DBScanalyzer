@@ -39,7 +39,22 @@ Public Class MySQLAccessStrategy
 
     Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
-        Return New ArrayList
+        Dim reader As MySqlDataReader
+        Dim returnList As New ArrayList
+        Try
+            command = New MySqlCommand
+            command.CommandText = "show columns from " + tableName + " from " + databaseName
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+            While reader.Read
+                returnList.Add(reader.GetValue(reader.GetOrdinal("Field")))
+            End While
+            reader.Close()
+        Catch ex As Exception
+            Return Nothing
+        End Try
+        Return returnList
 
     End Function
 
