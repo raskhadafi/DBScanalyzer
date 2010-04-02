@@ -18,7 +18,7 @@ Public Class MySQLAccessStrategy
 
     End Function
 
-    Public Overrides Function getColumn() As System.Collections.ArrayList
+    Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
         Try
@@ -37,7 +37,7 @@ Public Class MySQLAccessStrategy
 
     End Function
 
-    Public Overrides Function getColumnNames() As System.Collections.ArrayList
+    Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
         Return New ArrayList
 
@@ -93,6 +93,10 @@ Public Class MySQLAccessStrategy
             Return False
         End Try
 
+    End Function
+
+    Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
+        Return New ArrayList
     End Function
 
     Private Sub removeMysqlDatabases(ByRef databases As ArrayList)

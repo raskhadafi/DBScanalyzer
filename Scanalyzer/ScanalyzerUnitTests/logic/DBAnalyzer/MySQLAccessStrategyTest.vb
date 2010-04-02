@@ -119,8 +119,7 @@ Public Class MySQLAccessStrategyTest
     Public Sub getColumnNamesTest()
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
         Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList
-        actual = target.getColumnNames
+        Dim actual As ArrayList = Nothing
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -132,8 +131,7 @@ Public Class MySQLAccessStrategyTest
     Public Sub getColumnTest()
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy ' TODO: Initialize to an appropriate value
         Dim expected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim actual As ArrayList
-        actual = target.getColumn
+        Dim actual As ArrayList = Nothing
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
