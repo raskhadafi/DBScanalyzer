@@ -19,7 +19,7 @@ Public Class ComputerPing
     Public Function getOpenPorts(ByVal ip As String)
         ' Set start information.
         Dim start_info As New ProcessStartInfo("nmap.exe")
-        start_info.UseShellExecute = True
+        start_info.UseShellExecute = False
         start_info.CreateNoWindow = True
         start_info.RedirectStandardOutput = True
         start_info.RedirectStandardError = True
@@ -35,12 +35,12 @@ Public Class ComputerPing
         ' Attach to stdout and stderr.
         Dim std_out As StreamReader = proc.StandardOutput()
         Dim std_err As StreamReader = proc.StandardError()
-
+        Dim test As String = std_out.ReadToEnd()
         ' Clean up.
         std_out.Close()
         std_err.Close()
         proc.Close()
-        Return parseNMAPOutput(std_out.ReadToEnd())
+        Return parseNMAPOutput(test)
     End Function
 
     Private Function parseNMAPOutput(ByVal input As String) As ArrayList
@@ -48,22 +48,21 @@ Public Class ComputerPing
         Dim newComputer As Boolean
         Dim computerPointer As Integer
         Dim ipFinder As Regex = New Regex("(\b(?:\d{1,3}\.){3}\d{1,3}\b)")
-        Dim beginOfPortsFinder As Regex = New Regex("PORT\W*STATE\W*SERVICE\W*VERSION")
+        Dim beginOfPortsFinder As Regex = New Regex("PORT\W*STATE")
         Dim serviceFinder As Regex = New Regex("^([0-9]*)\/([a-z]*)\W*(open)\W*([\w\D]*)")
         Dim openPorts As ArrayList = New ArrayList
         newComputer = False
         output = Split(input, Environment.NewLine)
         For Each tmpTxt In output
             If newComputer Then
-                If tmpTxt.Equals("") Then
+                If (tmpTxt.ToString).StartsWith("MAC") Then
                     newComputer = False
                 Else
                     Dim line As Array
                     line = serviceFinder.Split(tmpTxt)
                     If line(3).Equals("open") Then
-                        openPorts.Add(line(1))
+                        openPorts.Add(Integer.Parse(line(1)))
                     End If
-                    newComputer = False
                 End If
             ElseIf ipFinder.IsMatch(tmpTxt) Then
                 Dim ip As Array

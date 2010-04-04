@@ -1,6 +1,7 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
+Imports System.Collections
 
 
 
@@ -66,5 +67,16 @@ Public Class ComputerPingTest
         notavaibleIP = target.pingHost("192.168.255.50")
         Assert.AreEqual(True, localIP)
         Assert.AreEqual(False, notavaibleIP)
+    End Sub
+
+    '''<summary>
+    '''A test for openPorts
+    '''</summary>
+    <TestMethod()> _
+    Public Sub openPortsTest()
+        Dim target As ComputerPing = New ComputerPing()
+        Dim actual As ArrayList
+        actual = target.getOpenPorts("192.168.1.6")
+        Assert.IsNotNull(actual)
     End Sub
 End Class

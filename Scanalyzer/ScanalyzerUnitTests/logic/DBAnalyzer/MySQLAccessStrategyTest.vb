@@ -47,7 +47,7 @@ Public Class MySQLAccessStrategyTest
     'Use TestInitialize to run code before running each test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
-        Me.mysqlServer = New Computer("192.168.1.5")
+        Me.mysqlServer = New Computer("192.168.1.6")
         Me.mysqlServer.addDatabaseInstance(3306, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
         Me.mysqlServer.addCredentials("dbtest", "dbtest", 0)
     End Sub
