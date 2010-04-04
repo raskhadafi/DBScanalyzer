@@ -2,6 +2,7 @@
 
     Private ip As String
     Private databasesInstances As ArrayList
+    Private openPorts As ArrayList
 
     Public Sub New(ByVal ip As String)
         Me.ip = ip
@@ -25,5 +26,9 @@
     Public Function getIp() As String
         Return Me.ip
     End Function
+
+    Public Sub addOpenPort(ByRef portNumber As Integer)
+        Me.openPorts.Add(portNumber)
+    End Sub
 
 End Class
