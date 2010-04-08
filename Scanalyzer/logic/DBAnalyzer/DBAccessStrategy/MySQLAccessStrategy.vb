@@ -22,6 +22,7 @@ Public Class MySQLAccessStrategy
 
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
+
         Try
             command = New MySqlCommand
             command.CommandText = "select " + columName + " from " + databaseName + "." + tableName
@@ -113,7 +114,6 @@ Public Class MySQLAccessStrategy
                 Case 1045
                     MessageBox.Show("Invalid username/password, please try again")
             End Select
-
             Return False
         End Try
 
