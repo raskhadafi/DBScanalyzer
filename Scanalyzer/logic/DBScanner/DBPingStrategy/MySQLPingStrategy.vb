@@ -4,7 +4,6 @@ Public Class MySQLPingStrategy
     Inherits DBPingStrategy
 
     Private connection As New MySqlConnection
-    Private ports As Array
 
 
     Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As ArrayList) As System.Collections.ArrayList
