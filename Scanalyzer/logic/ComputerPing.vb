@@ -6,6 +6,7 @@ Imports System.Text.RegularExpressions
 Public Class ComputerPing
 
     Public Function pingHost(ByRef ip As String) As Boolean
+
         Dim ping As New NetworkInformation.Ping
         Dim pingResponse As NetworkInformation.PingReply
 
@@ -20,11 +21,12 @@ Public Class ComputerPing
     End Function
 
     Public Function getOpenPorts(ByVal ip As String)
+
         Dim start_info As New ProcessStartInfo("nmap.exe")
         Dim proc As New Process()
-        Dim std_out As StreamReader = proc.StandardOutput()
-        Dim std_err As StreamReader = proc.StandardError()
-        Dim test As String = std_out.ReadToEnd()
+        Dim std_out As StreamReader
+        Dim std_err As StreamReader
+        Dim nmapOutput As String
 
         start_info.UseShellExecute = False
         start_info.CreateNoWindow = True
@@ -33,11 +35,14 @@ Public Class ComputerPing
         start_info.Arguments = "-n -sS -p1-65535 " + ip
         proc.StartInfo = start_info
         proc.Start()
+        std_out = proc.StandardOutput
+        std_err = proc.StandardError
+        nmapOutput = std_out.ReadToEnd()
         std_out.Close()
         std_err.Close()
         proc.Close()
 
-        Return parseNMAPOutput(test)
+        Return parseNMAPOutput(nmapOutput)
 
     End Function
 
