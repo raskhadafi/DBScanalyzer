@@ -47,9 +47,11 @@ Public Class MySQLAccessStrategyTest
     'Use TestInitialize to run code before running each test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
-        Me.mysqlServer = New Computer("192.168.1.6")
-        Me.mysqlServer.addDatabaseInstance(3306, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
+
+        Me.mysqlServer = New Computer("192.168.56.3")
+        Me.mysqlServer.addDatabaseInstance(3307, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
         Me.mysqlServer.addCredentials("dbtest", "dbtest", 0)
+
     End Sub
     '
     'Use TestCleanup to run code after each test has run
@@ -65,6 +67,7 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub openAndCloseConnectionTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
         Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
@@ -76,6 +79,7 @@ Public Class MySQLAccessStrategyTest
 
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
+
     End Sub
 
     '''<summary>
@@ -83,6 +87,7 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getDatabaseNamesTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
         Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
@@ -96,7 +101,8 @@ Public Class MySQLAccessStrategyTest
 
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
-        Assert.IsNotNull(actualDatabaseNames)
+        Assert.AreNotEqual(0, actualDatabaseNames.Count)
+
     End Sub
 
     '''<summary>
@@ -104,6 +110,7 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getTableNamesTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
         Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
@@ -119,8 +126,9 @@ Public Class MySQLAccessStrategyTest
 
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
-        Assert.IsNotNull(actualDatabaseNames)
-        Assert.IsNotNull(actualTableNames)
+        Assert.AreNotEqual(0, actualDatabaseNames.Count)
+        Assert.AreNotEqual(0, actualTableNames.Count)
+
     End Sub
 
     '''<summary>
@@ -128,6 +136,7 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getColumnNamesTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
         Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
@@ -145,9 +154,10 @@ Public Class MySQLAccessStrategyTest
 
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
-        Assert.IsNotNull(actualDatabaseNames)
-        Assert.IsNotNull(actualTableNames)
-        Assert.IsNotNull(actualColumnNames)
+        Assert.AreNotEqual(0, actualDatabaseNames.Count)
+        Assert.AreNotEqual(0, actualTableNames.Count)
+        Assert.AreNotEqual(0, actualColumnNames.Count)
+
     End Sub
 
     '''<summary>
@@ -155,6 +165,7 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub getColumnTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
         Dim computer As Computer = mysqlServer
         Dim expected As Boolean = True
@@ -174,10 +185,11 @@ Public Class MySQLAccessStrategyTest
 
         Assert.AreEqual(expected, actualOpen)
         Assert.AreEqual(expected, actualClose)
-        Assert.IsNotNull(actualDatabaseNames)
-        Assert.IsNotNull(actualTableNames)
-        Assert.IsNotNull(actualColumnNames)
-        Assert.IsNotNull(actualColumn)
+        Assert.AreNotEqual(0, actualDatabaseNames.Count)
+        Assert.AreNotEqual(0, actualTableNames.Count)
+        Assert.AreNotEqual(0, actualColumnNames.Count)
+        Assert.AreNotEqual(0, actualColumn.Count)
+
     End Sub
 
     '''<summary>
@@ -185,7 +197,10 @@ Public Class MySQLAccessStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub MySQLAccessStrategyConstructorTest()
+
         Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+
         Assert.IsNotNull(target)
+
     End Sub
 End Class
