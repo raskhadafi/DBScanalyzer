@@ -48,7 +48,9 @@ Public Class MySQLPingStrategyTest
     'Use TestInitialize to run code before running each test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
+
         Me.ipMySqlServer = "192.168.56.3"
+
     End Sub
     '
     'Use TestCleanup to run code after each test has run
@@ -63,13 +65,18 @@ Public Class MySQLPingStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub tryAllPortsTest()
+
         Dim computerPing As ComputerPing = New ComputerPing()
         Dim target As MySQLPingStrategy = New MySQLPingStrategy()
         Dim openPorts As ArrayList
         Dim actual As ArrayList
+
         openPorts = computerPing.getOpenPorts(Me.ipMySqlServer)
         actual = target.checkPorts(Me.ipMySqlServer, openPorts)
+
         Assert.IsNotNull(openPorts)
         Assert.IsNotNull(actual)
+
     End Sub
+
 End Class

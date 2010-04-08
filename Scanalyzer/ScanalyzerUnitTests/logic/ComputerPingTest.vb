@@ -87,4 +87,5 @@ Public Class ComputerPingTest
         Assert.AreNotEqual(0, actual.Count)
 
     End Sub
+
 End Class

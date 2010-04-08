@@ -48,7 +48,9 @@ Public Class MSSQLPingStrategyTest
     'Use TestInitialize to run code before running each test
     <TestInitialize()> _
     Public Sub MyTestInitialize()
+
         Me.ipMSSQLServer = "192.168.56.5"
+
     End Sub
     '
     'Use TestCleanup to run code after each test has run
@@ -64,13 +66,18 @@ Public Class MSSQLPingStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub checkPortsTest()
+
         Dim computerPing As ComputerPing = New ComputerPing()
         Dim target As MSSQLPingStrategy = New MSSQLPingStrategy
         Dim openPorts As ArrayList
         Dim actual As ArrayList
+
         openPorts = computerPing.getOpenPorts(Me.ipMSSQLServer)
         actual = target.checkPorts(Me.ipMSSQLServer, openPorts)
+
         Assert.IsNotNull(openPorts)
         Assert.IsNotNull(actual)
+
     End Sub
+
 End Class

@@ -15,6 +15,7 @@ Public Class MySQLAccessStrategyTest
 
 
     Private testContextInstance As TestContext
+
     Private mysqlServer As Computer
 
     '''<summary>
@@ -203,4 +204,5 @@ Public Class MySQLAccessStrategyTest
         Assert.IsNotNull(target)
 
     End Sub
+
 End Class
