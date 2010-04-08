@@ -23,6 +23,7 @@ Public Class MySQLPingStrategy
                     mysqlPorts.Add(port)
                 End If
             End Try
+            connection.Close()
         Next
         Return mysqlPorts
     End Function
@@ -30,9 +31,6 @@ Public Class MySQLPingStrategy
     Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As ArrayList) As System.Collections.ArrayList
         Dim connectionString As String
         Dim mysqlPorts As ArrayList = New ArrayList
-        Dim timer As Timer = New Timer
-        timer.Interval = 5000
-        timer.
 
         For Each i In ports
             Dim portNumber As Integer = i
@@ -41,6 +39,8 @@ Public Class MySQLPingStrategy
             connection.ConnectionString = connectionString
             Try
                 connection.Open()
+            Catch ex As TimeoutException
+
             Catch ex As MySqlException
                 If ex.Number = 1045 Then
                     mysqlPorts.Add(i)

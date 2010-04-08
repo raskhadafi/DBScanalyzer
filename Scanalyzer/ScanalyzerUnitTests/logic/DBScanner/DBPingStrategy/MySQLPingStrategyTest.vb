@@ -16,6 +16,8 @@ Public Class MySQLPingStrategyTest
 
     Private testContextInstance As TestContext
 
+    Private ipMySqlServer As String
+
     '''<summary>
     '''Gets or sets the test context which provides
     '''information about and functionality for the current test run.
@@ -44,9 +46,10 @@ Public Class MySQLPingStrategyTest
     'End Sub
     '
     'Use TestInitialize to run code before running each test
-    '<TestInitialize()>  _
-    'Public Sub MyTestInitialize()
-    'End Sub
+    <TestInitialize()> _
+    Public Sub MyTestInitialize()
+        Me.ipMySqlServer = "192.168.56.3"
+    End Sub
     '
     'Use TestCleanup to run code after each test has run
     '<TestCleanup()>  _
@@ -63,7 +66,7 @@ Public Class MySQLPingStrategyTest
     Public Sub tryDefaultPortTest()
         Dim target As MySQLPingStrategy = New MySQLPingStrategy
         Dim actual As ArrayList
-        actual = target.tryDefaultPort("192.168.1.5")
+        actual = target.tryDefaultPort(Me.ipMySqlServer)
         Assert.IsNotNull(actual)
     End Sub
 
@@ -76,8 +79,9 @@ Public Class MySQLPingStrategyTest
         Dim target As MySQLPingStrategy = New MySQLPingStrategy()
         Dim openPorts As ArrayList
         Dim actual As ArrayList
-        openPorts = computerPing.getOpenPorts("192.168.1.2")
-        actual = target.checkPorts("192.168.1.2", openPorts)
+        openPorts = computerPing.getOpenPorts(Me.ipMySqlServer)
+        actual = target.checkPorts(Me.ipMySqlServer, openPorts)
         Assert.IsNotNull(openPorts)
+        Assert.IsNotNull(actual)
     End Sub
 End Class
