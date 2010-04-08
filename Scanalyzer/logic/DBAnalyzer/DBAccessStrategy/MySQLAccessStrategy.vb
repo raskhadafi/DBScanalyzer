@@ -29,9 +29,11 @@ Public Class MySQLAccessStrategy
             command.Connection = connection
             command.Prepare()
             reader = command.ExecuteReader()
+
             While reader.HasRows
                 returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
             End While
+
             reader.Close()
         Catch ex As Exception
 
@@ -52,9 +54,11 @@ Public Class MySQLAccessStrategy
             command.Connection = connection
             command.Prepare()
             reader = command.ExecuteReader()
+
             While reader.Read
                 returnList.Add(reader.GetValue(reader.GetOrdinal("Field")))
             End While
+
             reader.Close()
         Catch ex As Exception
             Return Nothing
@@ -75,9 +79,11 @@ Public Class MySQLAccessStrategy
             command.Connection = connection
             command.Prepare()
             reader = command.ExecuteReader()
+
             While reader.Read
                 returnList.Add(reader.GetValue(reader.GetOrdinal("Database")))
             End While
+
             reader.Close()
         Catch ex As Exception
             Return Nothing
@@ -108,12 +114,14 @@ Public Class MySQLAccessStrategy
             connection.Open()
             Return True
         Catch ex As MySqlException
+
             Select Case ex.Number
                 Case 0
                     MessageBox.Show("Cannot connect to server. Contact administrator")
                 Case 1045
                     MessageBox.Show("Invalid username/password, please try again")
             End Select
+
             Return False
         End Try
 
@@ -130,9 +138,11 @@ Public Class MySQLAccessStrategy
             command.Connection = connection
             command.Prepare()
             reader = command.ExecuteReader()
+
             While reader.Read
                 returnList.Add(reader.GetValue(reader.GetOrdinal("Tables_in_" + databaseName)))
             End While
+
             reader.Close()
         Catch ex As Exception
             Return Nothing

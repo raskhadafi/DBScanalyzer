@@ -24,9 +24,11 @@ Public Class MSSQLPingStrategy
             Catch ex As OverflowException
 
             Catch ex As SqlException
+
                 If ex.Number = 18456 Then
                     mssqlPorts.Add(i)
                 End If
+
             End Try
 
         Next

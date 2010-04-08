@@ -19,26 +19,39 @@ Public Class MSSQLAccessStrategy
     End Function
 
     Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
+
         Return Nothing
+
     End Function
 
     Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
+
         Return Nothing
+
     End Function
 
     Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
+
         Return Nothing
+
     End Function
 
     Public Overrides Function getInformationSchema() As System.Collections.ArrayList
+
         Return Nothing
+
     End Function
 
     Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
+
         Return Nothing
+
     End Function
 
     Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstance As Integer) As Boolean
+
         Return Nothing
+
     End Function
+
 End Class
