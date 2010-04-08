@@ -24,14 +24,14 @@ Public Class MySQLAccessStrategy
         Dim returnList As New ArrayList
 
         Try
-            command = New MySqlCommand
-            command.CommandText = "select " + columName + " from " + databaseName + "." + tableName
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Dim transaction As MySqlTransaction = Me.connection.BeginTransaction
 
-            While reader.HasRows
-                returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+            command = New MySqlCommand("select " + columName + " from " + databaseName + "." + tableName, connection, transaction)
+            command.UpdatedRowSource = UpdateRowSource.Both
+            reader = command.ExecuteReader
+
+            While reader.Read()
+                returnList.Add(reader.GetString(columName))
             End While
 
             reader.Close()
@@ -61,7 +61,7 @@ Public Class MySQLAccessStrategy
 
             reader.Close()
         Catch ex As Exception
-            Return Nothing
+            Return returnList
         End Try
 
         Return returnList
@@ -86,7 +86,7 @@ Public Class MySQLAccessStrategy
 
             reader.Close()
         Catch ex As Exception
-            Return Nothing
+            Return returnList
         End Try
 
         removeMysqlDatabases(returnList)
@@ -145,7 +145,7 @@ Public Class MySQLAccessStrategy
 
             reader.Close()
         Catch ex As Exception
-            Return Nothing
+            Return returnList
         End Try
 
         Return returnList
