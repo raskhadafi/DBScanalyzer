@@ -62,6 +62,7 @@
   <ItemGroup>
     <Compile Include="logic\ComputerPingTest.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\MSSQLPingStrategyTest.vb" />
+    <Compile Include="logic\DBAnalyzer\MSSQLAccessStrategyTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="logic\DBAnalyzer\MySQLAccessStrategyTest.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\MySQLPingStrategyTest.vb" />

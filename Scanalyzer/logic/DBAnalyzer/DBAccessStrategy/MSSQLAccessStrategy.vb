@@ -48,9 +48,21 @@ Public Class MSSQLAccessStrategy
 
     End Function
 
-    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstance As Integer) As Boolean
+    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
 
-        Return Nothing
+        Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
+
+        Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
+        connection = New SqlConnection(Me.connectionString)
+
+        Try
+            connection.Open()
+            Return True
+        Catch ex As SqlException
+
+        End Try
+
+        Return False
 
     End Function
 
