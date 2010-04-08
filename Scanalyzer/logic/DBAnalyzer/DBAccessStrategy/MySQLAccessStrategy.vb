@@ -19,6 +19,7 @@ Public Class MySQLAccessStrategy
     End Function
 
     Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
+
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
         Try
@@ -88,6 +89,7 @@ Public Class MySQLAccessStrategy
     End Function
 
     Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+
         Dim databaseInstance As DatabaseInstance
         Dim computer As Computer = computerIn
         databaseInstance = computer.getInstance(databaseInstancePosition)
@@ -134,7 +136,10 @@ Public Class MySQLAccessStrategy
     End Function
 
     Private Sub removeMysqlDatabases(ByRef databases As ArrayList)
+
         databases.Remove("mysql")
         databases.Remove("information_schema")
+
     End Sub
+
 End Class
