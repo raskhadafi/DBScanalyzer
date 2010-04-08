@@ -60,13 +60,17 @@ Public Class ComputerPingTest
     '''</summary>
     <TestMethod()> _
     Public Sub pingHostTest()
+
         Dim target As ComputerPing = New ComputerPing()
         Dim localIP As Object
         Dim notavaibleIP As Object
+
         localIP = target.pingHost("127.0.0.1")
         notavaibleIP = target.pingHost("192.168.255.50")
+
         Assert.AreEqual(True, localIP)
         Assert.AreEqual(False, notavaibleIP)
+
     End Sub
 
     '''<summary>
@@ -74,9 +78,13 @@ Public Class ComputerPingTest
     '''</summary>
     <TestMethod()> _
     Public Sub openPortsTest()
+
         Dim target As ComputerPing = New ComputerPing()
         Dim actual As ArrayList
+
         actual = target.getOpenPorts("192.168.1.2")
+
         Assert.IsNotNull(actual)
+
     End Sub
 End Class
