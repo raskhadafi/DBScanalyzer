@@ -76,7 +76,7 @@ Public Class ComputerPingTest
     Public Sub openPortsTest()
         Dim target As ComputerPing = New ComputerPing()
         Dim actual As ArrayList
-        actual = target.getOpenPorts("192.168.1.6")
+        actual = target.getOpenPorts("192.168.1.2")
         Assert.IsNotNull(actual)
     End Sub
 End Class

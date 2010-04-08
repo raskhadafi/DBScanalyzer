@@ -72,9 +72,12 @@ Public Class MySQLPingStrategyTest
     '''</summary>
     <TestMethod()> _
     Public Sub tryAllPortsTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy
+        Dim computerPing As ComputerPing = New ComputerPing()
+        Dim target As MySQLPingStrategy = New MySQLPingStrategy()
+        Dim openPorts As ArrayList
         Dim actual As ArrayList
-        actual = target.tryAllPorts("192.168.1.5")
-        Assert.IsNotNull(actual)
+        openPorts = computerPing.getOpenPorts("192.168.1.2")
+        actual = target.checkPorts("192.168.1.2", openPorts)
+        Assert.IsNotNull(openPorts)
     End Sub
 End Class
