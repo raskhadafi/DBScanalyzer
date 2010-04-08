@@ -58,18 +58,6 @@ Public Class MySQLPingStrategyTest
     '
 #End Region
 
-
-    '''<summary>
-    '''A test for tryDefaultPort
-    '''</summary>
-    <TestMethod()> _
-    Public Sub tryDefaultPortTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy
-        Dim actual As ArrayList
-        actual = target.tryDefaultPort(Me.ipMySqlServer)
-        Assert.IsNotNull(actual)
-    End Sub
-
     '''<summary>
     '''A test for tryAllPorts
     '''</summary>

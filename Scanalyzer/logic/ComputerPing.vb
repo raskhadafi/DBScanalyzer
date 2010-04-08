@@ -73,6 +73,11 @@ Public Class ComputerPing
             End If
 
         Next
+
+        If openPorts.Count = 0 Then
+            Return Nothing
+        End If
+
         Return openPorts
     End Function
 
