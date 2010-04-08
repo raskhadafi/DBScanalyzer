@@ -35,7 +35,8 @@ Public Class MySQLAccessStrategy
         Catch ex As Exception
 
         End Try
-        Return New ArrayList
+
+        Return returnList
 
     End Function
 
@@ -43,6 +44,7 @@ Public Class MySQLAccessStrategy
 
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
+
         Try
             command = New MySqlCommand
             command.CommandText = "show columns from " + tableName + " from " + databaseName
@@ -56,6 +58,7 @@ Public Class MySQLAccessStrategy
         Catch ex As Exception
             Return Nothing
         End Try
+
         Return returnList
 
     End Function
@@ -64,6 +67,7 @@ Public Class MySQLAccessStrategy
 
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
+
         Try
             command = New MySqlCommand
             command.CommandText = "show databases"
@@ -77,7 +81,9 @@ Public Class MySQLAccessStrategy
         Catch ex As Exception
             Return Nothing
         End Try
+
         removeMysqlDatabases(returnList)
+
         Return returnList
 
     End Function
@@ -92,10 +98,9 @@ Public Class MySQLAccessStrategy
 
         Dim databaseInstance As DatabaseInstance
         Dim computer As Computer = computerIn
+
         databaseInstance = computer.getInstance(databaseInstancePosition)
-
         Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort() + ";"
-
         connection.ConnectionString = Me.connectionString
 
         Try
@@ -118,6 +123,7 @@ Public Class MySQLAccessStrategy
 
         Dim reader As MySqlDataReader
         Dim returnList As New ArrayList
+
         Try
             command = New MySqlCommand
             command.CommandText = "show tables from " + databaseName
@@ -131,6 +137,7 @@ Public Class MySQLAccessStrategy
         Catch ex As Exception
             Return Nothing
         End Try
+
         Return returnList
 
     End Function
