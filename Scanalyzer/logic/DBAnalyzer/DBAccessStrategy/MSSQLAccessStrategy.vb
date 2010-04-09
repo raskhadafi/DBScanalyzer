@@ -26,7 +26,26 @@ Public Class MSSQLAccessStrategy
 
     Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
-        Return Nothing
+        Dim reader As SqlDataReader
+        Dim returnList As New ArrayList
+
+        Try
+            command = New SqlCommand
+            command.CommandText = "USE " + databaseName + ";EXEC sp_columns " + tableName + ";"
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+
+            While reader.Read
+                returnList.Add(reader.GetValue(reader.GetOrdinal("COLUMN_NAME")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Return returnList
+        End Try
+
+        Return returnList
 
     End Function
 
@@ -58,10 +77,12 @@ Public Class MSSQLAccessStrategy
     End Function
 
     Private Sub removeStandardDatabases(ByRef list As ArrayList)
+
         list.Remove("master")
         list.Remove("model")
         list.Remove("msdb")
         list.Remove("tempdb")
+
     End Sub
 
     Public Overrides Function getInformationSchema() As System.Collections.ArrayList
