@@ -1,4 +1,4 @@
-﻿Imports Oracle.DataAccess.Client
+﻿Imports System.Data.OracleClient
 
 Public Class OraclePingStrategy
     Inherits DBPingStrategy
@@ -10,11 +10,13 @@ Public Class OraclePingStrategy
         Dim connectionString As String
         Dim oraclePorts As ArrayList = New ArrayList
 
-        For Each i In ports
-            Dim portNumber As Integer = i
-            Dim answer As Boolean = False
+        For Each portNumber In ports
 
-            connectionString = "Data Source=" + ip + "," + i.ToString + ";"
+            Dim answer As Boolean = False
+            Dim dbConn = New ADODB.Connection
+
+            connectionString = "Data Source=" + ip + ":" + portNumber.ToString
+            'connectionString = "data source=(DESCRIPTION=(ADDRESS= (PROTOCOL=tcp)(HOST=" + ip + ")(PORT=" + portNumber.ToString + "))(CONNECT_DATA=(COMMAND=ping)));"
             connection = New OracleConnection(connectionString)
 
             Try
@@ -25,8 +27,8 @@ Public Class OraclePingStrategy
 
             Catch ex As OracleException
 
-                If ex.Number = 18456 Then
-                    oraclePorts.Add(i)
+                If ex.Code = 18456 Then
+                    oraclePorts.Add(portNumber)
                 End If
 
             End Try
