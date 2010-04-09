@@ -32,9 +32,37 @@ Public Class MSSQLAccessStrategy
 
     Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
 
-        Return Nothing
+        Dim reader As SqlDataReader
+        Dim returnList As New ArrayList
+
+        Try
+            command = New SqlCommand
+            command.CommandText = "EXEC sp_databases"
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+
+            While reader.Read
+                returnList.Add(reader.GetValue(reader.GetOrdinal("DATABASE_NAME")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Return returnList
+        End Try
+
+        removeStandardDatabases(returnList)
+
+        Return returnList
 
     End Function
+
+    Private Sub removeStandardDatabases(ByRef list As ArrayList)
+        list.Remove("master")
+        list.Remove("model")
+        list.Remove("msdb")
+        list.Remove("tempdb")
+    End Sub
 
     Public Overrides Function getInformationSchema() As System.Collections.ArrayList
 

@@ -49,9 +49,9 @@ Public Class MSSQLAccessStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.mssqlServer = New Computer("192.168.56.5")
+        Me.mssqlServer = New Computer("192.168.56.3")
         Me.mssqlServer.addDatabaseInstance(1433, Scanalyzer.DatabaseInstance.DatabaseEnum.mssql)
-        Me.mssqlServer.addCredentials("dbtest", "db12test_34", 0)
+        Me.mssqlServer.addCredentials("dbtest", "dbtest", 0)
 
     End Sub
     '
