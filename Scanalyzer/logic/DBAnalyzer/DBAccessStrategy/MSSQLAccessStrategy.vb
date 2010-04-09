@@ -72,7 +72,26 @@ Public Class MSSQLAccessStrategy
 
     Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
 
-        Return Nothing
+        Dim reader As SqlDataReader
+        Dim returnList As New ArrayList
+
+        Try
+            command = New SqlCommand
+            command.CommandText = "USE " + databaseName + ";EXEC sp_tables @table_owner = dbo;"
+            command.Connection = connection
+            command.Prepare()
+            reader = command.ExecuteReader()
+
+            While reader.Read
+                returnList.Add(reader.GetValue(reader.GetOrdinal("TABLE_NAME")))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+            Return returnList
+        End Try
+
+        Return returnList
 
     End Function
 
