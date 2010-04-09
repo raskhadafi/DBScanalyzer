@@ -2,6 +2,8 @@
  
 ## Description
 
+Database Scanner and Analyze Software Prototyp written in VB.Net
+
 ## Dependencies
 
 * Microsoft Visual Studio 2008
