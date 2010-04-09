@@ -49,7 +49,7 @@ Public Class MSSQLPingStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.ipMSSQLServer = "192.168.56.5"
+        Me.ipMSSQLServer = "192.168.56.3"
 
     End Sub
     '
