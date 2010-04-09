@@ -20,7 +20,26 @@ Public Class MSSQLAccessStrategy
 
     Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
-        Return Nothing
+        Dim reader As SqlDataReader
+        Dim returnList As New ArrayList
+
+        Try
+            Dim transaction As SqlTransaction = Me.connection.BeginTransaction
+
+            command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName, connection, transaction)
+            command.UpdatedRowSource = UpdateRowSource.Both
+            reader = command.ExecuteReader
+
+            While reader.Read()
+                returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+            End While
+
+            reader.Close()
+        Catch ex As Exception
+
+        End Try
+
+        Return returnList
 
     End Function
 
