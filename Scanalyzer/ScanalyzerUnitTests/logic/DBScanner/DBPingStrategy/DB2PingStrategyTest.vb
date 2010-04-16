@@ -49,7 +49,7 @@ Public Class DB2PingStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.ipDB2Server = "192.168.56.3"
+        Me.ipDB2Server = "192.168.56.4"
 
     End Sub
     '
@@ -69,10 +69,10 @@ Public Class DB2PingStrategyTest
 
         Dim computerPing As ComputerPing = New ComputerPing()
         Dim target As DB2PingStrategy = New DB2PingStrategy()
-        Dim openPorts As ArrayList
+        Dim openPorts As ArrayList = New ArrayList
         Dim actual As ArrayList
 
-        openPorts = computerPing.getOpenPorts(Me.ipDB2Server)
+        openPorts.Add(5000)
         actual = target.checkPorts(Me.ipDB2Server, openPorts)
 
         Assert.IsNotNull(openPorts)
