@@ -3,6 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
+Imports Scanalyzer.DBScanner.DBPingStrategy
 
 
 
@@ -67,7 +68,7 @@ Public Class DB2PingStrategyTest
     <TestMethod()> _
     Public Sub checkPortsTest()
 
-        Dim computerPing As ComputerPing = New ComputerPing()
+        Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
         Dim target As DB2PingStrategy = New DB2PingStrategy()
         Dim openPorts As ArrayList = New ArrayList
         Dim actual As ArrayList

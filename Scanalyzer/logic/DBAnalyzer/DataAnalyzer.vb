@@ -1,3 +1,7 @@
-﻿Public Class DataAnalyzer
+﻿Namespace DBanalyzer
 
-End Class
+    Public Class DataAnalyzer
+
+    End Class
+
+End Namespace

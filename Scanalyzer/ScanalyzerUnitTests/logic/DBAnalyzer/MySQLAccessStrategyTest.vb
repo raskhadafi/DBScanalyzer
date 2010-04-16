@@ -3,6 +3,8 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
+Imports Scanalyzer.DBanalyzer.DBAccessStrategy
+Imports Scanalyzer.Objects
 
 
 
@@ -50,7 +52,7 @@ Public Class MySQLAccessStrategyTest
     Public Sub MyTestInitialize()
 
         Me.mysqlServer = New Computer("192.168.56.3")
-        Me.mysqlServer.addDatabaseInstance(3307, Scanalyzer.DatabaseInstance.DatabaseEnum.mysql)
+        Me.mysqlServer.addDatabaseInstance(3307, Scanalyzer.Objects.DatabaseInstance.DatabaseEnum.mysql)
         Me.mysqlServer.addCredentials("dbtest", "dbtest", 0)
 
     End Sub

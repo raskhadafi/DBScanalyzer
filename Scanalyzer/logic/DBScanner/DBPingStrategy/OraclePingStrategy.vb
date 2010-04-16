@@ -1,42 +1,51 @@
 ﻿Imports System.Data.OracleClient
 
-Public Class OraclePingStrategy
-    Inherits DBPingStrategy
+Namespace DBScanner
 
-    Private connection As OracleConnection
+    Namespace DBPingStrategy
 
-    Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As System.Collections.ArrayList) As System.Collections.ArrayList
+        Public Class OraclePingStrategy
+            Inherits DBPingStrategy
 
-        Dim connectionString As String
-        Dim oraclePorts As ArrayList = New ArrayList
+            Private connection As OracleConnection
 
-        For Each portNumber In ports
+            Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As System.Collections.ArrayList) As System.Collections.ArrayList
 
-            Dim answer As Boolean = False
-            Dim dbConn = New ADODB.Connection
+                Dim connectionString As String
+                Dim oraclePorts As ArrayList = New ArrayList
 
-            connectionString = "Data Source=" + ip + ":" + portNumber.ToString
-            'connectionString = "data source=(DESCRIPTION=(ADDRESS= (PROTOCOL=tcp)(HOST=" + ip + ")(PORT=" + portNumber.ToString + "))(CONNECT_DATA=(COMMAND=ping)));"
-            connection = New OracleConnection(connectionString)
+                For Each portNumber In ports
 
-            Try
-                connection.Open()
-            Catch ex As TimeoutException
+                    Dim answer As Boolean = False
+                    Dim dbConn = New ADODB.Connection
 
-            Catch ex As OverflowException
+                    connectionString = "Data Source=" + ip + ":" + portNumber.ToString
+                    'connectionString = "data source=(DESCRIPTION=(ADDRESS= (PROTOCOL=tcp)(HOST=" + ip + ")(PORT=" + portNumber.ToString + "))(CONNECT_DATA=(COMMAND=ping)));"
+                    connection = New OracleConnection(connectionString)
 
-            Catch ex As OracleException
+                    Try
+                        connection.Open()
+                    Catch ex As TimeoutException
 
-                If ex.Code = 18456 Then
-                    oraclePorts.Add(portNumber)
-                End If
+                    Catch ex As OverflowException
 
-            End Try
+                    Catch ex As OracleException
 
-        Next
+                        If ex.Code = 18456 Then
+                            oraclePorts.Add(portNumber)
+                        End If
 
-        Return oraclePorts
+                    End Try
 
-    End Function
+                Next
 
-End Class
+                Return oraclePorts
+
+            End Function
+
+        End Class
+
+    End Namespace
+
+End Namespace
+

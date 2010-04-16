@@ -1,3 +1,10 @@
-﻿Public Class DB2AccessStrategy
+﻿Namespace DBanalyzer
+    Namespace DBAccessStrategy
 
-End Class
+        Public Class DB2AccessStrategy
+
+        End Class
+
+    End Namespace
+
+End Namespace

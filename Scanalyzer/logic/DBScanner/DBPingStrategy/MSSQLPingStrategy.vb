@@ -1,40 +1,48 @@
 ﻿Imports System.Data.SqlClient
 
-Public Class MSSQLPingStrategy
-    Inherits DBPingStrategy
+Namespace DBScanner
 
-    Private connection As SqlConnection
+    Namespace DBPingStrategy
 
-    Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As System.Collections.ArrayList) As System.Collections.ArrayList
+        Public Class MSSQLPingStrategy
+            Inherits DBPingStrategy
 
-        Dim connectionString As String
-        Dim mssqlPorts As ArrayList = New ArrayList
+            Private connection As SqlConnection
 
-        For Each i In ports
-            Dim portNumber As Integer = i
-            Dim answer As Boolean = False
+            Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As System.Collections.ArrayList) As System.Collections.ArrayList
 
-            connectionString = "Data Source=" + ip + "," + i.ToString + ";"
-            connection = New SqlConnection(connectionString)
+                Dim connectionString As String
+                Dim mssqlPorts As ArrayList = New ArrayList
 
-            Try
-                connection.Open()
-            Catch ex As TimeoutException
+                For Each i In ports
+                    Dim portNumber As Integer = i
+                    Dim answer As Boolean = False
 
-            Catch ex As OverflowException
+                    connectionString = "Data Source=" + ip + "," + i.ToString + ";"
+                    connection = New SqlConnection(connectionString)
 
-            Catch ex As SqlException
+                    Try
+                        connection.Open()
+                    Catch ex As TimeoutException
 
-                If ex.Number = 18456 Then
-                    mssqlPorts.Add(i)
-                End If
+                    Catch ex As OverflowException
 
-            End Try
+                    Catch ex As SqlException
 
-        Next
+                        If ex.Number = 18456 Then
+                            mssqlPorts.Add(i)
+                        End If
 
-        Return mssqlPorts
+                    End Try
 
-    End Function
+                Next
 
-End Class
+                Return mssqlPorts
+
+            End Function
+
+        End Class
+
+    End Namespace
+
+End Namespace

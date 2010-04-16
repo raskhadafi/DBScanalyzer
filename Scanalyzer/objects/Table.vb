@@ -1,7 +1,11 @@
-﻿Public Class Table
+﻿Namespace Objects
 
-    Private name As String
-    Private columns As ArrayList
-    Private equalsToData As Integer
+    Public Class Table
 
-End Class
+        Private name As String
+        Private columns As ArrayList
+        Private equalsToData As Integer
+
+    End Class
+
+End Namespace

@@ -1,156 +1,165 @@
 ﻿Imports System.Data.SqlClient
+Imports Scanalyzer.Objects
 
-Public Class MSSQLAccessStrategy
-    Inherits DBAccessStrategy
+Namespace DBanalyzer
 
-    Private connection As SqlConnection
-    Private command As SqlCommand
-    Private connectionString As String
+    Namespace DBAccessStrategy
 
-    Public Overrides Function closeConnection() As Boolean
+        Public Class MSSQLAccessStrategy
+            Inherits DBAccessStrategy
 
-        If connection.State = ConnectionState.Open Then
-            connection.Close()
-            Return True
-        Else
-            Return False
-        End If
+            Private connection As SqlConnection
+            Private command As SqlCommand
+            Private connectionString As String
 
-    End Function
+            Public Overrides Function closeConnection() As Boolean
 
-    Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
+                If connection.State = ConnectionState.Open Then
+                    connection.Close()
+                    Return True
+                Else
+                    Return False
+                End If
 
-        Dim reader As SqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            Dim transaction As SqlTransaction = Me.connection.BeginTransaction
+            Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
-            command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName, connection, transaction)
-            command.UpdatedRowSource = UpdateRowSource.Both
-            reader = command.ExecuteReader
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
 
-            While reader.Read()
-                returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
-            End While
+                Try
+                    Dim transaction As SqlTransaction = Me.connection.BeginTransaction
 
-            reader.Close()
-        Catch ex As Exception
+                    command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName, connection, transaction)
+                    command.UpdatedRowSource = UpdateRowSource.Both
+                    reader = command.ExecuteReader
 
-        End Try
+                    While reader.Read()
+                        returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+                    End While
 
-        Return returnList
+                    reader.Close()
+                Catch ex As Exception
 
-    End Function
+                End Try
 
-    Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
+                Return returnList
 
-        Dim reader As SqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New SqlCommand
-            command.CommandText = "USE " + databaseName + ";EXEC sp_columns " + tableName + ";"
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("COLUMN_NAME")))
-            End While
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New SqlCommand
+                    command.CommandText = "USE " + databaseName + ";EXEC sp_columns " + tableName + ";"
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        Return returnList
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("COLUMN_NAME")))
+                    End While
 
-    End Function
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
+                Return returnList
 
-        Dim reader As SqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New SqlCommand
-            command.CommandText = "EXEC sp_databases"
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("DATABASE_NAME")))
-            End While
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New SqlCommand
+                    command.CommandText = "EXEC sp_databases"
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        removeStandardDatabases(returnList)
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("DATABASE_NAME")))
+                    End While
 
-        Return returnList
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    End Function
+                removeStandardDatabases(returnList)
 
-    Private Sub removeStandardDatabases(ByRef list As ArrayList)
+                Return returnList
 
-        list.Remove("master")
-        list.Remove("model")
-        list.Remove("msdb")
-        list.Remove("tempdb")
+            End Function
 
-    End Sub
+            Private Sub removeStandardDatabases(ByRef list As ArrayList)
 
-    Public Overrides Function getInformationSchema() As System.Collections.ArrayList
+                list.Remove("master")
+                list.Remove("model")
+                list.Remove("msdb")
+                list.Remove("tempdb")
 
-        Return Nothing
+            End Sub
 
-    End Function
+            Public Overrides Function getInformationSchema() As System.Collections.ArrayList
 
-    Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
+                Return Nothing
 
-        Dim reader As SqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New SqlCommand
-            command.CommandText = "USE " + databaseName + ";EXEC sp_tables @table_owner = dbo;"
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("TABLE_NAME")))
-            End While
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New SqlCommand
+                    command.CommandText = "USE " + databaseName + ";EXEC sp_tables @table_owner = dbo;"
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        Return returnList
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("TABLE_NAME")))
+                    End While
 
-    End Function
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+                Return returnList
 
-        Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
+            End Function
 
-        Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
-        connection = New SqlConnection(Me.connectionString)
+            Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
 
-        Try
-            connection.Open()
-            Return True
-        Catch ex As SqlException
+                Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
 
-        End Try
+                Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
+                connection = New SqlConnection(Me.connectionString)
 
-        Return False
+                Try
+                    connection.Open()
+                    Return True
+                Catch ex As SqlException
 
-    End Function
+                End Try
 
-End Class
+                Return False
+
+            End Function
+
+        End Class
+
+    End Namespace
+
+End Namespace

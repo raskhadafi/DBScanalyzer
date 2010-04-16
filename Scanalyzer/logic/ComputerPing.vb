@@ -3,99 +3,103 @@ Imports System.Net.NetworkInformation
 Imports System.IO
 Imports System.Text.RegularExpressions
 
-Public Class ComputerPing
+Namespace DBScanner
 
-    Public Function pingHost(ByRef ip As String) As Boolean
+    Public Class ComputerPing
 
-        Dim ping As New NetworkInformation.Ping
-        Dim pingResponse As NetworkInformation.PingReply
+        Public Function pingHost(ByRef ip As String) As Boolean
 
-        pingResponse = ping.Send(ip)
+            Dim ping As New NetworkInformation.Ping
+            Dim pingResponse As NetworkInformation.PingReply
 
-        If pingResponse.Status = IPStatus.Success Then
-            Return True
-        Else
-            Return False
-        End If
+            pingResponse = ping.Send(ip)
 
-    End Function
+            If pingResponse.Status = IPStatus.Success Then
+                Return True
+            Else
+                Return False
+            End If
 
-    Public Function getOpenPorts(ByVal ip As String)
+        End Function
 
-        Dim start_info As New ProcessStartInfo("nmap.exe")
-        Dim proc As New Process()
-        Dim std_out As StreamReader
-        Dim std_err As StreamReader
-        Dim nmapOutput As String
+        Public Function getOpenPorts(ByVal ip As String)
 
-        start_info.UseShellExecute = False
-        start_info.CreateNoWindow = True
-        start_info.RedirectStandardOutput = True
-        start_info.RedirectStandardError = True
-        start_info.Arguments = "-n -sS -p1-65535 " + ip
-        proc.StartInfo = start_info
-        proc.Start()
-        std_out = proc.StandardOutput
-        std_err = proc.StandardError
-        nmapOutput = std_out.ReadToEnd()
-        std_out.Close()
-        std_err.Close()
-        proc.Close()
+            Dim start_info As New ProcessStartInfo("nmap.exe")
+            Dim proc As New Process()
+            Dim std_out As StreamReader
+            Dim std_err As StreamReader
+            Dim nmapOutput As String
 
-        Return parseNMAPOutput(nmapOutput)
+            start_info.UseShellExecute = False
+            start_info.CreateNoWindow = True
+            start_info.RedirectStandardOutput = True
+            start_info.RedirectStandardError = True
+            start_info.Arguments = "-n -sS -p1-65535 " + ip
+            proc.StartInfo = start_info
+            proc.Start()
+            std_out = proc.StandardOutput
+            std_err = proc.StandardError
+            nmapOutput = std_out.ReadToEnd()
+            std_out.Close()
+            std_err.Close()
+            proc.Close()
 
-    End Function
+            Return parseNMAPOutput(nmapOutput)
 
-    Private Function parseNMAPOutput(ByVal input As String) As ArrayList
+        End Function
 
-        Dim output As Array
-        Dim newComputer As Boolean
-        Dim computerPointer As Integer
-        Dim ipFinder As Regex = New Regex("(\b(?:\d{1,3}\.){3}\d{1,3}\b)")
-        Dim beginOfPortsFinder As Regex = New Regex("PORT\W*STATE")
-        Dim serviceFinder As Regex = New Regex("^([0-9]*)\/([a-z]*)\W*(open)\W*([\w\D]*)")
-        Dim openPorts As ArrayList = New ArrayList
+        Private Function parseNMAPOutput(ByVal input As String) As ArrayList
 
-        newComputer = False
-        output = Split(input, Environment.NewLine)
+            Dim output As Array
+            Dim newComputer As Boolean
+            Dim computerPointer As Integer
+            Dim ipFinder As Regex = New Regex("(\b(?:\d{1,3}\.){3}\d{1,3}\b)")
+            Dim beginOfPortsFinder As Regex = New Regex("PORT\W*STATE")
+            Dim serviceFinder As Regex = New Regex("^([0-9]*)\/([a-z]*)\W*(open)\W*([\w\D]*)")
+            Dim openPorts As ArrayList = New ArrayList
 
-        For Each tmpTxt In output
+            newComputer = False
+            output = Split(input, Environment.NewLine)
 
-            If newComputer Then
+            For Each tmpTxt In output
 
-                If (tmpTxt.ToString).StartsWith("MAC") Then
-                    newComputer = False
-                Else
-                    Dim line As Array
+                If newComputer Then
 
-                    line = serviceFinder.Split(tmpTxt)
+                    If (tmpTxt.ToString).StartsWith("MAC") Then
+                        newComputer = False
+                    Else
+                        Dim line As Array
 
-                    If line(3).Equals("open") Then
-                        openPorts.Add(Integer.Parse(line(1)))
+                        line = serviceFinder.Split(tmpTxt)
+
+                        If line(3).Equals("open") Then
+                            openPorts.Add(Integer.Parse(line(1)))
+                        End If
+
                     End If
+
+                ElseIf ipFinder.IsMatch(tmpTxt) Then
+                    Dim ip As Array
+
+                    ip = ipFinder.Split(tmpTxt)
+                    computerPointer += 1
+
+                ElseIf beginOfPortsFinder.IsMatch(tmpTxt) Then
+
+                    newComputer = True
 
                 End If
 
-            ElseIf ipFinder.IsMatch(tmpTxt) Then
-                Dim ip As Array
+            Next
 
-                ip = ipFinder.Split(tmpTxt)
-                computerPointer += 1
-
-            ElseIf beginOfPortsFinder.IsMatch(tmpTxt) Then
-
-                newComputer = True
-
+            If openPorts.Count = 0 Then
+                Return Nothing
             End If
 
-        Next
+            Return openPorts
 
-        If openPorts.Count = 0 Then
-            Return Nothing
-        End If
+        End Function
 
-        Return openPorts
+    End Class
 
-    End Function
-
-End Class
+End Namespace

@@ -1,3 +1,8 @@
-﻿Public Class Metrics
+﻿Namespace Metrics
 
-End Class
+    Public Class Metrics
+
+    End Class
+
+End Namespace
+

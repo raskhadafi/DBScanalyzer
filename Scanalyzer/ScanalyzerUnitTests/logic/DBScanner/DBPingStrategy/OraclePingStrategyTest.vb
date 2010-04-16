@@ -3,6 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
+Imports Scanalyzer.DBScanner.DBPingStrategy
 
 
 
@@ -66,7 +67,7 @@ Public Class OraclePingStrategyTest
     <TestMethod()> _
     Public Sub tryAllPortsTest()
 
-        Dim computerPing As ComputerPing = New ComputerPing()
+        Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
         Dim target As OraclePingStrategy = New OraclePingStrategy()
         Dim openPorts As ArrayList
         Dim actual As ArrayList

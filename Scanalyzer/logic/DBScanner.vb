@@ -1,3 +1,7 @@
-﻿Public Class DBScanner
+﻿Namespace DBScanner
 
-End Class
+    Public Class DBScanner
+
+    End Class
+
+End Namespace

@@ -3,7 +3,8 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-
+Imports Scanalyzer.DBanalyzer.DBAccessStrategy
+Imports Scanalyzer.Objects
 
 
 '''<summary>
@@ -50,7 +51,7 @@ Public Class MSSQLAccessStrategyTest
     Public Sub MyTestInitialize()
 
         Me.mssqlServer = New Computer("192.168.56.3")
-        Me.mssqlServer.addDatabaseInstance(1433, Scanalyzer.DatabaseInstance.DatabaseEnum.mssql)
+        Me.mssqlServer.addDatabaseInstance(1433, Scanalyzer.Objects.DatabaseInstance.DatabaseEnum.mssql)
         Me.mssqlServer.addCredentials("dbtest", "dbtest", 0)
 
     End Sub

@@ -1,3 +1,7 @@
-﻿Public Class Scanalyzer
+﻿Namespace Controller
 
-End Class
+    Public Class Scanalyzer
+
+    End Class
+
+End Namespace

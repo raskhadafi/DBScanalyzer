@@ -1,3 +1,7 @@
-﻿Public Class SchemaAnalyzer
+﻿Namespace DBanalyzer
 
-End Class
+    Public Class SchemaAnalyzer
+
+    End Class
+
+End Namespace

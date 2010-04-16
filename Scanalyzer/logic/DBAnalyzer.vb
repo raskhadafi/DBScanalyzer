@@ -1,3 +1,7 @@
-﻿Public Class DBAnalyzer
+﻿Namespace DBScanner
 
-End Class
+    Public Class DBAnalyzer
+
+    End Class
+
+End Namespace

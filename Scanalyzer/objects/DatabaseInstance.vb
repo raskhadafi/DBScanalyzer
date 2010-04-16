@@ -1,50 +1,54 @@
-﻿Public Class DatabaseInstance
+﻿Namespace Objects
 
-    Private port As Integer
-    Private user As String
-    Private password As String
-    Private type As DatabaseEnum
+    Public Class DatabaseInstance
 
-    Public Sub New(ByVal port As Integer, ByVal type As DatabaseEnum)
+        Private port As Integer
+        Private user As String
+        Private password As String
+        Private type As DatabaseEnum
 
-        Me.port = port
-        Me.type = type
+        Public Sub New(ByVal port As Integer, ByVal type As DatabaseEnum)
 
-    End Sub
+            Me.port = port
+            Me.type = type
 
-    Public Sub addCredentials(ByVal user As String, ByVal password As String)
+        End Sub
 
-        Me.user = user
-        Me.password = password
+        Public Sub addCredentials(ByVal user As String, ByVal password As String)
 
-    End Sub
+            Me.user = user
+            Me.password = password
 
-    Public Function getUser() As String
+        End Sub
 
-        Return Me.user
+        Public Function getUser() As String
 
-    End Function
+            Return Me.user
 
-    Public Function getPassword() As String
+        End Function
 
-        Return Me.password
+        Public Function getPassword() As String
 
-    End Function
+            Return Me.password
 
-    Public Function getPort() As String
+        End Function
 
-        Return Me.port
+        Public Function getPort() As String
 
-    End Function
+            Return Me.port
 
-    Enum DatabaseEnum
+        End Function
 
-        undefinied = -1
-        mysql = 0
-        mssql = 1
-        oracle = 2
-        db2 = 3
+        Enum DatabaseEnum
 
-    End Enum
+            undefinied = -1
+            mysql = 0
+            mssql = 1
+            oracle = 2
+            db2 = 3
 
-End Class
+        End Enum
+
+    End Class
+
+End Namespace

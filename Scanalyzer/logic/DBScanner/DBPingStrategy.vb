@@ -1,5 +1,13 @@
-﻿Public MustInherit Class DBPingStrategy
+﻿Namespace DBScanner
 
-    Public MustOverride Function checkPorts(ByVal ip As String, ByVal ports As ArrayList) As ArrayList
+    Namespace DBPingStrategy
 
-End Class
+        Public MustInherit Class DBPingStrategy
+
+            Public MustOverride Function checkPorts(ByVal ip As String, ByVal ports As ArrayList) As ArrayList
+
+        End Class
+
+    End Namespace
+
+End Namespace

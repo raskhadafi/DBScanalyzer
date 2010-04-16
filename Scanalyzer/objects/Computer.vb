@@ -1,46 +1,50 @@
-﻿Public Class Computer
+﻿Namespace Objects
 
-    Private ip As String
-    Private databasesInstances As ArrayList
-    Private openPorts As ArrayList
+    Public Class Computer
 
-    Public Sub New(ByVal ip As String)
+        Private ip As String
+        Private databasesInstances As ArrayList
+        Private openPorts As ArrayList
 
-        Me.ip = ip
-        databasesInstances = New ArrayList
+        Public Sub New(ByVal ip As String)
 
-    End Sub
+            Me.ip = ip
+            databasesInstances = New ArrayList
 
-    Public Function getInstance(ByRef position As Integer) As DatabaseInstance
+        End Sub
 
-        Return Me.databasesInstances(position)
+        Public Function getInstance(ByRef position As Integer) As DatabaseInstance
 
-    End Function
+            Return Me.databasesInstances(position)
 
-    Public Sub addDatabaseInstance(ByVal port As Integer, ByVal type As DatabaseInstance.DatabaseEnum)
+        End Function
 
-        Dim databaseInstance As New DatabaseInstance(port, type)
-        Me.databasesInstances.Add(databaseInstance)
+        Public Sub addDatabaseInstance(ByVal port As Integer, ByVal type As DatabaseInstance.DatabaseEnum)
 
-    End Sub
+            Dim databaseInstance As New DatabaseInstance(port, type)
+            Me.databasesInstances.Add(databaseInstance)
 
-    Public Sub addCredentials(ByRef user As String, ByRef password As String, ByRef databaseInstancePosition As Integer)
+        End Sub
 
-        Dim databaseInstance As DatabaseInstance = Me.databasesInstances(databaseInstancePosition)
-        databaseInstance.addCredentials(user, password)
+        Public Sub addCredentials(ByRef user As String, ByRef password As String, ByRef databaseInstancePosition As Integer)
 
-    End Sub
+            Dim databaseInstance As DatabaseInstance = Me.databasesInstances(databaseInstancePosition)
+            databaseInstance.addCredentials(user, password)
 
-    Public Function getIp() As String
+        End Sub
 
-        Return Me.ip
+        Public Function getIp() As String
 
-    End Function
+            Return Me.ip
 
-    Public Sub addOpenPort(ByRef portNumber As Integer)
+        End Function
 
-        Me.openPorts.Add(portNumber)
+        Public Sub addOpenPort(ByRef portNumber As Integer)
 
-    End Sub
+            Me.openPorts.Add(portNumber)
 
-End Class
+        End Sub
+
+    End Class
+
+End Namespace

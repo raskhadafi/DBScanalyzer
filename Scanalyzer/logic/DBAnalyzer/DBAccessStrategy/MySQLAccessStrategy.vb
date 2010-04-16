@@ -1,162 +1,171 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports Scanalyzer.Objects
 
-Public Class MySQLAccessStrategy
-    Inherits DBAccessStrategy
+Namespace DBanalyzer
 
-    Private connection As New MySqlConnection
-    Private command As MySqlCommand
-    Private connectionString As String
+    Namespace DBAccessStrategy
 
-    Public Overrides Function closeConnection() As Boolean
+        Public Class MySQLAccessStrategy
+            Inherits DBAccessStrategy
 
-        If connection.State = ConnectionState.Open Then
-            connection.Close()
-            Return True
-        Else
-            Return False
-        End If
+            Private connection As New MySqlConnection
+            Private command As MySqlCommand
+            Private connectionString As String
 
-    End Function
+            Public Overrides Function closeConnection() As Boolean
 
-    Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
+                If connection.State = ConnectionState.Open Then
+                    connection.Close()
+                    Return True
+                Else
+                    Return False
+                End If
 
-        Dim reader As MySqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            Dim transaction As MySqlTransaction = Me.connection.BeginTransaction
+            Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
-            command = New MySqlCommand("select " + columName + " from " + databaseName + "." + tableName, connection, transaction)
-            command.UpdatedRowSource = UpdateRowSource.Both
-            reader = command.ExecuteReader
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
 
-            While reader.Read()
-                returnList.Add(reader.GetString(columName))
-            End While
+                Try
+                    Dim transaction As MySqlTransaction = Me.connection.BeginTransaction
 
-            reader.Close()
-        Catch ex As Exception
+                    command = New MySqlCommand("select " + columName + " from " + databaseName + "." + tableName, connection, transaction)
+                    command.UpdatedRowSource = UpdateRowSource.Both
+                    reader = command.ExecuteReader
 
-        End Try
+                    While reader.Read()
+                        returnList.Add(reader.GetString(columName))
+                    End While
 
-        Return returnList
+                    reader.Close()
+                Catch ex As Exception
 
-    End Function
+                End Try
 
-    Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
+                Return returnList
 
-        Dim reader As MySqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New MySqlCommand
-            command.CommandText = "show columns from " + tableName + " from " + databaseName
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("Field")))
-            End While
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New MySqlCommand
+                    command.CommandText = "show columns from " + tableName + " from " + databaseName
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        Return returnList
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("Field")))
+                    End While
 
-    End Function
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
+                Return returnList
 
-        Dim reader As MySqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New MySqlCommand
-            command.CommandText = "show databases"
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getDatabaseNames() As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("Database")))
-            End While
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New MySqlCommand
+                    command.CommandText = "show databases"
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        removeMysqlDatabases(returnList)
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("Database")))
+                    End While
 
-        Return returnList
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    End Function
+                removeMysqlDatabases(returnList)
 
-    Public Overrides Function getInformationSchema() As System.Collections.ArrayList
+                Return returnList
 
-        Return New ArrayList
+            End Function
 
-    End Function
+            Public Overrides Function getInformationSchema() As System.Collections.ArrayList
 
-    Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+                Return New ArrayList
 
-        Dim databaseInstance As DatabaseInstance
-        Dim computer As Computer = computerIn
+            End Function
 
-        databaseInstance = computer.getInstance(databaseInstancePosition)
-        Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort() + ";"
-        connection.ConnectionString = Me.connectionString
+            Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstancePosition As Integer) As Boolean
 
-        Try
-            connection.Open()
-            Return True
-        Catch ex As MySqlException
+                Dim databaseInstance As DatabaseInstance
+                Dim computer As Computer = computerIn
 
-            Select Case ex.Number
-                Case 0
-                    MessageBox.Show("Cannot connect to server. Contact administrator")
-                Case 1045
-                    MessageBox.Show("Invalid username/password, please try again")
-            End Select
+                databaseInstance = computer.getInstance(databaseInstancePosition)
+                Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort() + ";"
+                connection.ConnectionString = Me.connectionString
 
-            Return False
-        End Try
+                Try
+                    connection.Open()
+                    Return True
+                Catch ex As MySqlException
 
-    End Function
+                    Select Case ex.Number
+                        Case 0
+                            MessageBox.Show("Cannot connect to server. Contact administrator")
+                        Case 1045
+                            MessageBox.Show("Invalid username/password, please try again")
+                    End Select
 
-    Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
+                    Return False
+                End Try
 
-        Dim reader As MySqlDataReader
-        Dim returnList As New ArrayList
+            End Function
 
-        Try
-            command = New MySqlCommand
-            command.CommandText = "show tables from " + databaseName
-            command.Connection = connection
-            command.Prepare()
-            reader = command.ExecuteReader()
+            Public Overrides Function getTableNames(ByVal databaseName As String) As System.Collections.ArrayList
 
-            While reader.Read
-                returnList.Add(reader.GetValue(reader.GetOrdinal("Tables_in_" + databaseName)))
-            End While
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
 
-            reader.Close()
-        Catch ex As Exception
-            Return returnList
-        End Try
+                Try
+                    command = New MySqlCommand
+                    command.CommandText = "show tables from " + databaseName
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
 
-        Return returnList
+                    While reader.Read
+                        returnList.Add(reader.GetValue(reader.GetOrdinal("Tables_in_" + databaseName)))
+                    End While
 
-    End Function
+                    reader.Close()
+                Catch ex As Exception
+                    Return returnList
+                End Try
 
-    Private Sub removeMysqlDatabases(ByRef databases As ArrayList)
+                Return returnList
 
-        databases.Remove("mysql")
-        databases.Remove("information_schema")
+            End Function
 
-    End Sub
+            Private Sub removeMysqlDatabases(ByRef databases As ArrayList)
 
-End Class
+                databases.Remove("mysql")
+                databases.Remove("information_schema")
+
+            End Sub
+
+        End Class
+
+    End Namespace
+
+End Namespace
