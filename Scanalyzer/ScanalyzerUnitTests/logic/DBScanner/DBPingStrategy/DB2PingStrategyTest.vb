@@ -70,10 +70,10 @@ Public Class DB2PingStrategyTest
 
         Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
         Dim target As DB2PingStrategy = New DB2PingStrategy()
-        Dim openPorts As ArrayList = New ArrayList
+        Dim openPorts As ArrayList
         Dim actual As ArrayList
 
-        openPorts.Add(5000)
+        openPorts = computerPing.getOpenPorts(Me.ipDB2Server)
         actual = target.checkPorts(Me.ipDB2Server, openPorts)
 
         Assert.IsNotNull(openPorts)

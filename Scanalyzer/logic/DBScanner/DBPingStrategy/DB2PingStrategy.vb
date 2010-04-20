@@ -7,28 +7,42 @@ Namespace DBScanner
         Public Class DB2PingStrategy
             Inherits DBPingStrategy
 
+            Private connection As DB2Connection
 
             Public Overrides Function checkPorts(ByVal ip As String, ByVal ports As System.Collections.ArrayList) As System.Collections.ArrayList
 
-                Dim myConnectionString = "Server=192.168.56.4:50000;Database=testDatabaseThatShouldntBeInstalledOnTheServer;UID=myUsername;PWD=myPassword;"
-                Dim myConnection As DB2Connection = New DB2Connection()
-                myConnection.ConnectionString = myConnectionString
+                'Dim myConnectionString As String
+                Dim db2Ports As ArrayList = New ArrayList
 
-                Try
+                Me.connection = New DB2Connection()
 
-                    myConnection.Open()
-                    myConnection.Close()
+                For Each port In ports
 
-                Catch ex As DB2Exception
+                    Dim myConnectionString = "Server=" + ip + ":" + port.ToString + ";Database=testDatabaseThatShouldntBeInstalledOnTheServer;UID=myUsername;PWD=myPassword;Connection Timeout=1;"
+                    Me.connection.ConnectionString = myConnectionString
 
-                    If Not ex.Message.Contains("communication error") Then
-                        Return Nothing
-                    End If
+                    Try
+
+                        Me.connection.Open()
+                        Me.connection.Close()
+
+                    Catch ex As DB2Exception
+
+                        If Not ex.Message.Contains("communication error") Then
+
+                            db2Ports.Add(port)
+
+                        End If
+
+                    Catch ex As Exception
 
 
-                End Try
 
-                Return Nothing
+                    End Try
+
+                Next
+
+                Return db2Ports
 
             End Function
 
