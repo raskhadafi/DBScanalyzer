@@ -1,4 +1,4 @@
-﻿Imports System.Data.OracleClient
+﻿Imports Oracle.DataAccess.Client
 
 Namespace DBScanner
 
@@ -16,23 +16,19 @@ Namespace DBScanner
 
                 For Each portNumber In ports
 
-                    Dim answer As Boolean = False
-                    Dim dbConn = New ADODB.Connection
-
-                    connectionString = "Data Source=" + ip + ":" + portNumber.ToString
-                    'connectionString = "data source=(DESCRIPTION=(ADDRESS= (PROTOCOL=tcp)(HOST=" + ip + ")(PORT=" + portNumber.ToString + "))(CONNECT_DATA=(COMMAND=ping)));"
-                    connection = New OracleConnection(connectionString)
+                    connectionString = "Data Source=" + ip + ":" + portNumber.ToString + ";Pooling=False;Connection Lifetime=2;Connection Timeout=2;"
+                    Me.connection = New OracleConnection(connectionString)
 
                     Try
-                        connection.Open()
-                    Catch ex As TimeoutException
 
-                    Catch ex As OverflowException
+                        Me.connection.Open()
 
                     Catch ex As OracleException
 
-                        If ex.Code = 18456 Then
+                        If ex.ErrorCode = 18456 Then
+
                             oraclePorts.Add(portNumber)
+
                         End If
 
                     End Try

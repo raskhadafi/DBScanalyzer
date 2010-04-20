@@ -50,7 +50,7 @@ Public Class OraclePingStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.ipOracleServer = "192.168.56.3"
+        Me.ipOracleServer = "192.168.56.4"
 
     End Sub
     '
