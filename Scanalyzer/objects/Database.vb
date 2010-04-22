@@ -1,7 +1,11 @@
-﻿Public Class Database
+﻿Namespace Objects
 
-    Private name As String
-    Private tables As ArrayList
-    Private equalsToData As Integer
+    Public Class Database
 
-End Class
+        Private name As String
+        Private tables As ArrayList
+        Private equalsToData As Integer
+
+    End Class
+
+End Namespace

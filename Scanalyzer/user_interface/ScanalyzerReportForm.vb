@@ -1,3 +1,7 @@
-﻿Public Class ScanalyzerReportForm
+﻿Namespace UserInterface
 
-End Class
+    Public Class ScanalyzerReportForm
+
+    End Class
+
+End Namespace

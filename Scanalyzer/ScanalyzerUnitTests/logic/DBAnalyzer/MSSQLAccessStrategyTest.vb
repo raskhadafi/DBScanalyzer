@@ -7,18 +7,17 @@ Imports Scanalyzer.DBanalyzer.DBAccessStrategy
 Imports Scanalyzer.Objects
 
 
-
 '''<summary>
-'''This is a test class for MySQLAccessStrategyTest and is intended
-'''to contain all MySQLAccessStrategyTest Unit Tests
+'''This is a test class for MSSQLAccessStrategyTest and is intended
+'''to contain all MSSQLAccessStrategyTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class MySQLAccessStrategyTest
+Public Class MSSQLAccessStrategyTest
 
 
     Private testContextInstance As TestContext
 
-    Private mysqlServer As Computer
+    Private mssqlServer As Computer
 
     '''<summary>
     '''Gets or sets the test context which provides
@@ -51,9 +50,9 @@ Public Class MySQLAccessStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.mysqlServer = New Computer("192.168.56.3")
-        Me.mysqlServer.addDatabaseInstance(3307, Scanalyzer.Objects.DatabaseInstance.DatabaseEnum.mysql)
-        Me.mysqlServer.addCredentials("dbtest", "dbtest", 0)
+        Me.mssqlServer = New Computer("192.168.56.3")
+        Me.mssqlServer.addDatabaseInstance(1433, Scanalyzer.Objects.DatabaseInstance.DatabaseEnum.mssql)
+        Me.mssqlServer.addCredentials("dbtest", "dbtest", 0)
 
     End Sub
     '
@@ -71,8 +70,8 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub openAndCloseConnectionTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = mysqlServer
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
+        Dim computer As Computer = mssqlServer
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
         Dim actualClose As Boolean
@@ -91,8 +90,8 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub getDatabaseNamesTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = mysqlServer
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
+        Dim computer As Computer = mssqlServer
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
         Dim actualClose As Boolean
@@ -114,8 +113,8 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub getTableNamesTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = mysqlServer
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
+        Dim computer As Computer = mssqlServer
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
         Dim actualClose As Boolean
@@ -140,8 +139,8 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub getColumnNamesTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = mysqlServer
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
+        Dim computer As Computer = mssqlServer
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
         Dim actualClose As Boolean
@@ -169,8 +168,8 @@ Public Class MySQLAccessStrategyTest
     <TestMethod()> _
     Public Sub getColumnTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
-        Dim computer As Computer = mysqlServer
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
+        Dim computer As Computer = mssqlServer
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
         Dim actualClose As Boolean
@@ -199,9 +198,9 @@ Public Class MySQLAccessStrategyTest
     '''A test for MySQLAccessStrategy Constructor
     '''</summary>
     <TestMethod()> _
-    Public Sub MySQLAccessStrategyConstructorTest()
+    Public Sub MSSQLAccessStrategyConstructorTest()
 
-        Dim target As MySQLAccessStrategy = New MySQLAccessStrategy
+        Dim target As MSSQLAccessStrategy = New MSSQLAccessStrategy
 
         Assert.IsNotNull(target)
 

@@ -1,20 +1,23 @@
-﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
+﻿Imports System.Collections
+
+Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports System.Collections
-Imports Scanalyzer.DBScanner
+Imports Scanalyzer.DBScanner.DBPingStrategy
 
 
 
 '''<summary>
-'''This is a test class for ComputerPingTest and is intended
-'''to contain all ComputerPingTest Unit Tests
+'''This is a test class for DB2PingStrategyTest and is intended
+'''to contain all DB2PingStrategyTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class ComputerPingTest
+Public Class DB2PingStrategyTest
 
 
     Private testContextInstance As TestContext
+
+    Private ipDB2Server As String
 
     '''<summary>
     '''Gets or sets the test context which provides
@@ -44,9 +47,12 @@ Public Class ComputerPingTest
     'End Sub
     '
     'Use TestInitialize to run code before running each test
-    '<TestInitialize()>  _
-    'Public Sub MyTestInitialize()
-    'End Sub
+    <TestInitialize()> _
+    Public Sub MyTestInitialize()
+
+        Me.ipDB2Server = "192.168.56.4"
+
+    End Sub
     '
     'Use TestCleanup to run code after each test has run
     '<TestCleanup()>  _
@@ -57,36 +63,21 @@ Public Class ComputerPingTest
 
 
     '''<summary>
-    '''A test for pingHost
+    '''A test for checkPorts
     '''</summary>
     <TestMethod()> _
-    Public Sub pingHostTest()
+    Public Sub checkPortsTest()
 
-        Dim target As ComputerPing = New ComputerPing()
-        Dim localIP As Object
-        Dim notavaibleIP As Object
-
-        localIP = target.pingHost("127.0.0.1")
-        notavaibleIP = target.pingHost("192.168.255.50")
-
-        Assert.AreEqual(True, localIP)
-        Assert.AreEqual(False, notavaibleIP)
-
-    End Sub
-
-    '''<summary>
-    '''A test for openPorts
-    '''</summary>
-    <TestMethod()> _
-    Public Sub openPortsTest()
-
-        Dim target As ComputerPing = New ComputerPing()
+        Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
+        Dim target As DB2PingStrategy = New DB2PingStrategy()
+        Dim openPorts As ArrayList
         Dim actual As ArrayList
 
-        actual = target.getOpenPorts("192.168.56.3")
+        openPorts = computerPing.getOpenPorts(Me.ipDB2Server)
+        actual = target.checkPorts(Me.ipDB2Server, openPorts)
 
-        Assert.AreNotEqual(0, actual.Count)
+        Assert.IsNotNull(openPorts)
+        Assert.IsNotNull(actual)
 
     End Sub
-
 End Class

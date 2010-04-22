@@ -1,34 +1,50 @@
-﻿Public Class Computer
+﻿Namespace Objects
 
-    Private ip As String
-    Private databasesInstances As ArrayList
-    Private openPorts As ArrayList
+    Public Class Computer
 
-    Public Sub New(ByVal ip As String)
-        Me.ip = ip
-        databasesInstances = New ArrayList
-    End Sub
+        Private ip As String
+        Private databasesInstances As ArrayList
+        Private openPorts As ArrayList
 
-    Public Function getInstance(ByRef position As Integer) As DatabaseInstance
-        Return Me.databasesInstances(position)
-    End Function
+        Public Sub New(ByVal ip As String)
 
-    Public Sub addDatabaseInstance(ByVal port As Integer, ByVal type As DatabaseInstance.DatabaseEnum)
-        Dim databaseInstance As New DatabaseInstance(port, type)
-        Me.databasesInstances.Add(databaseInstance)
-    End Sub
+            Me.ip = ip
+            databasesInstances = New ArrayList
 
-    Public Sub addCredentials(ByRef user As String, ByRef password As String, ByRef databaseInstancePosition As Integer)
-        Dim databaseInstance As DatabaseInstance = Me.databasesInstances(databaseInstancePosition)
-        databaseInstance.addCredentials(user, password)
-    End Sub
+        End Sub
 
-    Public Function getIp() As String
-        Return Me.ip
-    End Function
+        Public Function getInstance(ByRef position As Integer) As DatabaseInstance
 
-    Public Sub addOpenPort(ByRef portNumber As Integer)
-        Me.openPorts.Add(portNumber)
-    End Sub
+            Return Me.databasesInstances(position)
 
-End Class
+        End Function
+
+        Public Sub addDatabaseInstance(ByVal port As Integer, ByVal type As DatabaseInstance.DatabaseEnum)
+
+            Dim databaseInstance As New DatabaseInstance(port, type)
+            Me.databasesInstances.Add(databaseInstance)
+
+        End Sub
+
+        Public Sub addCredentials(ByRef user As String, ByRef password As String, ByRef databaseInstancePosition As Integer)
+
+            Dim databaseInstance As DatabaseInstance = Me.databasesInstances(databaseInstancePosition)
+            databaseInstance.addCredentials(user, password)
+
+        End Sub
+
+        Public Function getIp() As String
+
+            Return Me.ip
+
+        End Function
+
+        Public Sub addOpenPort(ByRef portNumber As Integer)
+
+            Me.openPorts.Add(portNumber)
+
+        End Sub
+
+    End Class
+
+End Namespace

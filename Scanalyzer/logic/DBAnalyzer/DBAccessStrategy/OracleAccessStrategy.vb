@@ -1,3 +1,12 @@
-﻿Public Class OracleAccessStrategy
+﻿Namespace DBanalyzer
 
-End Class
+    Namespace DBAccessStrategy
+
+        Public Class OracleAccessStrategy
+
+        End Class
+
+    End Namespace
+
+End Namespace
+

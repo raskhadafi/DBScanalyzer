@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-
+Imports Scanalyzer.DBScanner.DBPingStrategy
 
 
 '''<summary>
@@ -15,6 +15,8 @@ Public Class MySQLPingStrategyTest
 
 
     Private testContextInstance As TestContext
+
+    Private ipMySqlServer As String
 
     '''<summary>
     '''Gets or sets the test context which provides
@@ -44,9 +46,12 @@ Public Class MySQLPingStrategyTest
     'End Sub
     '
     'Use TestInitialize to run code before running each test
-    '<TestInitialize()>  _
-    'Public Sub MyTestInitialize()
-    'End Sub
+    <TestInitialize()> _
+    Public Sub MyTestInitialize()
+
+        Me.ipMySqlServer = "192.168.56.3"
+
+    End Sub
     '
     'Use TestCleanup to run code after each test has run
     '<TestCleanup()>  _
@@ -55,26 +60,23 @@ Public Class MySQLPingStrategyTest
     '
 #End Region
 
-
-    '''<summary>
-    '''A test for tryDefaultPort
-    '''</summary>
-    <TestMethod()> _
-    Public Sub tryDefaultPortTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy
-        Dim actual As ArrayList
-        actual = target.tryDefaultPort("192.168.1.5")
-        Assert.IsNotNull(actual)
-    End Sub
-
     '''<summary>
     '''A test for tryAllPorts
     '''</summary>
     <TestMethod()> _
     Public Sub tryAllPortsTest()
-        Dim target As MySQLPingStrategy = New MySQLPingStrategy
+
+        Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
+        Dim target As MySQLPingStrategy = New MySQLPingStrategy()
+        Dim openPorts As ArrayList
         Dim actual As ArrayList
-        actual = target.tryAllPorts("192.168.1.5")
+
+        openPorts = computerPing.getOpenPorts(Me.ipMySqlServer)
+        actual = target.checkPorts(Me.ipMySqlServer, openPorts)
+
+        Assert.IsNotNull(openPorts)
         Assert.IsNotNull(actual)
+
     End Sub
+
 End Class
