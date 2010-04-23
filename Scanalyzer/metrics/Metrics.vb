@@ -1,30 +1,24 @@
-﻿Namespace Metrics
+﻿Imports System.Text.RegularExpressions
+
+Namespace Metrics
 
     Public Class Metrics
 
-        ' Liste der Postleitzahlen
-        Dim plz As New List(Of String) ' TO DO: hier gilt es abzugklären, ob wir die PLZ als String oder als Integer auslesen
+        Public Function checkIfEmail(ByVal email As String) As Integer
 
-        ' initialisiere plz
-        REM plz = 
+            Dim emailRecognition As Regex = New Regex("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b")
 
-        Public bool IsSameString(string referenceString, string dbString) ' compare databasestring with string in the referencefile
-        {
-        return (string.compare
-        }
+            If emailRecognition.IsMatch(email) Then
 
+                Return 100
 
+            Else
 
+                Return 0
 
+            End If
 
-
-
-        Private Sub frm1202_Load( ... ) Handles MyBase.Load 
-
-            ' Initialisierung des Zufallsgenerators 
-            Randomize()
-
-        End Sub
+        End Function
 
     End Class
 
