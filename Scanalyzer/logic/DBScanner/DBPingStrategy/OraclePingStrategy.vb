@@ -1,4 +1,5 @@
 ﻿Imports Oracle.DataAccess.Client
+'Imports System.Data.OracleClient
 
 Namespace DBScanner
 
@@ -16,7 +17,7 @@ Namespace DBScanner
 
                 For Each portNumber In ports
 
-                    connectionString = "Data Source=" + ip + ":" + portNumber.ToString + ";Pooling=False;Connection Lifetime=2;Connection Timeout=2;"
+                    connectionString = "Data Source=" + ip + ":" + portNumber.ToString + ";Pooling=False;Connection Lifetime=2;"
                     Me.connection = New OracleConnection(connectionString)
 
                     Try
