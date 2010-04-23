@@ -5,6 +5,7 @@
         Private port As Integer
         Private user As String
         Private password As String
+        Private databaseName As String
         Private type As DatabaseEnum
 
         Public Sub New(ByVal port As Integer, ByVal type As DatabaseEnum)
@@ -18,6 +19,14 @@
 
             Me.user = user
             Me.password = password
+
+        End Sub
+
+        Public Sub addCredentials(ByVal user As String, ByVal password As String, ByVal databaseName As String)
+
+            Me.user = user
+            Me.password = password
+            Me.databaseName = databaseName
 
         End Sub
 
@@ -36,6 +45,12 @@
         Public Function getPort() As String
 
             Return Me.port
+
+        End Function
+
+        Public Function getDatabaseName() As String
+
+            Return Me.databaseName
 
         End Function
 

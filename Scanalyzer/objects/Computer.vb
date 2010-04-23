@@ -33,6 +33,13 @@
 
         End Sub
 
+        Public Sub addCredentials(ByRef user As String, ByRef password As String, ByRef databaseInstancePosition As Integer, ByRef databaseName As String)
+
+            Dim databaseInstance As DatabaseInstance = Me.databasesInstances(databaseInstancePosition)
+            databaseInstance.addCredentials(user, password, databaseName)
+
+        End Sub
+
         Public Function getIp() As String
 
             Return Me.ip
