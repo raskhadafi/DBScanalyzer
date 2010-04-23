@@ -61,6 +61,7 @@ Namespace Metrics
 
         End Function
 
+        ' removes the duplicates in an array
         Private Sub distinctArray(ByRef data As ArrayList)
 
             Dim distinctArray As ArrayList = New ArrayList
