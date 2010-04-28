@@ -25,12 +25,15 @@ Partial Class ScanalyzerForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerForm))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ReferenzdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem, Me.ReferenzdatenToolStripMenuItem, Me.FileToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(507, 24)
@@ -40,8 +43,26 @@ Partial Class ScanalyzerForm
         'ToolStripMenuItem1
         '
         Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(52, 20)
         Me.ToolStripMenuItem1.Text = "About"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(44, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'ReferenzdatenToolStripMenuItem
+        '
+        Me.ReferenzdatenToolStripMenuItem.Name = "ReferenzdatenToolStripMenuItem"
+        Me.ReferenzdatenToolStripMenuItem.Size = New System.Drawing.Size(76, 20)
+        Me.ReferenzdatenToolStripMenuItem.Text = "References"
+        '
+        'FileToolStripMenuItem
+        '
+        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
+        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(37, 20)
+        Me.FileToolStripMenuItem.Text = "File"
         '
         'ScanalyzerForm
         '
@@ -61,5 +82,8 @@ Partial Class ScanalyzerForm
     End Sub
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ReferenzdatenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 
 End Class

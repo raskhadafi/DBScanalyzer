@@ -2,9 +2,16 @@
 
     Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
 
-        Dim about As New AboutScanalyzer
-        about.Show()
 
+
+        Dim about As New AboutScanalyzer
+
+
+        about.Show()
+        
     End Sub
 
+    Private Sub ReferenzdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReferenzdatenToolStripMenuItem.Click
+
+    End Sub
 End Class

@@ -82,6 +82,40 @@ Namespace Metrics
 
         End Sub
 
+        'check whether String is a Date
+        'return true or false
+
+        Public Function checkIfdate()
+            'TODO: write datechecklogic
+
+            ' to check:
+            ' which kinds of formats are possible for dates
+            ' 15.01.2010; 15.1.2010; 15.1.10; 15.01.2010; 
+            ' also dd.mm.yyyy oder dd(one or two digits).mm(one or two digits).yy((one or) two or four digits)
+            ' in the american format, the month comes first and then the day
+            ' the sign which separates dd from yy from yyyy can be a "." or a "/" or a "\"? or ....?
+            '    > check whether there are further possible characters to separate
+            ' 
+            ' research showed, that there is already a date method existing
+            ' gibt es irgendetwas wie todate...?
+
+
+            Return False
+
+        End Function
+
+        'check wether String is a Street
+        Public Function checkIfStreet()
+            ' TODO: write streetchecklogic
+
+            ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
+            ' first fill possible refrence strings into arrays, start with one letter, then two letter-arrays and so on
+            ' hof would be in the three letter arry, flur in a four-letterarray, street in a six-letter-array and so on
+
+
+            Return False
+
+        End Function
     End Class
 
 End Namespace
