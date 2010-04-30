@@ -1,4 +1,5 @@
 ﻿Imports System.Text.RegularExpressions
+Imports System.Data.SQLite
 
 Namespace Metrics
 
@@ -85,7 +86,7 @@ Namespace Metrics
         'check whether String is a Date
         'return true or false
 
-        Public Function checkIfdate(ByVal input As String)
+        Public Function checkIfDate(ByVal input As String) As Integer
             'TODO: write datechecklogic
 
             ' to check:
@@ -105,13 +106,22 @@ Namespace Metrics
         End Function
 
         'check wether String is a Street
-        Public Function checkIfStreet()
+        Public Function checkIfStreet(ByVal streetName As String) As Integer
             ' TODO: write streetchecklogic
 
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
             ' first fill possible refrence strings into arrays, start with one letter, then two letter-arrays and so on
             ' hof would be in the three letter arry, flur in a four-letterarray, street in a six-letter-array and so on
+            Try
 
+                Dim SQLconnect As New SQLiteConnection()
+                SQLconnect.ConnectionString = "Data Source=db/reference_data.sqlite;"
+                SQLconnect.Open()
+                SQLconnect.Close()
+
+            Catch ex As Exception
+
+            End Try
 
             Return False
 
