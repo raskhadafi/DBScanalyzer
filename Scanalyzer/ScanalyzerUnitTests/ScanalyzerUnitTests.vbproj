@@ -52,6 +52,10 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.SQLite, Version=1.0.66.0, Culture=neutral, PublicKeyToken=db937bc2d44ff139, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\dll\sqlite\System.Data.SQLite.dll</HintPath>
+    </Reference>
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
@@ -73,6 +77,7 @@
     <Compile Include="logic\DBScanner\DBPingStrategy\OraclePingStrategyTest.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\MSSQLPingStrategyTest.vb" />
     <Compile Include="logic\DBAnalyzer\MSSQLAccessStrategyTest.vb" />
+    <Compile Include="MetricsTest.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="logic\DBAnalyzer\MySQLAccessStrategyTest.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\MySQLPingStrategyTest.vb" />
@@ -85,6 +90,9 @@
       <Project>{C02EA875-0BD2-42A2-A5ED-2E040E10FAF9}</Project>
       <Name>Scanalyzer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Shadow Include="Test References\Scanalyzer.accessor" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
