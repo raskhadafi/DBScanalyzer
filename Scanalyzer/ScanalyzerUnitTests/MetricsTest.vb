@@ -118,12 +118,20 @@ Public Class MetricsTest
     '''</summary>
     <TestMethod()> _
     Public Sub checkIfStreetTest()
-        Dim target As Metrics = New Metrics ' TODO: Initialize to an appropriate value
-        Dim streetName As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
-        Dim actual As Integer
-        actual = target.checkIfStreet(streetName)
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
+
+        Dim target As Metrics = New Metrics()
+        Dim streetNameReal As String = "Sonnengrundstrasse"
+        Dim streetNameFalse As String = "Horw"
+        Dim expectedReal As Integer = 100
+        Dim expectedFalse As Integer = 0
+        Dim actualReal As Integer
+        Dim actualFalse As Integer
+
+        actualReal = target.checkIfStreet(streetNameReal)
+        actualFalse = target.checkIfStreet(streetNameFalse)
+
+        Assert.AreEqual(expectedReal, actualReal)
+        Assert.AreEqual(expectedFalse, actualFalse)
+
     End Sub
 End Class

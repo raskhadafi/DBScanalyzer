@@ -112,20 +112,55 @@ Namespace Metrics
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
             ' first fill possible refrence strings into arrays, start with one letter, then two letter-arrays and so on
             ' hof would be in the three letter arry, flur in a four-letterarray, street in a six-letter-array and so on
+            Dim tableName As String = "street_identifier"
+            Dim streetVariants As ArrayList = New ArrayList
+            Dim probability As Integer = 0
+
+            Me.getReferenceData(tableName, streetVariants)
+            streetName = streetName.ToLower
+
+            For Each name In streetVariants
+
+                If streetName.Contains(name) Then
+
+                    probability = 100
+
+                End If
+
+            Next
+
+            Return False
+
+        End Function
+
+        Private Sub getReferenceData(ByVal tableName As String, ByRef entries As ArrayList)
+
             Try
 
-                Dim SQLconnect As New SQLiteConnection()
-                SQLconnect.ConnectionString = "Data Source=db/reference_data.sqlite;"
-                SQLconnect.Open()
-                SQLconnect.Close()
+                Dim connection As New SQLiteConnection()
+                Dim sqlreader As SQLiteDataReader
+                Dim cmd As SQLiteCommand
+
+                connection.ConnectionString = "Data Source=|DataDirectory|\db\reference_data.sqlite;"
+                connection.Open()
+                cmd = connection.CreateCommand
+                cmd.CommandText = "select value from " + tableName
+                sqlreader = cmd.ExecuteReader()
+
+                While sqlreader.Read
+
+                    entries.Add(sqlreader(0))
+
+                End While
+
+                connection.Close()
 
             Catch ex As Exception
 
             End Try
 
-            Return False
+        End Sub
 
-        End Function
     End Class
 
 End Namespace
