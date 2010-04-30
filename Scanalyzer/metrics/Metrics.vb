@@ -85,7 +85,7 @@ Namespace Metrics
         'check whether String is a Date
         'return true or false
 
-        Public Function checkIfdate()
+        Public Function checkIfdate(ByVal input As String)
             'TODO: write datechecklogic
 
             ' to check:
