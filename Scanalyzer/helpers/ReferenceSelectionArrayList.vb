@@ -12,6 +12,19 @@
 
         End Sub
 
+        Public Function hasLanguages() As Boolean
+
+
+            If languages.Count > 0 Then
+
+                Return True
+
+            End If
+
+            Return False
+
+        End Function
+
     End Structure
 
     Public Class ReferenceSelectionArrayList
