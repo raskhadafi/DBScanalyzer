@@ -28,6 +28,7 @@ Partial Class InitializationForm
         Me.ReferncesDefinitionTab = New System.Windows.Forms.TabPage
         Me.MetricsSelectionTab = New System.Windows.Forms.TabPage
         Me.Button1 = New System.Windows.Forms.Button
+        Me.IPRangeTab = New System.Windows.Forms.TabPage
         Me.InputTabbs.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -36,10 +37,11 @@ Partial Class InitializationForm
         Me.InputTabbs.Controls.Add(Me.ReferncesSelectionTab)
         Me.InputTabbs.Controls.Add(Me.ReferncesDefinitionTab)
         Me.InputTabbs.Controls.Add(Me.MetricsSelectionTab)
-        Me.InputTabbs.Location = New System.Drawing.Point(-2, 31)
+        Me.InputTabbs.Controls.Add(Me.IPRangeTab)
+        Me.InputTabbs.Location = New System.Drawing.Point(-2, 47)
         Me.InputTabbs.Name = "InputTabbs"
         Me.InputTabbs.SelectedIndex = 0
-        Me.InputTabbs.Size = New System.Drawing.Size(417, 416)
+        Me.InputTabbs.Size = New System.Drawing.Size(458, 416)
         Me.InputTabbs.TabIndex = 0
         '
         'ReferncesSelectionTab
@@ -48,7 +50,7 @@ Partial Class InitializationForm
         Me.ReferncesSelectionTab.Location = New System.Drawing.Point(4, 22)
         Me.ReferncesSelectionTab.Name = "ReferncesSelectionTab"
         Me.ReferncesSelectionTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.ReferncesSelectionTab.Size = New System.Drawing.Size(409, 390)
+        Me.ReferncesSelectionTab.Size = New System.Drawing.Size(450, 390)
         Me.ReferncesSelectionTab.TabIndex = 0
         Me.ReferncesSelectionTab.Text = "Select References"
         Me.ReferncesSelectionTab.UseVisualStyleBackColor = True
@@ -58,7 +60,7 @@ Partial Class InitializationForm
         Me.ReferncesDefinitionTab.Location = New System.Drawing.Point(4, 22)
         Me.ReferncesDefinitionTab.Name = "ReferncesDefinitionTab"
         Me.ReferncesDefinitionTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.ReferncesDefinitionTab.Size = New System.Drawing.Size(409, 401)
+        Me.ReferncesDefinitionTab.Size = New System.Drawing.Size(409, 390)
         Me.ReferncesDefinitionTab.TabIndex = 1
         Me.ReferncesDefinitionTab.Text = "Add new References"
         Me.ReferncesDefinitionTab.UseVisualStyleBackColor = True
@@ -67,25 +69,34 @@ Partial Class InitializationForm
         '
         Me.MetricsSelectionTab.Location = New System.Drawing.Point(4, 22)
         Me.MetricsSelectionTab.Name = "MetricsSelectionTab"
-        Me.MetricsSelectionTab.Size = New System.Drawing.Size(409, 401)
+        Me.MetricsSelectionTab.Size = New System.Drawing.Size(409, 390)
         Me.MetricsSelectionTab.TabIndex = 2
         Me.MetricsSelectionTab.Text = "Select Metrics"
         Me.MetricsSelectionTab.UseVisualStyleBackColor = True
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(324, 12)
+        Me.Button1.Location = New System.Drawing.Point(368, 12)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(75, 23)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "next step"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'IPRangeTab
+        '
+        Me.IPRangeTab.Location = New System.Drawing.Point(4, 22)
+        Me.IPRangeTab.Name = "IPRangeTab"
+        Me.IPRangeTab.Size = New System.Drawing.Size(409, 390)
+        Me.IPRangeTab.TabIndex = 3
+        Me.IPRangeTab.Text = "Definie IP-Range"
+        Me.IPRangeTab.UseVisualStyleBackColor = True
+        '
         'InitializationForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(411, 446)
+        Me.ClientSize = New System.Drawing.Size(455, 462)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.InputTabbs)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
@@ -100,4 +111,5 @@ Partial Class InitializationForm
     Friend WithEvents ReferncesDefinitionTab As System.Windows.Forms.TabPage
     Friend WithEvents MetricsSelectionTab As System.Windows.Forms.TabPage
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents IPRangeTab As System.Windows.Forms.TabPage
 End Class
