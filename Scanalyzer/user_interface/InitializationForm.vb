@@ -5,8 +5,11 @@ Public Class InitializationForm
     Private state As STATEMACHINE
     Private metricsSelection As TabPage
     Private references As ReferenceSelectionArrayList
+    Private languageCheckboxes As List(Of CheckBox)
+
     Private marginBottom As Integer = 5
     Private marginRight As Integer = 10
+    Private marginRightExtra As Integer = marginRight + 10
 
     Public Sub New()
 
@@ -28,7 +31,9 @@ Public Class InitializationForm
     Private Sub loadAndPaintReferences()
 
         Dim y As Integer = 0
+
         Helpers.SQLiteHelper.getReferences(references)
+        Me.languageCheckboxes = New List(Of CheckBox)
 
         For Each entry In references
 
@@ -46,11 +51,17 @@ Public Class InitializationForm
                 For Each language In entry.languages
 
                     Dim languageLabel As New Label()
+                    Dim languageCheckbox As New CheckBox()
 
                     languageLabel.Text = language
                     languageLabel.Location = New System.Drawing.Point(x, y)
                     x += languageLabel.Width + marginRight
+                    languageCheckbox.Name = entry.reference + "_" + language
+                    languageCheckbox.Location = New System.Drawing.Point(x, y - 5)
+                    x += languageCheckbox.Width + marginRightExtra
                     Me.InputTabbs.GetControl(0).Controls.Add(languageLabel)
+                    Me.InputTabbs.GetControl(0).Controls.Add(languageCheckbox)
+                    Me.languageCheckboxes.Add(languageCheckbox)
 
                 Next
 
@@ -64,17 +75,41 @@ Public Class InitializationForm
 
     End Sub
 
+    Private Function referenceSelected() As Boolean
+
+        For Each box In languageCheckboxes
+
+            If box.Checked Then
+
+                Return True
+
+            End If
+
+        Next
+
+        Return False
+
+    End Function
+
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         Select Case Me.state
 
             Case STATEMACHINE.referenceselect
 
-                Me.metricsSelection = New TabPage("ReferncesDefinitionTab")
-                Me.InputTabbs.Controls.Add(Me.metricsSelection)
-                Me.InputTabbs.SelectedTab = Me.metricsSelection
-                Me.metricsSelection.Focus()
-                Me.state = STATEMACHINE.metricsselect
+                If Me.referenceSelected() Then
+
+                    Me.metricsSelection = New TabPage("ReferncesDefinitionTab")
+                    Me.InputTabbs.Controls.Add(Me.metricsSelection)
+                    Me.InputTabbs.SelectedTab = Me.metricsSelection
+                    Me.metricsSelection.Focus()
+                    Me.state = STATEMACHINE.metricsselect
+
+                Else
+
+                    MessageBox.Show("Please select at least one reference", "No selection", MessageBoxButtons.OK)
+
+                End If
 
             Case STATEMACHINE.metricsselect
 

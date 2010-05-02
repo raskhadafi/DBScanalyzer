@@ -4,11 +4,13 @@
 
         Public reference As String
         Public languages As ArrayList
+        Public selected As ArrayList
 
         Public Sub New(ByVal name As String)
 
             reference = name
             languages = New ArrayList
+            selected = New ArrayList
 
         End Sub
 
