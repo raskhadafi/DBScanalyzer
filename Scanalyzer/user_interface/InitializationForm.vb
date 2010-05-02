@@ -17,15 +17,29 @@ Public Class InitializationForm
         ' initialize the state machine
         state = STATEMACHINE.referenceselect
         ' loads the avaible references and displays the for selection
-        loadAvaibleReferences()
+        loadAndPaintReferences()
 
         ' Add any initialization after the InitializeComponent() call.
 
     End Sub
 
-    Private Sub loadAvaibleReferences()
+    Private Sub loadAndPaintReferences()
 
+        Dim y As Integer = 0
         Helpers.SQLiteHelper.getReferences(references)
+
+        For Each entry In references
+
+            Dim label As New Label()
+
+            label.Text = entry.reference
+            label.Location = New System.Drawing.Point(0, y)
+            y += 30
+            Me.InputTabbs.GetControl(0).Controls.Add(label)
+
+        Next
+        
+
 
     End Sub
 
