@@ -1,5 +1,4 @@
 ﻿Imports System.Text.RegularExpressions
-Imports System.Data.SQLite
 
 Namespace Metrics
 
@@ -116,7 +115,7 @@ Namespace Metrics
             Dim streetVariants As ArrayList = New ArrayList
             Dim probability As Integer = 0
 
-            Me.getReferenceData(tableName, streetVariants)
+            Helpers.SQLiteHelper.getReferenceData(tableName, streetVariants)
             streetName = streetName.ToLower
 
             For Each name In streetVariants
@@ -132,34 +131,6 @@ Namespace Metrics
             Return False
 
         End Function
-
-        Private Sub getReferenceData(ByVal tableName As String, ByRef entries As ArrayList)
-
-            Try
-
-                Dim connection As New SQLiteConnection()
-                Dim sqlreader As SQLiteDataReader
-                Dim cmd As SQLiteCommand
-
-                connection.ConnectionString = "Data Source=|DataDirectory|\db\reference_data.sqlite;"
-                connection.Open()
-                cmd = connection.CreateCommand
-                cmd.CommandText = "select value from " + tableName
-                sqlreader = cmd.ExecuteReader()
-
-                While sqlreader.Read
-
-                    entries.Add(sqlreader(0))
-
-                End While
-
-                connection.Close()
-
-            Catch ex As Exception
-
-            End Try
-
-        End Sub
 
     End Class
 
