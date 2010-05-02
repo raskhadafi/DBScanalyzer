@@ -1,8 +1,10 @@
-﻿Public Class InitializationForm
+﻿Imports Scanalyzer.Helpers
+
+Public Class InitializationForm
 
     Private state As STATEMACHINE
     Private metricsSelection As TabPage
-    Private references As Array
+    Private references As ReferenceSelectionArrayList
 
     Public Sub New()
 
@@ -44,7 +46,7 @@
                 Me.Hide()
 
         End Select
-        
+
 
 
     End Sub

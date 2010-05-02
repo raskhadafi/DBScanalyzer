@@ -8,15 +8,47 @@ Namespace Helpers
         Private sqlreader As SQLiteDataReader
         Private cmd As SQLiteCommand
 
-        Public Sub getReferences(ByRef references As Array)
+        Public Sub getReferences(ByRef references As ReferenceSelectionArrayList)
 
-            Dim returnReferences As ArrayList = New ArrayList
+            Dim dbReferences As ArrayList = New ArrayList
+            Dim returnArray As New ReferenceSelectionArrayList
 
             initializeSQLiteConnection()
             executeSQLCommand("SELECT tbl_name FROM sqlite_master WHERE type='table' ORDER BY tbl_name ASC")
-            getDataFromQuery(returnReferences, 0)
-            returnReferences.Remove("sqlite_sequence")
-            references = returnReferences.ToArray
+            getDataFromQuery(dbReferences, 0)
+            dbReferences.Remove("sqlite_sequence")
+
+            For Each dbRef In dbReferences
+
+                Dim dbEntry As Array = dbRef.ToString.Split("_")
+
+                If Not returnArray.checkIfContainsSelection(dbEntry(0)) Then
+
+                    Dim entry As New ReferenceSelection(dbEntry(0))
+
+                    entry.languages.Add(dbEntry(1))
+                    returnArray.Add(entry)
+
+                Else
+
+                    Dim entry As ReferenceSelection = returnArray.getReferenceSelection(dbEntry(0))
+
+                    If entry.reference.Contains(dbEntry(0)) Then
+
+                        If Not entry.languages.Contains(dbEntry(1)) Then
+
+                            entry.languages.Add(dbEntry(1))
+
+                        End If
+
+                    End If
+
+
+                End If
+
+            Next
+
+            references = returnArray
 
         End Sub
 
