@@ -10,6 +10,7 @@
 
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
+        Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         state = STATEMACHINE.referenceselect
 
         ' Add any initialization after the InitializeComponent() call.
