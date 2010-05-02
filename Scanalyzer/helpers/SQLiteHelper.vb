@@ -10,7 +10,13 @@ Namespace Helpers
 
         Public Sub getReferences(ByRef references As Array)
 
+            Dim returnReferences As ArrayList = New ArrayList
 
+            initializeSQLiteConnection()
+            executeSQLCommand("SELECT tbl_name FROM sqlite_master WHERE type='table' ORDER BY tbl_name ASC")
+            getDataFromQuery(returnReferences, 0)
+            returnReferences.Remove("sqlite_sequence")
+            references = returnReferences.ToArray
 
         End Sub
 
@@ -33,6 +39,16 @@ Namespace Helpers
 
         End Sub
 
+        Private Sub getDataFromQuery(ByRef entries As ArrayList, ByVal columnPosition As Integer)
+
+            While sqlreader.Read
+
+                entries.Add(sqlreader(columnPosition))
+
+            End While
+
+        End Sub
+
         Private Sub closeSQLiteConnection()
 
             connection.Close()
@@ -45,13 +61,7 @@ Namespace Helpers
 
                 initializeSQLiteConnection()
                 executeSQLCommand("select value from " + tableName)
-
-                While sqlreader.Read
-
-                    entries.Add(sqlreader(0))
-
-                End While
-
+                getDataFromQuery(entries, 0)
                 closeSQLiteConnection()
 
             Catch ex As Exception

@@ -2,18 +2,28 @@
 
     Private state As STATEMACHINE
     Private metricsSelection As TabPage
+    Private references As Array
 
     Public Sub New()
 
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
-
+        ' remove unused tabs, so that the state machine makes them visible
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
+        ' initialize the state machine
         state = STATEMACHINE.referenceselect
+        ' loads the avaible references and displays the for selection
+        loadAvaibleReferences()
 
         ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
+
+    Private Sub loadAvaibleReferences()
+
+        Helpers.SQLiteHelper.getReferences(references)
 
     End Sub
 
