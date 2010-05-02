@@ -5,6 +5,8 @@ Public Class InitializationForm
     Private state As STATEMACHINE
     Private metricsSelection As TabPage
     Private references As ReferenceSelectionArrayList
+    Private marginBottom As Integer = 5
+    Private marginRight As Integer = 10
 
     Public Sub New()
 
@@ -34,8 +36,27 @@ Public Class InitializationForm
 
             label.Text = entry.reference
             label.Location = New System.Drawing.Point(0, y)
-            y += 30
+            y += label.Height + marginBottom
             Me.InputTabbs.GetControl(0).Controls.Add(label)
+
+            If entry.hasLanguages Then
+
+                Dim x As Integer = 0
+
+                For Each language In entry.languages
+
+                    Dim languageLabel As New Label()
+
+                    languageLabel.Text = language
+                    languageLabel.Location = New System.Drawing.Point(x, y)
+                    x += languageLabel.Width + marginRight
+                    Me.InputTabbs.GetControl(0).Controls.Add(languageLabel)
+
+                Next
+
+                y += label.Height + marginBottom
+
+            End If
 
         Next
         

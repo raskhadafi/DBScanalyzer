@@ -41,7 +41,7 @@ Partial Class InitializationForm
         Me.InputTabbs.Location = New System.Drawing.Point(-2, 47)
         Me.InputTabbs.Name = "InputTabbs"
         Me.InputTabbs.SelectedIndex = 0
-        Me.InputTabbs.Size = New System.Drawing.Size(458, 416)
+        Me.InputTabbs.Size = New System.Drawing.Size(458, 485)
         Me.InputTabbs.TabIndex = 0
         '
         'ReferncesSelectionTab
@@ -50,7 +50,7 @@ Partial Class InitializationForm
         Me.ReferncesSelectionTab.Location = New System.Drawing.Point(4, 22)
         Me.ReferncesSelectionTab.Name = "ReferncesSelectionTab"
         Me.ReferncesSelectionTab.Padding = New System.Windows.Forms.Padding(3)
-        Me.ReferncesSelectionTab.Size = New System.Drawing.Size(450, 390)
+        Me.ReferncesSelectionTab.Size = New System.Drawing.Size(450, 459)
         Me.ReferncesSelectionTab.TabIndex = 0
         Me.ReferncesSelectionTab.Text = "Select References"
         Me.ReferncesSelectionTab.UseVisualStyleBackColor = True
@@ -96,9 +96,10 @@ Partial Class InitializationForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(455, 462)
+        Me.ClientSize = New System.Drawing.Size(455, 532)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.InputTabbs)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "InitializationForm"
         Me.Text = "InitializationForm"
