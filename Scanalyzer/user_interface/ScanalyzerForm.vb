@@ -14,4 +14,13 @@
     Private Sub ReferenzdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReferenzdatenToolStripMenuItem.Click
 
     End Sub
+
+    Private Sub InitializeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InitializeToolStripMenuItem.Click
+
+        Dim initializationSetup As New InitializationForm
+
+        initializationSetup.Show()
+
+
+    End Sub
 End Class
