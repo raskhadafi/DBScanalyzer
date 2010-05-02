@@ -105,7 +105,7 @@ Namespace Metrics
         End Function
 
         'check wether String is a Street
-        Public Function checkIfStreet(ByVal streetName As String) As Integer
+        Public Function checkIfStreet(ByVal streetName As String, ByVal tableNames As ArrayList) As Integer
             ' TODO: write streetchecklogic
 
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
@@ -115,7 +115,12 @@ Namespace Metrics
             Dim streetVariants As ArrayList = New ArrayList
             Dim probability As Integer = 0
 
-            Helpers.SQLiteHelper.getReferenceData(tableName, streetVariants)
+            For Each tableName In tableNames
+
+                Helpers.SQLiteHelper.getReferenceData(tableName, streetVariants)
+
+            Next
+
             streetName = streetName.ToLower
 
             For Each name In streetVariants
@@ -128,7 +133,7 @@ Namespace Metrics
 
             Next
 
-            Return False
+            Return probability
 
         End Function
 

@@ -126,9 +126,12 @@ Public Class MetricsTest
         Dim expectedFalse As Integer = 0
         Dim actualReal As Integer
         Dim actualFalse As Integer
+        Dim tableNames As ArrayList = New ArrayList
 
-        actualReal = target.checkIfStreet(streetNameReal)
-        actualFalse = target.checkIfStreet(streetNameFalse)
+        tableNames.Add("street_de")
+
+        actualReal = target.checkIfStreet(streetNameReal, tableNames)
+        actualFalse = target.checkIfStreet(streetNameFalse, tableNames)
 
         Assert.AreEqual(expectedReal, actualReal)
         Assert.AreEqual(expectedFalse, actualFalse)
