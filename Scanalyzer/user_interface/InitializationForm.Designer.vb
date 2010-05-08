@@ -29,7 +29,14 @@ Partial Class InitializationForm
         Me.MetricsSelectionTab = New System.Windows.Forms.TabPage
         Me.Button1 = New System.Windows.Forms.Button
         Me.IPRangeTab = New System.Windows.Forms.TabPage
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox
+        Me.CheckBox3 = New System.Windows.Forms.CheckBox
+        Me.lblIPRange = New System.Windows.Forms.Label
+        Me.txtIPRange = New System.Windows.Forms.TextBox
         Me.InputTabbs.SuspendLayout()
+        Me.MetricsSelectionTab.SuspendLayout()
+        Me.IPRangeTab.SuspendLayout()
         Me.SuspendLayout()
         '
         'InputTabbs
@@ -67,9 +74,12 @@ Partial Class InitializationForm
         '
         'MetricsSelectionTab
         '
+        Me.MetricsSelectionTab.Controls.Add(Me.CheckBox3)
+        Me.MetricsSelectionTab.Controls.Add(Me.CheckBox2)
+        Me.MetricsSelectionTab.Controls.Add(Me.CheckBox1)
         Me.MetricsSelectionTab.Location = New System.Drawing.Point(4, 22)
         Me.MetricsSelectionTab.Name = "MetricsSelectionTab"
-        Me.MetricsSelectionTab.Size = New System.Drawing.Size(409, 390)
+        Me.MetricsSelectionTab.Size = New System.Drawing.Size(450, 459)
         Me.MetricsSelectionTab.TabIndex = 2
         Me.MetricsSelectionTab.Text = "Select Metrics"
         Me.MetricsSelectionTab.UseVisualStyleBackColor = True
@@ -85,12 +95,60 @@ Partial Class InitializationForm
         '
         'IPRangeTab
         '
+        Me.IPRangeTab.Controls.Add(Me.txtIPRange)
+        Me.IPRangeTab.Controls.Add(Me.lblIPRange)
         Me.IPRangeTab.Location = New System.Drawing.Point(4, 22)
         Me.IPRangeTab.Name = "IPRangeTab"
-        Me.IPRangeTab.Size = New System.Drawing.Size(409, 390)
+        Me.IPRangeTab.Size = New System.Drawing.Size(450, 459)
         Me.IPRangeTab.TabIndex = 3
         Me.IPRangeTab.Text = "Definie IP-Range"
         Me.IPRangeTab.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(141, 44)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox1.TabIndex = 0
+        Me.CheckBox1.Text = "CheckBox1"
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(141, 67)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox2.TabIndex = 1
+        Me.CheckBox2.Text = "CheckBox2"
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'CheckBox3
+        '
+        Me.CheckBox3.AutoSize = True
+        Me.CheckBox3.Location = New System.Drawing.Point(141, 90)
+        Me.CheckBox3.Name = "CheckBox3"
+        Me.CheckBox3.Size = New System.Drawing.Size(81, 17)
+        Me.CheckBox3.TabIndex = 2
+        Me.CheckBox3.Text = "CheckBox3"
+        Me.CheckBox3.UseVisualStyleBackColor = True
+        '
+        'lblIPRange
+        '
+        Me.lblIPRange.AutoSize = True
+        Me.lblIPRange.Location = New System.Drawing.Point(29, 26)
+        Me.lblIPRange.Name = "lblIPRange"
+        Me.lblIPRange.Size = New System.Drawing.Size(55, 13)
+        Me.lblIPRange.TabIndex = 0
+        Me.lblIPRange.Text = "IP-Range:"
+        '
+        'txtIPRange
+        '
+        Me.txtIPRange.Location = New System.Drawing.Point(87, 23)
+        Me.txtIPRange.Name = "txtIPRange"
+        Me.txtIPRange.Size = New System.Drawing.Size(177, 20)
+        Me.txtIPRange.TabIndex = 1
         '
         'InitializationForm
         '
@@ -104,6 +162,10 @@ Partial Class InitializationForm
         Me.Name = "InitializationForm"
         Me.Text = "InitializationForm"
         Me.InputTabbs.ResumeLayout(False)
+        Me.MetricsSelectionTab.ResumeLayout(False)
+        Me.MetricsSelectionTab.PerformLayout()
+        Me.IPRangeTab.ResumeLayout(False)
+        Me.IPRangeTab.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -113,4 +175,9 @@ Partial Class InitializationForm
     Friend WithEvents MetricsSelectionTab As System.Windows.Forms.TabPage
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents IPRangeTab As System.Windows.Forms.TabPage
+    Friend WithEvents CheckBox3 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox2 As System.Windows.Forms.CheckBox
+    Friend WithEvents CheckBox1 As System.Windows.Forms.CheckBox
+    Friend WithEvents txtIPRange As System.Windows.Forms.TextBox
+    Friend WithEvents lblIPRange As System.Windows.Forms.Label
 End Class

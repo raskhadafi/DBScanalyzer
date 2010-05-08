@@ -1,9 +1,10 @@
 ﻿Imports Scanalyzer.Helpers
+Imports System.Text.RegularExpressions
 
 Public Class InitializationForm
 
     Private state As STATEMACHINE
-    Private metricsSelection As TabPage
+    Private metricsSelection, ipRangeSelection As TabPage
     Private references As ReferenceSelectionArrayList
     Private languageCheckboxes As List(Of CheckBox)
 
@@ -20,7 +21,7 @@ Public Class InitializationForm
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         ' initialize the state machine
-        state = STATEMACHINE.referenceselect
+        state = STATEMACHINE.initializeReferenceSelection
         ' loads the avaible references and displays the for selection
         UpdateState()
 
@@ -70,14 +71,14 @@ Public Class InitializationForm
             End If
 
         Next
-        
+
 
 
     End Sub
 
     Private Function referenceSelected() As Boolean
 
-        For Each box In languageCheckboxes
+        For Each box In Me.languageCheckboxes
 
             If box.Checked Then
 
@@ -93,9 +94,7 @@ Public Class InitializationForm
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
-
-
-
+        Me.UpdateState()
 
     End Sub
 
@@ -103,37 +102,109 @@ Public Class InitializationForm
 
         Select Case Me.state
 
-            Case STATEMACHINE.referenceselect
+            Case STATEMACHINE.referenceSelection
 
                 If Me.referenceSelected() Then
 
-                    Me.metricsSelection = New TabPage("ReferncesDefinitionTab")
-                    Me.InputTabbs.Controls.Add(Me.metricsSelection)
-                    Me.InputTabbs.SelectedTab = Me.metricsSelection
-                    Me.metricsSelection.Focus()
-                    Me.state = STATEMACHINE.metricsselect
+
+                    Me.state = STATEMACHINE.initializeMetricsSelection
+                    Me.UpdateState()
+
                 Else
 
                     MessageBox.Show("Please select at least one reference", "No selection", MessageBoxButtons.OK)
 
                 End If
 
-            Case STATEMACHINE.referenceselect
+            Case STATEMACHINE.initializeReferenceSelection
 
                 Me.loadAndPaintReferences()
+                Me.state = STATEMACHINE.referenceSelection
 
-            Case STATEMACHINE.metricsselect
+            Case STATEMACHINE.initializeMetricsSelection
 
-                Me.Hide()
+                If Me.metricsSelection Is Nothing Then
+
+                    Me.metricsSelection = Me.MetricsSelectionTab
+                    Me.InputTabbs.Controls.Add(Me.metricsSelection)
+                    Me.InputTabbs.SelectedTab = Me.metricsSelection
+                    Me.metricsSelection.Focus()
+
+                Else
+
+                    Me.state = STATEMACHINE.initializeIPRangeInput
+                    Me.UpdateState()
+
+                End If
+
+            Case STATEMACHINE.initializeIPRangeInput
+
+                If Me.ipRangeSelection Is Nothing Then
+
+                    Me.ipRangeSelection = Me.IPRangeTab
+                    Me.InputTabbs.Controls.Add(Me.ipRangeSelection)
+                    Me.InputTabbs.SelectedTab = Me.ipRangeSelection
+                    Me.ipRangeSelection.Focus()
+                    Me.state = STATEMACHINE.ipRangeInput
+
+                End If
+
+            Case STATEMACHINE.ipRangeInput
+
+                checkInput()
 
         End Select
 
     End Sub
+
+    Private Sub checkInput()
+
+        If Not Me.txtIPRange.Text.Length = 0 Then
+
+            Dim checkIPRegex As New Regex("\b(?:\d{1,3}\.){3}\d{1,3}\b")
+            Dim checkIPRangeRegex As New Regex("\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){3}\d{1,3}\b")
+
+            If checkIPRegex.IsMatch(txtIPRange.Text) Then
+
+                Me.Close()
+
+            ElseIf checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
+
+                Me.Close()
+
+            Else
+
+                showIPInputInformations()
+
+            End If
+
+
+        Else
+
+            showIPInputInformations()
+
+        End If
+
+    End Sub
+
+    Private Sub showIPInputInformations()
+
+        MessageBox.Show("Please insert an IP or an IP range." + vbNewLine + vbNewLine + "Examples:" + vbNewLine + "192.168.0.0 or 121.124.45.23-254", "No IP", MessageBoxButtons.OK)
+
+    End Sub
+
     Enum STATEMACHINE
 
-        referenceselect
+        initializeReferenceSelection
+        referenceSelection
+
         referencedef
-        metricsselect
+
+        initializeMetricsSelection
+        metricsSelection
+
+        initializeIPRangeInput
+        ipRangeInput
 
     End Enum
 
