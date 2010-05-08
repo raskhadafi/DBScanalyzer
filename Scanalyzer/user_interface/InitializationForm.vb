@@ -22,7 +22,7 @@ Public Class InitializationForm
         ' initialize the state machine
         state = STATEMACHINE.referenceselect
         ' loads the avaible references and displays the for selection
-        loadAndPaintReferences()
+        UpdateState()
 
         ' Add any initialization after the InitializeComponent() call.
 
@@ -93,6 +93,14 @@ Public Class InitializationForm
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
+
+
+
+
+    End Sub
+
+    Private Sub UpdateState()
+
         Select Case Me.state
 
             Case STATEMACHINE.referenceselect
@@ -104,12 +112,15 @@ Public Class InitializationForm
                     Me.InputTabbs.SelectedTab = Me.metricsSelection
                     Me.metricsSelection.Focus()
                     Me.state = STATEMACHINE.metricsselect
-
                 Else
 
                     MessageBox.Show("Please select at least one reference", "No selection", MessageBoxButtons.OK)
 
                 End If
+
+            Case STATEMACHINE.referenceselect
+
+                Me.loadAndPaintReferences()
 
             Case STATEMACHINE.metricsselect
 
@@ -117,10 +128,7 @@ Public Class InitializationForm
 
         End Select
 
-
-
     End Sub
-
     Enum STATEMACHINE
 
         referenceselect

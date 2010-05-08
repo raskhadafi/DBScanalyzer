@@ -32,6 +32,12 @@
     Public Class ReferenceSelectionArrayList
         Inherits List(Of ReferenceSelection)
 
+        Public Sub addReferenceSelection()
+
+
+
+        End Sub
+
         Public Function getReferenceSelection(ByVal term As String) As ReferenceSelection
 
             Dim reference As ReferenceSelection
