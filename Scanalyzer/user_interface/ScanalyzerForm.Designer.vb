@@ -30,7 +30,7 @@ Partial Class ScanalyzerForm
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.lblIpRange = New System.Windows.Forms.Label
-        Me.txtIpRange = New System.Windows.Forms.TextBox
+        Me.txtIpRange = New System.Windows.Forms.Label
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -85,11 +85,12 @@ Partial Class ScanalyzerForm
         '
         'txtIpRange
         '
-        Me.txtIpRange.Location = New System.Drawing.Point(73, 32)
+        Me.txtIpRange.AutoSize = True
+        Me.txtIpRange.Location = New System.Drawing.Point(73, 35)
         Me.txtIpRange.Name = "txtIpRange"
-        Me.txtIpRange.ReadOnly = True
-        Me.txtIpRange.Size = New System.Drawing.Size(218, 20)
+        Me.txtIpRange.Size = New System.Drawing.Size(62, 13)
         Me.txtIpRange.TabIndex = 2
+        Me.txtIpRange.Text = "placeholder"
         '
         'ScanalyzerForm
         '
@@ -116,6 +117,6 @@ Partial Class ScanalyzerForm
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InitializeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblIpRange As System.Windows.Forms.Label
-    Friend WithEvents txtIpRange As System.Windows.Forms.TextBox
+    Friend WithEvents txtIpRange As System.Windows.Forms.Label
 
 End Class
