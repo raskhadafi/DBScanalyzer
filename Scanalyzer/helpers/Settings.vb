@@ -2,6 +2,7 @@
 
     Public Class Settings
 
+        Private ipInput As String
         Private ips As List(Of String)
         Private references As ReferenceSelectionArrayList
 
@@ -19,6 +20,8 @@
 
         Public Sub addIP(ByVal ip As String)
 
+            Me.ipInput = ip
+
             If Not Me.ips.Contains(ip) Then
 
                 Me.ips.Add(ip)
@@ -35,6 +38,8 @@
             Dim startIp As Integer = ipRangsTupels(3)
             Dim lastIp As Integer = ipRangePoints(1)
 
+            Me.ipInput = ipRange
+
             For i = startIp To lastIp
 
                 Me.addIP(startString + i.ToString)
@@ -43,6 +48,12 @@
 
 
         End Sub
+
+        Public Function getIpRangeAsInserted() As String
+
+            Return ipInput
+
+        End Function
 
     End Class
 
