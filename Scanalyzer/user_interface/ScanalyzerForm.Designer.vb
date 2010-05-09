@@ -24,11 +24,13 @@ Partial Class ScanalyzerForm
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerForm))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
-        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
-        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.InitializeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ReferenzdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.InitializeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
+        Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.lblIpRange = New System.Windows.Forms.Label
+        Me.txtIpRange = New System.Windows.Forms.TextBox
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -41,17 +43,12 @@ Partial Class ScanalyzerForm
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
-        'ToolStripMenuItem1
+        'InitializeToolStripMenuItem
         '
-        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
-        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
-        Me.ToolStripMenuItem1.Text = "About"
-        '
-        'HelpToolStripMenuItem
-        '
-        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
-        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
-        Me.HelpToolStripMenuItem.Text = "Help"
+        Me.InitializeToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar
+        Me.InitializeToolStripMenuItem.Name = "InitializeToolStripMenuItem"
+        Me.InitializeToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
+        Me.InitializeToolStripMenuItem.Text = "Initialize"
         '
         'ReferenzdatenToolStripMenuItem
         '
@@ -65,18 +62,42 @@ Partial Class ScanalyzerForm
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(35, 20)
         Me.FileToolStripMenuItem.Text = "File"
         '
-        'InitializeToolStripMenuItem
+        'ToolStripMenuItem1
         '
-        Me.InitializeToolStripMenuItem.AccessibleRole = System.Windows.Forms.AccessibleRole.MenuBar
-        Me.InitializeToolStripMenuItem.Name = "InitializeToolStripMenuItem"
-        Me.InitializeToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
-        Me.InitializeToolStripMenuItem.Text = "Initialize"
+        Me.ToolStripMenuItem1.Name = "ToolStripMenuItem1"
+        Me.ToolStripMenuItem1.Size = New System.Drawing.Size(48, 20)
+        Me.ToolStripMenuItem1.Text = "About"
+        '
+        'HelpToolStripMenuItem
+        '
+        Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
+        Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(40, 20)
+        Me.HelpToolStripMenuItem.Text = "Help"
+        '
+        'lblIpRange
+        '
+        Me.lblIpRange.AutoSize = True
+        Me.lblIpRange.Location = New System.Drawing.Point(12, 35)
+        Me.lblIpRange.Name = "lblIpRange"
+        Me.lblIpRange.Size = New System.Drawing.Size(55, 13)
+        Me.lblIpRange.TabIndex = 1
+        Me.lblIpRange.Text = "IP-Range:"
+        '
+        'txtIpRange
+        '
+        Me.txtIpRange.Location = New System.Drawing.Point(73, 32)
+        Me.txtIpRange.Name = "txtIpRange"
+        Me.txtIpRange.ReadOnly = True
+        Me.txtIpRange.Size = New System.Drawing.Size(218, 20)
+        Me.txtIpRange.TabIndex = 2
         '
         'ScanalyzerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(507, 353)
+        Me.Controls.Add(Me.txtIpRange)
+        Me.Controls.Add(Me.lblIpRange)
         Me.Controls.Add(Me.MenuStrip1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MainMenuStrip = Me.MenuStrip1
@@ -94,5 +115,7 @@ Partial Class ScanalyzerForm
     Friend WithEvents ReferenzdatenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InitializeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents lblIpRange As System.Windows.Forms.Label
+    Friend WithEvents txtIpRange As System.Windows.Forms.TextBox
 
 End Class

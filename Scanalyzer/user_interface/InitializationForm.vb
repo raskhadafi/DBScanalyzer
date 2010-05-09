@@ -13,9 +13,10 @@ Public Class InitializationForm
     Private marginRight As Integer = 10
     Private marginRightExtra As Integer = marginRight + 10
 
-    Public Sub New(ByRef settings As Helpers.Settings)
+    Public Sub New(ByRef settings As Helpers.Settings, ByRef parent As ScanalyzerForm)
 
         Me.settings = settings
+        Me.Owner = parent
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
         ' remove unused tabs, so that the state machine makes them visible
@@ -171,7 +172,11 @@ Public Class InitializationForm
 
             Case STATEMACHINE.ipRangeInput
 
+                Dim form As ScanalyzerForm = Me.Owner
+
                 checkIpRangeInput()
+                form.showUpdatedSettings()
+                Me.Close()
 
         End Select
 
@@ -187,12 +192,10 @@ Public Class InitializationForm
             If checkIPRegex.IsMatch(txtIPRange.Text) Then
 
                 Me.settings.addIP(txtIPRange.Text)
-                Me.Close()
 
             ElseIf checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
 
                 Me.settings.addIPRange(txtIPRange.Text)
-                Me.Close()
 
             Else
 
