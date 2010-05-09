@@ -101,11 +101,14 @@ Public Class InitializationForm
             If box.Checked Then
 
                 Dim strings As Array = box.Name.Split("_")
+
                 Me.references.getSetReferenceSelectionSelected(strings(0), strings(1))
 
             End If
 
         Next
+
+        Me.settings.addReferences(Me.references)
 
     End Sub
 
