@@ -12,6 +12,26 @@
 
         End Sub
 
+        Public Function getReferences() As ReferenceSelectionArrayList
+
+            Return references
+
+        End Function
+
+        Public Function initialized() As Boolean
+
+            If ipInput Is Nothing And ips.Count = 0 And references Is Nothing Then
+
+                Return False
+
+            Else
+
+                Return True
+
+            End If
+
+        End Function
+
         Public Sub addReferences(ByVal reference As ReferenceSelectionArrayList)
 
             Me.references = reference

@@ -14,6 +14,18 @@
 
         End Sub
 
+        Public Function isSelectedLanguage(ByVal language As String) As Boolean
+
+            If Me.selectedLanguages.Contains(language) Then
+
+                Return True
+
+            End If
+
+            Return False
+
+        End Function
+
         Public Function hasLanguages() As Boolean
 
 

@@ -24,7 +24,16 @@ Public Class InitializationForm
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         Me.InputTabbs.Controls.Remove(Me.InputTabbs.TabPages(1))
         ' initialize the state machine
-        state = STATEMACHINE.initializeReferenceSelection
+
+        If Me.settings.initialized Then
+
+            Me.state = STATEMACHINE.loadSettings
+
+        Else
+
+            Me.state = STATEMACHINE.initializeReferenceSelection
+
+        End If
         ' loads the avaible references and displays the for selection
         UpdateState()
 
@@ -32,11 +41,20 @@ Public Class InitializationForm
 
     End Sub
 
-    Private Sub loadAndPaintReferences()
+    Private Sub loadAndShowReferences()
 
         Dim y As Integer = 0
 
-        Helpers.SQLiteHelper.getReferences(references)
+        If Not Me.settings.initialized Then
+
+            Helpers.SQLiteHelper.getReferences(Me.references)
+
+        Else
+
+            Me.references = Me.settings.getReferences()
+
+        End If
+
         Me.languageCheckboxes = New List(Of CheckBox)
 
         For Each entry In references
@@ -62,6 +80,13 @@ Public Class InitializationForm
                     x += languageLabel.Width + marginRight
                     languageCheckbox.Name = entry.reference + "_" + language
                     languageCheckbox.Location = New System.Drawing.Point(x, y - 5)
+
+                    If entry.isSelectedLanguage(language) Then
+
+                        languageCheckbox.Checked = True
+
+                    End If
+
                     x += languageCheckbox.Width + marginRightExtra
                     Me.InputTabbs.GetControl(0).Controls.Add(languageLabel)
                     Me.InputTabbs.GetControl(0).Controls.Add(languageCheckbox)
@@ -139,7 +164,7 @@ Public Class InitializationForm
 
             Case STATEMACHINE.initializeReferenceSelection
 
-                Me.loadAndPaintReferences()
+                Me.loadAndShowReferences()
                 Me.state = STATEMACHINE.referenceSelection
 
             Case STATEMACHINE.initializeMetricsSelection
@@ -177,6 +202,12 @@ Public Class InitializationForm
                 checkIpRangeInput()
                 form.showUpdatedSettings()
                 Me.Close()
+
+            Case STATEMACHINE.loadSettings
+
+                Me.loadAndShowReferences()
+
+                Me.state = STATEMACHINE.referenceSelection
 
         End Select
 
@@ -223,7 +254,7 @@ Public Class InitializationForm
         initializeReferenceSelection
         referenceSelection
 
-        referencedef
+        loadSettings
 
         initializeMetricsSelection
         metricsSelection
