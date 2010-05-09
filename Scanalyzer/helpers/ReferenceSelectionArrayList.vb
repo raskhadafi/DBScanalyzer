@@ -4,13 +4,13 @@
 
         Public reference As String
         Public languages As ArrayList
-        Public selected As ArrayList
+        Public selectedLanguages As ArrayList
 
         Public Sub New(ByVal name As String)
 
             reference = name
             languages = New ArrayList
-            selected = New ArrayList
+            selectedLanguages = New ArrayList
 
         End Sub
 
@@ -37,6 +37,15 @@
 
 
         End Sub
+
+        Public Sub getSetReferenceSelectionSelected(ByVal name As String, ByVal language As String)
+
+            Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
+
+            reference.selectedLanguages.Add(language)
+
+        End Sub
+
 
         Public Function getReferenceSelection(ByVal term As String) As ReferenceSelection
 

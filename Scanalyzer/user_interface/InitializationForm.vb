@@ -7,13 +7,15 @@ Public Class InitializationForm
     Private metricsSelection, ipRangeSelection As TabPage
     Private references As ReferenceSelectionArrayList
     Private languageCheckboxes As List(Of CheckBox)
+    Private settings As Helpers.Settings
 
     Private marginBottom As Integer = 5
     Private marginRight As Integer = 10
     Private marginRightExtra As Integer = marginRight + 10
 
-    Public Sub New()
+    Public Sub New(ByRef settings As Helpers.Settings)
 
+        Me.settings = settings
         ' This call is required by the Windows Form Designer.
         InitializeComponent()
         ' remove unused tabs, so that the state machine makes them visible
@@ -92,6 +94,21 @@ Public Class InitializationForm
 
     End Function
 
+    Private Sub updateReferenceSelection()
+
+        For Each box In Me.languageCheckboxes
+
+            If box.Checked Then
+
+                Dim strings As Array = box.Name.Split("_")
+                Me.references.getSetReferenceSelectionSelected(strings(0), strings(1))
+
+            End If
+
+        Next
+
+    End Sub
+
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         Me.UpdateState()
@@ -106,7 +123,7 @@ Public Class InitializationForm
 
                 If Me.referenceSelected() Then
 
-
+                    Me.updateReferenceSelection()
                     Me.state = STATEMACHINE.initializeMetricsSelection
                     Me.UpdateState()
 
@@ -151,13 +168,13 @@ Public Class InitializationForm
 
             Case STATEMACHINE.ipRangeInput
 
-                checkInput()
+                checkIpRangeInput()
 
         End Select
 
     End Sub
 
-    Private Sub checkInput()
+    Private Sub checkIpRangeInput()
 
         If Not Me.txtIPRange.Text.Length = 0 Then
 
@@ -166,10 +183,12 @@ Public Class InitializationForm
 
             If checkIPRegex.IsMatch(txtIPRange.Text) Then
 
+                Me.settings.addIP(txtIPRange.Text)
                 Me.Close()
 
             ElseIf checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
 
+                Me.settings.addIPRange(txtIPRange.Text)
                 Me.Close()
 
             Else

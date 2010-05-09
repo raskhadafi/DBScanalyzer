@@ -1,11 +1,13 @@
 ﻿Public Class ScanalyzerForm
 
+    Private settings As New Helpers.Settings
+
     Private Sub ToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ToolStripMenuItem1.Click
 
         Dim about As New AboutScanalyzer
 
         about.Show()
-        
+
     End Sub
 
     Private Sub ReferenzdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReferenzdatenToolStripMenuItem.Click
@@ -16,7 +18,7 @@
 
     Private Sub InitializeToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles InitializeToolStripMenuItem.Click
 
-        Dim initializationSetup As New InitializationForm
+        Dim initializationSetup As New InitializationForm(Me.settings)
 
         initializationSetup.Show()
 
