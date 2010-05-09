@@ -173,11 +173,7 @@ Public Class InitializationForm
                 If Me.metricsSelection Is Nothing Then
 
                     initializeMetricsSelection()
-
-                Else
-
-                    Me.state = STATEMACHINE.initializeIPRangeInput
-                    Me.UpdateState()
+                    Me.state = STATEMACHINE.metricsSelection
 
                 End If
 
@@ -197,15 +193,23 @@ Public Class InitializationForm
 
                 Dim form As ScanalyzerForm = Me.Owner
 
-                checkIpRangeInput()
-                form.showUpdatedSettings()
-                Me.Close()
+                If isIpRangeValide() Then
+
+                    form.showUpdatedSettings()
+                    Me.Close()
+
+                End If
 
             Case STATEMACHINE.loadSettings
 
                 Me.loadAndShowReferences()
                 Me.loadAndShowIPRange()
                 Me.state = STATEMACHINE.referenceSelection
+
+            Case STATEMACHINE.metricsSelection
+
+                Me.state = STATEMACHINE.initializeIPRangeInput
+                Me.UpdateState()
 
         End Select
 
@@ -254,7 +258,9 @@ Public Class InitializationForm
 
     End Sub
 
-    Private Sub checkIpRangeInput()
+    Private Function isIpRangeValide() As Boolean
+
+        Dim valide As Boolean = True
 
         If Not Me.txtIPRange.Text.Length = 0 Then
 
@@ -272,6 +278,7 @@ Public Class InitializationForm
             Else
 
                 showIPInputInformations()
+                valide = False
 
             End If
 
@@ -279,10 +286,13 @@ Public Class InitializationForm
         Else
 
             showIPInputInformations()
+            valide = False
 
         End If
 
-    End Sub
+        Return valide
+
+    End Function
 
     Private Sub showIPInputInformations()
 
