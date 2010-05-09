@@ -87,8 +87,9 @@ Partial Class ScanalyzerForm
         '
         Me.txtIpRange.AutoSize = True
         Me.txtIpRange.Location = New System.Drawing.Point(73, 35)
+        Me.txtIpRange.MinimumSize = New System.Drawing.Size(100, 0)
         Me.txtIpRange.Name = "txtIpRange"
-        Me.txtIpRange.Size = New System.Drawing.Size(62, 13)
+        Me.txtIpRange.Size = New System.Drawing.Size(100, 13)
         Me.txtIpRange.TabIndex = 2
         Me.txtIpRange.Text = "placeholder"
         '
