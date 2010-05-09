@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SQLite
+Imports Scanalyzer.Helpers.Settings
 
 Namespace Helpers
 
@@ -8,7 +9,7 @@ Namespace Helpers
         Private sqlreader As SQLiteDataReader
         Private cmd As SQLiteCommand
 
-        Public Sub getReferences(ByRef references As ReferenceSelectionArrayList)
+        Public Sub getReferences(ByRef references As Settings.ReferenceSelectionArrayList)
 
             Dim dbReferences As ArrayList = New ArrayList
             Dim returnArray As New ReferenceSelectionArrayList

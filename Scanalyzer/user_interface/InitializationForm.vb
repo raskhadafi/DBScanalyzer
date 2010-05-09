@@ -5,15 +5,15 @@ Public Class InitializationForm
 
     Private state As STATEMACHINE
     Private metricsSelection, ipRangeSelection As TabPage
-    Private references As ReferenceSelectionArrayList
+    Private references As Settings.ReferenceSelectionArrayList
     Private languageCheckboxes As List(Of CheckBox)
-    Private settings As Helpers.Settings
+    Private settings As Helpers.Setting
 
     Private marginBottom As Integer = 5
     Private marginRight As Integer = 10
     Private marginRightExtra As Integer = marginRight + 10
 
-    Public Sub New(ByRef settings As Helpers.Settings, ByRef parent As ScanalyzerForm)
+    Public Sub New(ByRef settings As Helpers.Setting, ByRef parent As ScanalyzerForm)
 
         Me.settings = settings
         Me.Owner = parent
@@ -172,10 +172,7 @@ Public Class InitializationForm
 
                 If Me.metricsSelection Is Nothing Then
 
-                    Me.metricsSelection = Me.MetricsSelectionTab
-                    Me.InputTabbs.Controls.Add(Me.metricsSelection)
-                    Me.InputTabbs.SelectedTab = Me.metricsSelection
-                    Me.metricsSelection.Focus()
+                    initializeMetricsSelection()
 
                 Else
 
@@ -211,6 +208,30 @@ Public Class InitializationForm
                 Me.state = STATEMACHINE.referenceSelection
 
         End Select
+
+    End Sub
+
+    Private Sub initializeMetricsSelection()
+
+        Dim x As Integer
+        x = 0
+
+        Me.metricsSelection = Me.MetricsSelectionTab
+
+        For Each metric In Me.settings.getAvaibleMetrics
+
+            Dim metricCheckBox As New CheckBox
+
+            metricCheckBox.Location = New System.Drawing.Point(0, x)
+            metricCheckBox.Text = metric.ToString
+            Me.metricsSelection.Controls.Add(metricCheckBox)
+            x += metricCheckBox.Height + 5
+
+        Next
+
+        Me.InputTabbs.Controls.Add(Me.metricsSelection)
+        Me.InputTabbs.SelectedTab = Me.metricsSelection
+        Me.metricsSelection.Focus()
 
     End Sub
 

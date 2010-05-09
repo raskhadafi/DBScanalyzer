@@ -1,10 +1,33 @@
 ﻿Namespace Helpers
 
-    Public Class Settings
+    Public Class Setting
 
         Private ipInput As String = Nothing
         Private ips As List(Of String)
-        Private references As ReferenceSelectionArrayList
+        Private references As Settings.ReferenceSelectionArrayList
+        Private metrics As List(Of Metric)
+
+        Public Enum Metric
+
+            checkIfDate
+            checkIfEmail
+            checkIfGender
+            checkIfStreet
+
+        End Enum
+
+        Public Function getAvaibleMetrics() As ArrayList
+
+            Dim metrics As ArrayList = New ArrayList
+
+            metrics.Add(Metric.checkIfDate)
+            metrics.Add(Metric.checkIfEmail)
+            metrics.Add(Metric.checkIfGender)
+            metrics.Add(Metric.checkIfStreet)
+
+            Return metrics
+
+        End Function
 
         Public Sub New()
 
@@ -12,7 +35,7 @@
 
         End Sub
 
-        Public Function getReferences() As ReferenceSelectionArrayList
+        Public Function getReferences() As Settings.ReferenceSelectionArrayList
 
             Return references
 
@@ -32,7 +55,7 @@
 
         End Function
 
-        Public Sub addReferences(ByVal reference As ReferenceSelectionArrayList)
+        Public Sub addReferences(ByVal reference As Settings.ReferenceSelectionArrayList)
 
             Me.references = reference
 

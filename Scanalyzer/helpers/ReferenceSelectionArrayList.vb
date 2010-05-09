@@ -1,114 +1,118 @@
 ﻿Namespace Helpers
 
-    Public Structure ReferenceSelection
+    Namespace Settings
 
-        Public reference As String
-        Public languages As ArrayList
-        Public selectedLanguages As ArrayList
+        Public Structure ReferenceSelection
 
-        Public Sub New(ByVal name As String)
+            Public reference As String
+            Public languages As ArrayList
+            Public selectedLanguages As ArrayList
 
-            Me.reference = name
-            Me.languages = New ArrayList
-            Me.selectedLanguages = New ArrayList
+            Public Sub New(ByVal name As String)
 
-        End Sub
+                Me.reference = name
+                Me.languages = New ArrayList
+                Me.selectedLanguages = New ArrayList
 
-        Public Function isSelected() As Boolean
+            End Sub
 
-            If Me.selectedLanguages.Count = 0 Then
+            Public Function isSelected() As Boolean
 
-                Return False
+                If Me.selectedLanguages.Count = 0 Then
 
-            Else
+                    Return False
 
-                Return True
-
-            End If
-
-        End Function
-
-        Public Function isSelectedLanguage(ByVal language As String) As Boolean
-
-            If Me.selectedLanguages.Contains(language) Then
-
-                Return True
-
-            End If
-
-            Return False
-
-        End Function
-
-        Public Function hasLanguages() As Boolean
-
-
-            If languages.Count > 0 Then
-
-                Return True
-
-            End If
-
-            Return False
-
-        End Function
-
-    End Structure
-
-    Public Class ReferenceSelectionArrayList
-        Inherits List(Of ReferenceSelection)
-
-        Public Sub addReferenceSelection()
-
-
-
-        End Sub
-
-        Public Sub getSetReferenceSelectionSelected(ByVal name As String, ByVal language As String)
-
-            Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
-
-            reference.selectedLanguages.Add(language)
-
-        End Sub
-
-
-        Public Function getReferenceSelection(ByVal term As String) As ReferenceSelection
-
-            Dim reference As ReferenceSelection
-
-            For Each entry In Me
-
-                If entry.reference.Contains(term) Then
-
-                    reference = entry
-
-                    Return reference
-
-                End If
-
-            Next
-
-            Return Nothing
-
-        End Function
-
-        Public Function checkIfContainsSelection(ByVal term As String) As Boolean
-
-            For Each entry In Me
-
-                If entry.reference.Contains(term) Then
+                Else
 
                     Return True
 
                 End If
 
-            Next
+            End Function
 
-            Return False
+            Public Function isSelectedLanguage(ByVal language As String) As Boolean
 
-        End Function
+                If Me.selectedLanguages.Contains(language) Then
 
-    End Class
+                    Return True
+
+                End If
+
+                Return False
+
+            End Function
+
+            Public Function hasLanguages() As Boolean
+
+
+                If languages.Count > 0 Then
+
+                    Return True
+
+                End If
+
+                Return False
+
+            End Function
+
+        End Structure
+
+        Public Class ReferenceSelectionArrayList
+            Inherits List(Of ReferenceSelection)
+
+            Public Sub addReferenceSelection()
+
+
+
+            End Sub
+
+            Public Sub getSetReferenceSelectionSelected(ByVal name As String, ByVal language As String)
+
+                Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
+
+                reference.selectedLanguages.Add(language)
+
+            End Sub
+
+
+            Public Function getReferenceSelection(ByVal term As String) As ReferenceSelection
+
+                Dim reference As ReferenceSelection
+
+                For Each entry In Me
+
+                    If entry.reference.Contains(term) Then
+
+                        reference = entry
+
+                        Return reference
+
+                    End If
+
+                Next
+
+                Return Nothing
+
+            End Function
+
+            Public Function checkIfContainsSelection(ByVal term As String) As Boolean
+
+                For Each entry In Me
+
+                    If entry.reference.Contains(term) Then
+
+                        Return True
+
+                    End If
+
+                Next
+
+                Return False
+
+            End Function
+
+        End Class
+
+    End Namespace
 
 End Namespace

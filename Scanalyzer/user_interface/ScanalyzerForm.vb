@@ -1,6 +1,6 @@
 ﻿Public Class ScanalyzerForm
 
-    Private settings As New Helpers.Settings
+    Private settings As New Helpers.Setting
     Private initializationSetup As InitializationForm
 
     Public Sub New()
