@@ -9,7 +9,7 @@
         InitializeComponent()
 
         ' Add any initialization after the InitializeComponent() call.
-        Me.showIpRangeOutput(False)
+        Me.showAllSettings(False)
 
     End Sub
 
@@ -44,7 +44,16 @@
     Public Sub showUpdatedSettings()
 
         Me.txtIpRange.Text = Me.settings.getIpRangeAsInserted()
-        Me.showIpRangeOutput(True)
+        Me.txtReferences.Text = Me.settings.getReferencesAsText()
+        Me.showAllSettings(True)
+
+    End Sub
+
+    Private Sub showAllSettings(ByVal show As Boolean)
+
+        Me.showIpRangeOutput(show)
+        Me.lblReferences.Visible = show
+        Me.txtReferences.Visible = show
 
     End Sub
 

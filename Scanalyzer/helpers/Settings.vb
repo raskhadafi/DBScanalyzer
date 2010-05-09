@@ -38,6 +38,30 @@
 
         End Sub
 
+        Public Function getReferencesAsText() As String
+
+            Dim returnString As String = ""
+
+            For Each refrence In Me.references
+
+                If refrence.isSelected() Then
+
+                    returnString = returnString + refrence.reference + ":" + vbNewLine
+
+                    For Each language In refrence.selectedLanguages
+
+                        returnString = returnString + "    " + language + vbNewLine
+
+                    Next
+
+                End If
+
+            Next
+
+            Return returnString
+
+        End Function
+
         Public Sub addIP(ByVal ip As String)
 
             If Me.ipInput Is Nothing Then

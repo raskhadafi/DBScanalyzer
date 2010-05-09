@@ -31,6 +31,8 @@ Partial Class ScanalyzerForm
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.lblIpRange = New System.Windows.Forms.Label
         Me.txtIpRange = New System.Windows.Forms.Label
+        Me.lblReferences = New System.Windows.Forms.Label
+        Me.txtReferences = New System.Windows.Forms.Label
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -93,11 +95,31 @@ Partial Class ScanalyzerForm
         Me.txtIpRange.TabIndex = 2
         Me.txtIpRange.Text = "placeholder"
         '
+        'lblReferences
+        '
+        Me.lblReferences.AutoSize = True
+        Me.lblReferences.Location = New System.Drawing.Point(12, 68)
+        Me.lblReferences.Name = "lblReferences"
+        Me.lblReferences.Size = New System.Drawing.Size(110, 13)
+        Me.lblReferences.TabIndex = 3
+        Me.lblReferences.Text = "Selected References:"
+        '
+        'txtReferences
+        '
+        Me.txtReferences.AutoSize = True
+        Me.txtReferences.Location = New System.Drawing.Point(128, 68)
+        Me.txtReferences.Name = "txtReferences"
+        Me.txtReferences.Size = New System.Drawing.Size(39, 13)
+        Me.txtReferences.TabIndex = 4
+        Me.txtReferences.Text = "Label1"
+        '
         'ScanalyzerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(507, 353)
+        Me.Controls.Add(Me.txtReferences)
+        Me.Controls.Add(Me.lblReferences)
         Me.Controls.Add(Me.txtIpRange)
         Me.Controls.Add(Me.lblIpRange)
         Me.Controls.Add(Me.MenuStrip1)
@@ -119,5 +141,7 @@ Partial Class ScanalyzerForm
     Friend WithEvents InitializeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblIpRange As System.Windows.Forms.Label
     Friend WithEvents txtIpRange As System.Windows.Forms.Label
+    Friend WithEvents lblReferences As System.Windows.Forms.Label
+    Friend WithEvents txtReferences As System.Windows.Forms.Label
 
 End Class

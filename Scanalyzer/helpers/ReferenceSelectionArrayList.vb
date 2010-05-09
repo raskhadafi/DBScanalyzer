@@ -8,11 +8,25 @@
 
         Public Sub New(ByVal name As String)
 
-            reference = name
-            languages = New ArrayList
-            selectedLanguages = New ArrayList
+            Me.reference = name
+            Me.languages = New ArrayList
+            Me.selectedLanguages = New ArrayList
 
         End Sub
+
+        Public Function isSelected() As Boolean
+
+            If Me.selectedLanguages.Count = 0 Then
+
+                Return False
+
+            Else
+
+                Return True
+
+            End If
+
+        End Function
 
         Public Function isSelectedLanguage(ByVal language As String) As Boolean
 

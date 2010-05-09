@@ -165,6 +165,7 @@ Public Class InitializationForm
             Case STATEMACHINE.initializeReferenceSelection
 
                 Me.loadAndShowReferences()
+                Me.loadAndShowIPRange()
                 Me.state = STATEMACHINE.referenceSelection
 
             Case STATEMACHINE.initializeMetricsSelection
@@ -206,10 +207,25 @@ Public Class InitializationForm
             Case STATEMACHINE.loadSettings
 
                 Me.loadAndShowReferences()
-
+                Me.loadAndShowIPRange()
                 Me.state = STATEMACHINE.referenceSelection
 
         End Select
+
+    End Sub
+
+    Private Sub loadAndShowIPRange()
+
+
+        If Me.settings.initialized Then
+
+            Me.txtIPRange.Text = Me.settings.getIpRangeAsInserted
+
+        Else
+
+            Me.txtIPRange.Text = "0.0.0.0"
+
+        End If
 
     End Sub
 
