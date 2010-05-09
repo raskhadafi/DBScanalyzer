@@ -161,8 +161,8 @@ Public Class InitializationForm
 
         If Not Me.txtIPRange.Text.Length = 0 Then
 
-            Dim checkIPRegex As New Regex("\b(?:\d{1,3}\.){3}\d{1,3}\b")
-            Dim checkIPRangeRegex As New Regex("\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){3}\d{1,3}\b")
+            Dim checkIPRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b$")
+            Dim checkIPRangeRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){0}\d{1,3}\b$")
 
             If checkIPRegex.IsMatch(txtIPRange.Text) Then
 
