@@ -214,15 +214,19 @@ Public Class InitializationForm
     Private Sub initializeMetricsSelection()
 
         Dim x As Integer
-        x = 0
+        Dim label As New Label
 
         Me.metricsSelection = Me.MetricsSelectionTab
+        label.Text = "Metrics:"
+        label.Location = New System.Drawing.Point(5, 5)
+        x = 0 + 5 + label.Height
+        Me.metricsSelection.Controls.Add(label)
 
         For Each metric In Me.settings.getAvaibleMetrics
 
             Dim metricCheckBox As New CheckBox
 
-            metricCheckBox.Location = New System.Drawing.Point(0, x)
+            metricCheckBox.Location = New System.Drawing.Point(5, x)
             metricCheckBox.Text = metric.ToString
             Me.metricsSelection.Controls.Add(metricCheckBox)
             x += metricCheckBox.Height + 5
