@@ -7,6 +7,7 @@ Public Class InitializationForm
     Private metricsSelection, ipRangeSelection As TabPage
     Private references As Settings.ReferenceSelectionArrayList
     Private languageCheckboxes As List(Of CheckBox)
+    Private metricCheckboxes As List(Of CheckBox)
     Private settings As Helpers.Setting
 
     Private marginBottom As Integer = 5
@@ -162,6 +163,30 @@ Public Class InitializationForm
 
                 End If
 
+            Case STATEMACHINE.ipRangeInput
+
+                Dim form As ScanalyzerForm = Me.Owner
+
+                If isIpRangeValide() Then
+
+                    form.showUpdatedSettings()
+                    Me.Close()
+
+                End If
+
+            Case STATEMACHINE.metricsSelection
+
+                If Me.metricSelected() Then
+
+                    Me.state = STATEMACHINE.initializeIPRangeInput
+                    Me.UpdateState()
+
+                Else
+
+                    MessageBox.Show("Please select at least one metric", "No selection", MessageBoxButtons.OK)
+
+                End If
+
             Case STATEMACHINE.initializeReferenceSelection
 
                 Me.loadAndShowReferences()
@@ -189,27 +214,11 @@ Public Class InitializationForm
 
                 End If
 
-            Case STATEMACHINE.ipRangeInput
-
-                Dim form As ScanalyzerForm = Me.Owner
-
-                If isIpRangeValide() Then
-
-                    form.showUpdatedSettings()
-                    Me.Close()
-
-                End If
-
             Case STATEMACHINE.loadSettings
 
                 Me.loadAndShowReferences()
                 Me.loadAndShowIPRange()
                 Me.state = STATEMACHINE.referenceSelection
-
-            Case STATEMACHINE.metricsSelection
-
-                Me.state = STATEMACHINE.initializeIPRangeInput
-                Me.UpdateState()
 
         End Select
 
@@ -221,6 +230,7 @@ Public Class InitializationForm
         Dim label As New Label
 
         Me.metricsSelection = Me.MetricsSelectionTab
+        Me.metricCheckboxes = New List(Of CheckBox)
         label.Text = "Metrics:"
         label.Location = New System.Drawing.Point(5, 5)
         x = 0 + 5 + label.Height
@@ -232,7 +242,9 @@ Public Class InitializationForm
 
             metricCheckBox.Location = New System.Drawing.Point(5, x)
             metricCheckBox.Text = metric.ToString
+            metricCheckBox.Name = metric.ToString
             Me.metricsSelection.Controls.Add(metricCheckBox)
+            Me.metricCheckboxes.Add(metricCheckBox)
             x += metricCheckBox.Height + 5
 
         Next
@@ -242,6 +254,22 @@ Public Class InitializationForm
         Me.metricsSelection.Focus()
 
     End Sub
+
+    Private Function metricSelected() As Boolean
+
+        For Each metric In Me.metricCheckboxes
+
+            If metric.Checked Then
+
+                Return True
+
+            End If
+
+        Next
+
+        Return False
+
+    End Function
 
     Private Sub loadAndShowIPRange()
 
