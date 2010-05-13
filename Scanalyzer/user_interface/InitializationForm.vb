@@ -324,7 +324,7 @@ Public Class InitializationForm
 
     Private Sub showIPInputInformations()
 
-        MessageBox.Show("Please insert an IP or an IP range." + vbNewLine + vbNewLine + "Examples:" + vbNewLine + "192.168.0.0 or 121.124.45.23-254", "No IP", MessageBoxButtons.OK)
+        MessageBox.Show("Please insert an IP or an IP range." + vbNewLine + vbNewLine + "Examples:" + vbNewLine + "IP: 192.168.0.0" + vbNewLine + "IP-Range: 121.124.45.23-254", "No IP", MessageBoxButtons.OK)
 
     End Sub
 
