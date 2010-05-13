@@ -70,7 +70,11 @@
 
                 Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
 
-                reference.selectedLanguages.Add(language)
+                If Not reference.isSelectedLanguage(language) Then
+
+                    reference.selectedLanguages.Add(language)
+
+                End If
 
             End Sub
 
