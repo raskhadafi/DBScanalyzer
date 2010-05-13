@@ -111,9 +111,16 @@ Public Class InitializationForm
                 If Me.metricsSelection Is Nothing Then
 
                     Me.initializeMetricsSelection()
-                    Me.state = STATEMACHINE.checkMetricsSelection
+
+                Else
+
+                    Me.InputTabbs.Controls.Add(Me.metricsSelection)
+                    Me.InputTabbs.SelectedTab = Me.metricsSelection
+                    Me.metricsSelection.Focus()
 
                 End If
+
+                Me.state = STATEMACHINE.checkMetricsSelection
 
             Case STATEMACHINE.initializeIPRangeInput
 
