@@ -1,0 +1,80 @@
+﻿Namespace Helpers
+
+    Namespace Settings
+
+        Public Class MetricsSelectionArrayList
+            Inherits List(Of Metric)
+
+            Private selected As Boolean = False
+
+            Public Function isSelected(ByRef name As String) As Boolean
+
+                Dim searched As Metric
+
+                searched = CType(System.Enum.Parse(searched.GetType, name), Metric)
+
+
+                If Me.Contains(searched) Then
+
+                    Return True
+
+                Else
+
+                    Return False
+
+                End If
+
+            End Function
+
+            Public Function getAvaibleMetris() As Array
+
+                Dim metrics As ArrayList = New ArrayList
+
+                For Each metric In System.Enum.GetValues(GetType(Metric))
+
+                    metrics.Add(metric.ToString)
+
+                Next
+
+                Return metrics.ToArray
+
+            End Function
+
+            Public Sub setMetricAsSelected(ByRef name As String)
+
+                Select Case name
+
+                    Case Metric.checkIfDate.ToString
+
+                        Me.Add(Metric.checkIfDate)
+
+                    Case Metric.checkIfEmail.ToString
+
+                        Me.Add(Metric.checkIfEmail)
+
+                    Case Metric.checkIfGender.ToString
+
+                        Me.Add(Metric.checkIfGender)
+
+                    Case Metric.checkIfStreet.ToString
+
+                        Me.Add(Metric.checkIfStreet)
+
+                End Select
+
+            End Sub
+
+        End Class
+
+        Public Enum Metric
+
+            checkIfDate
+            checkIfEmail
+            checkIfGender
+            checkIfStreet
+
+        End Enum
+
+    End Namespace
+
+End Namespace

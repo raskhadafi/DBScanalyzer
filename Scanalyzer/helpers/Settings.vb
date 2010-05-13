@@ -5,35 +5,26 @@
         Private ipInput As String = Nothing
         Private ips As List(Of String)
         Private references As Settings.ReferenceSelectionArrayList
-        Private metrics As List(Of Metric)
+        Private metrics As Settings.MetricsSelectionArrayList
 
-        Public Enum Metric
 
-            checkIfDate
-            checkIfEmail
-            checkIfGender
-            checkIfStreet
+        Public Sub addMetrics(ByVal metrics As Settings.MetricsSelectionArrayList)
 
-        End Enum
+            Me.metrics = metrics
 
-        Public Function getAvaibleMetrics() As ArrayList
-
-            Dim metrics As ArrayList = New ArrayList
-
-            metrics.Add(Metric.checkIfDate)
-            metrics.Add(Metric.checkIfEmail)
-            metrics.Add(Metric.checkIfGender)
-            metrics.Add(Metric.checkIfStreet)
-
-            Return metrics
-
-        End Function
+        End Sub
 
         Public Sub New()
 
             ips = New List(Of String)
 
         End Sub
+
+        Public Function getMetrics() As Settings.MetricsSelectionArrayList
+
+            Return Me.metrics
+
+        End Function
 
         Public Function getReferences() As Settings.ReferenceSelectionArrayList
 

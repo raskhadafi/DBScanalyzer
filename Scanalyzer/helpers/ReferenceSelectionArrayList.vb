@@ -66,7 +66,7 @@
 
             End Sub
 
-            Public Sub getSetReferenceSelectionSelected(ByVal name As String, ByVal language As String)
+            Public Sub setReferenceAsSelected(ByVal name As String, ByVal language As String)
 
                 Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
 
