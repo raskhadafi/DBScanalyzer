@@ -42,25 +42,15 @@
 
             Public Sub setMetricAsSelected(ByRef name As String)
 
-                Select Case name
+                Dim searched As Metric
 
-                    Case Metric.checkIfDate.ToString
+                searched = CType(System.Enum.Parse(searched.GetType, name), Metric)
 
-                        Me.Add(Metric.checkIfDate)
+                If Not Me.Contains(searched) Then
 
-                    Case Metric.checkIfEmail.ToString
+                    Me.Add(searched)
 
-                        Me.Add(Metric.checkIfEmail)
-
-                    Case Metric.checkIfGender.ToString
-
-                        Me.Add(Metric.checkIfGender)
-
-                    Case Metric.checkIfStreet.ToString
-
-                        Me.Add(Metric.checkIfStreet)
-
-                End Select
+                End If
 
             End Sub
 
