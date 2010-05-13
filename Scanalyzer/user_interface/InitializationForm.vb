@@ -222,11 +222,14 @@ Public Class InitializationForm
 
         For Each box In Me.languageCheckboxes
 
+            Dim strings As Array = box.Name.Split("_")
+
             If box.Checked Then
 
-                Dim strings As Array = box.Name.Split("_")
+                Me.references.setReferenceAsSelected(Strings(0), Strings(1))
+            Else
 
-                Me.references.setReferenceAsSelected(strings(0), strings(1))
+                Me.references.removeReferenceIfSelected(strings(0), strings(1))
 
             End If
 

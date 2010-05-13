@@ -78,6 +78,21 @@
 
             End Sub
 
+            Public Sub removeReferenceIfSelected(ByVal name As String, ByVal language As String)
+
+                Dim reference As ReferenceSelection = Me.getReferenceSelection(name)
+
+                If reference.isSelectedLanguage(language) Then
+
+                    If reference.selectedLanguages.Contains(language) Then
+
+                        reference.selectedLanguages.Remove(language)
+
+                    End If
+
+                End If
+
+            End Sub
 
             Public Function getReferenceSelection(ByVal term As String) As ReferenceSelection
 
