@@ -85,6 +85,7 @@ Public Class InitializationForm
 
                 If isIpRangeValide() Then
 
+                    Me.updateIpInput()
                     form.showUpdatedSettings()
                     Me.Close()
 
@@ -365,39 +366,37 @@ Public Class InitializationForm
 
     Private Function isIpRangeValide() As Boolean
 
-        Dim valide As Boolean = True
-
         If Not Me.txtIPRange.Text.Length = 0 Then
 
-            Dim checkIPRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b$")
-            Dim checkIPRangeRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){0}\d{1,3}\b$")
+            If Me.settings.checkIPRegex.IsMatch(txtIPRange.Text) Then
 
-            If checkIPRegex.IsMatch(txtIPRange.Text) Then
+                Return True
 
-                Me.settings.addIP(txtIPRange.Text)
+            ElseIf Me.settings.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
 
-            ElseIf checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
-
-                Me.settings.addIPRange(txtIPRange.Text)
-
-            Else
-
-                showIPInputInformations()
-                valide = False
+                Return True
 
             End If
 
+        End If
 
-        Else
+        Return False
 
-            showIPInputInformations()
-            valide = False
+    End Function
+
+    Private Sub updateIpInput()
+
+        If Me.settings.checkIPRegex.IsMatch(txtIPRange.Text) Then
+
+            Me.settings.addIP(txtIPRange.Text)
+
+        ElseIf Me.settings.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
+
+            Me.settings.addIPRange(txtIPRange.Text)
 
         End If
 
-        Return valide
-
-    End Function
+    End Sub
 
     Private Sub showIPInputInformations()
 

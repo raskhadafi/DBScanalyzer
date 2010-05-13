@@ -1,4 +1,6 @@
-﻿Namespace Helpers
+﻿Imports System.Text.RegularExpressions
+
+Namespace Helpers
 
     Public Class Setting
 
@@ -6,6 +8,9 @@
         Private ips As List(Of String)
         Private references As Settings.ReferenceSelectionArrayList
         Private metrics As Settings.MetricsSelectionArrayList
+        Public checkIPRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b$")
+        Public checkIPRangeRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){0}\d{1,3}\b$")
+
 
         Public Sub New()
 
@@ -91,11 +96,8 @@
 
         Public Sub addIP(ByVal ip As String)
 
-            If Me.ipInput Is Nothing Then
-
-                Me.ipInput = ip
-
-            End If
+            Me.ipInput = ip
+            Me.ips = New List(Of String)
 
             If Not Me.ips.Contains(ip) Then
 
@@ -108,7 +110,7 @@
         Public Sub addIPRange(ByVal ipRange As String)
 
             Me.ipInput = ipRange
-
+            Me.ips = New List(Of String)
             Dim ipRangePoints As Array = ipRange.Split("-")
             Dim ipRangsTupels As Array = ipRangePoints(0).Split(".")
             Dim startString As String = ipRangsTupels(0) + "." + ipRangsTupels(1) + "." + ipRangsTupels(2) + "."
@@ -117,7 +119,7 @@
 
             For i = startIp To lastIp
 
-                Me.addIP(startString + i.ToString)
+                Me.ips.Add(startString + i.ToString)
 
             Next
 
