@@ -43,6 +43,95 @@ Public Class InitializationForm
 
     End Sub
 
+    Private Sub UpdateState()
+
+        Select Case Me.state
+
+            Case STATEMACHINE.loadSettings
+
+                ' this is executed for a reinitizialization
+                Me.loadAndShowReferences()
+                Me.loadMetrics()
+                Me.loadIPRange()
+                Me.state = STATEMACHINE.checkReferenceSelection
+
+
+            Case STATEMACHINE.initializeReferenceSelection
+
+                ' initialized first, shows the reference selection
+                Me.loadAndShowReferences()
+                Me.loadIPRange()
+                Me.state = STATEMACHINE.checkReferenceSelection
+
+            Case STATEMACHINE.checkReferenceSelection
+
+                ' checks if references selected
+                If Me.referenceSelected() Then
+
+                    Me.updateReferenceSelection()
+                    Me.state = STATEMACHINE.initializeMetricsSelection
+                    Me.UpdateState()
+
+                Else
+
+                    MessageBox.Show("Please select at least one reference", "No selection", MessageBoxButtons.OK)
+
+                End If
+
+            Case STATEMACHINE.checkIpRangeInput
+
+                ' checks ip range input, updates settings and closes the form
+                Dim form As ScanalyzerForm = Me.Owner
+
+                If isIpRangeValide() Then
+
+                    form.showUpdatedSettings()
+                    Me.Close()
+
+                End If
+
+            Case STATEMACHINE.checkMetricsSelection
+
+                ' checks metric selections and initializes the ip range input
+                If Me.metricSelected() Then
+
+                    Me.updateMetricsSelection()
+                    Me.state = STATEMACHINE.initializeIPRangeInput
+                    Me.UpdateState()
+
+                Else
+
+                    MessageBox.Show("Please select at least one metric", "No selection", MessageBoxButtons.OK)
+
+                End If
+
+            Case STATEMACHINE.initializeMetricsSelection
+
+                ' initializes and shows the metrics
+                If Me.metricsSelection Is Nothing Then
+
+                    Me.initializeMetricsSelection()
+                    Me.state = STATEMACHINE.checkMetricsSelection
+
+                End If
+
+            Case STATEMACHINE.initializeIPRangeInput
+
+                ' initializes the ip range input
+                If Me.ipRangeSelection Is Nothing Then
+
+                    Me.ipRangeSelection = Me.IPRangeTab
+                    Me.InputTabbs.Controls.Add(Me.ipRangeSelection)
+                    Me.InputTabbs.SelectedTab = Me.ipRangeSelection
+                    Me.ipRangeSelection.Focus()
+                    Me.state = STATEMACHINE.checkIpRangeInput
+
+                End If
+
+        End Select
+
+    End Sub
+
     Private Sub loadAndShowReferences()
 
         Dim y As Integer = 0
@@ -143,87 +232,6 @@ Public Class InitializationForm
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
 
         Me.UpdateState()
-
-    End Sub
-
-    Private Sub UpdateState()
-
-        Select Case Me.state
-
-            Case STATEMACHINE.referenceSelection
-
-                If Me.referenceSelected() Then
-
-                    Me.updateReferenceSelection()
-                    Me.state = STATEMACHINE.initializeMetricsSelection
-                    Me.UpdateState()
-
-                Else
-
-                    MessageBox.Show("Please select at least one reference", "No selection", MessageBoxButtons.OK)
-
-                End If
-
-            Case STATEMACHINE.ipRangeInput
-
-                Dim form As ScanalyzerForm = Me.Owner
-
-                If isIpRangeValide() Then
-
-                    form.showUpdatedSettings()
-                    Me.Close()
-
-                End If
-
-            Case STATEMACHINE.metricsSelection
-
-                If Me.metricSelected() Then
-
-                    Me.updateMetricsSelection()
-                    Me.state = STATEMACHINE.initializeIPRangeInput
-                    Me.UpdateState()
-
-                Else
-
-                    MessageBox.Show("Please select at least one metric", "No selection", MessageBoxButtons.OK)
-
-                End If
-
-            Case STATEMACHINE.initializeReferenceSelection
-
-                Me.loadAndShowReferences()
-                Me.loadIPRange()
-                Me.state = STATEMACHINE.referenceSelection
-
-            Case STATEMACHINE.initializeMetricsSelection
-
-                If Me.metricsSelection Is Nothing Then
-
-                    Me.initializeMetricsSelection()
-                    Me.state = STATEMACHINE.metricsSelection
-
-                End If
-
-            Case STATEMACHINE.initializeIPRangeInput
-
-                If Me.ipRangeSelection Is Nothing Then
-
-                    Me.ipRangeSelection = Me.IPRangeTab
-                    Me.InputTabbs.Controls.Add(Me.ipRangeSelection)
-                    Me.InputTabbs.SelectedTab = Me.ipRangeSelection
-                    Me.ipRangeSelection.Focus()
-                    Me.state = STATEMACHINE.ipRangeInput
-
-                End If
-
-            Case STATEMACHINE.loadSettings
-
-                Me.loadAndShowReferences()
-                Me.loadMetrics()
-                Me.loadIPRange()
-                Me.state = STATEMACHINE.referenceSelection
-
-        End Select
 
     End Sub
 
@@ -386,15 +394,15 @@ Public Class InitializationForm
     Enum STATEMACHINE
 
         initializeReferenceSelection
-        referenceSelection
+        checkReferenceSelection
 
         loadSettings
 
         initializeMetricsSelection
-        metricsSelection
+        checkMetricsSelection
 
         initializeIPRangeInput
-        ipRangeInput
+        checkIpRangeInput
 
     End Enum
 
