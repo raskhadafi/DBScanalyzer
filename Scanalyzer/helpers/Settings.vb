@@ -7,16 +7,15 @@
         Private references As Settings.ReferenceSelectionArrayList
         Private metrics As Settings.MetricsSelectionArrayList
 
+        Public Sub New()
+
+            ips = New List(Of String)
+
+        End Sub
 
         Public Sub addMetrics(ByVal metrics As Settings.MetricsSelectionArrayList)
 
             Me.metrics = metrics
-
-        End Sub
-
-        Public Sub New()
-
-            ips = New List(Of String)
 
         End Sub
 
