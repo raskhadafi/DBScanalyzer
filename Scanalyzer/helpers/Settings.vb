@@ -20,6 +20,20 @@
 
         End Sub
 
+        Public Function getMetricsAsText() As String
+
+            Dim metrics As String = ""
+
+            For Each metric In Me.metrics
+
+                metrics += metric.ToString + vbNewLine
+
+            Next
+
+            Return metrics
+
+        End Function
+
         Public Function getMetrics() As Settings.MetricsSelectionArrayList
 
             Return Me.metrics

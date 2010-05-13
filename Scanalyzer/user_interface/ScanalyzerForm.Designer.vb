@@ -33,6 +33,8 @@ Partial Class ScanalyzerForm
         Me.txtIpRange = New System.Windows.Forms.Label
         Me.lblReferences = New System.Windows.Forms.Label
         Me.txtReferences = New System.Windows.Forms.Label
+        Me.lblMetrics = New System.Windows.Forms.Label
+        Me.txtMetrics = New System.Windows.Forms.Label
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -41,7 +43,7 @@ Partial Class ScanalyzerForm
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitializeToolStripMenuItem, Me.ReferenzdatenToolStripMenuItem, Me.FileToolStripMenuItem, Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(507, 24)
+        Me.MenuStrip1.Size = New System.Drawing.Size(523, 24)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -113,11 +115,31 @@ Partial Class ScanalyzerForm
         Me.txtReferences.TabIndex = 4
         Me.txtReferences.Text = "Label1"
         '
+        'lblMetrics
+        '
+        Me.lblMetrics.AutoSize = True
+        Me.lblMetrics.Location = New System.Drawing.Point(280, 68)
+        Me.lblMetrics.Name = "lblMetrics"
+        Me.lblMetrics.Size = New System.Drawing.Size(89, 13)
+        Me.lblMetrics.TabIndex = 5
+        Me.lblMetrics.Text = "Selected Metrics:"
+        '
+        'txtMetrics
+        '
+        Me.txtMetrics.AutoSize = True
+        Me.txtMetrics.Location = New System.Drawing.Point(375, 68)
+        Me.txtMetrics.Name = "txtMetrics"
+        Me.txtMetrics.Size = New System.Drawing.Size(39, 13)
+        Me.txtMetrics.TabIndex = 6
+        Me.txtMetrics.Text = "Label1"
+        '
         'ScanalyzerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(507, 353)
+        Me.ClientSize = New System.Drawing.Size(523, 353)
+        Me.Controls.Add(Me.txtMetrics)
+        Me.Controls.Add(Me.lblMetrics)
         Me.Controls.Add(Me.txtReferences)
         Me.Controls.Add(Me.lblReferences)
         Me.Controls.Add(Me.txtIpRange)
@@ -143,5 +165,7 @@ Partial Class ScanalyzerForm
     Friend WithEvents txtIpRange As System.Windows.Forms.Label
     Friend WithEvents lblReferences As System.Windows.Forms.Label
     Friend WithEvents txtReferences As System.Windows.Forms.Label
+    Friend WithEvents lblMetrics As System.Windows.Forms.Label
+    Friend WithEvents txtMetrics As System.Windows.Forms.Label
 
 End Class

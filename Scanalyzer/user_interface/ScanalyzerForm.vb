@@ -45,6 +45,7 @@
 
         Me.txtIpRange.Text = Me.settings.getIpRangeAsInserted()
         Me.txtReferences.Text = Me.settings.getReferencesAsText()
+        Me.txtMetrics.Text = Me.settings.getMetricsAsText()
         Me.showAllSettings(True)
 
     End Sub
@@ -54,6 +55,8 @@
         Me.showIpRangeOutput(show)
         Me.lblReferences.Visible = show
         Me.txtReferences.Visible = show
+        Me.txtMetrics.Visible = show
+        Me.lblMetrics.Visible = show
 
     End Sub
 
