@@ -54,7 +54,22 @@
 
             End Sub
 
+            Public Sub removeMetricIfSelected(ByRef name As String)
+
+                Dim removed As Metric
+
+                removed = CType(System.Enum.Parse(removed.GetType, name), Metric)
+
+                If Me.Contains(removed) Then
+
+                    Me.Remove(removed)
+
+                End If
+
+            End Sub
+
         End Class
+
 
         Public Enum Metric
 

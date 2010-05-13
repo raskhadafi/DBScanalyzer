@@ -288,6 +288,10 @@ Public Class InitializationForm
 
                 Me.metrics.setMetricAsSelected(metricBox.Name)
 
+            Else
+
+                Me.metrics.removeMetricIfSelected(metricBox.Name)
+
             End If
 
         Next
