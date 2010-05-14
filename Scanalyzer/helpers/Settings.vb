@@ -18,6 +18,12 @@ Namespace Helpers
 
         End Sub
 
+        Public Function getIps() As Array
+
+            Return Me.ips.ToArray
+
+        End Function
+
         Public Sub addMetrics(ByVal metrics As Settings.MetricsSelectionArrayList)
 
             Me.metrics = metrics

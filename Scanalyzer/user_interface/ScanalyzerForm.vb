@@ -2,6 +2,7 @@
 
     Private settings As New Helpers.Setting
     Private initializationSetup As InitializationForm
+    Private scanalyzer As Controller.Scanalyzer
 
     Public Sub New()
 
@@ -58,6 +59,13 @@
         Me.txtMetrics.Visible = show
         Me.lblMetrics.Visible = show
         Me.btnStartScanalyzer.Visible = show
+
+    End Sub
+
+    Private Sub btnStartScanalyzer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartScanalyzer.Click
+
+        Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me)
+        Me.scanalyzer.startScanning()
 
     End Sub
 

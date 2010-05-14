@@ -22,7 +22,7 @@ Namespace DBScanner
 
         End Function
 
-        Public Function getOpenPorts(ByVal ip As String)
+        Public Function getOpenPorts(ByVal ip As String) As ArrayList
 
             Dim start_info As New ProcessStartInfo("nmap.exe")
             Dim proc As New Process()
@@ -68,17 +68,29 @@ Namespace DBScanner
                     If (tmpTxt.ToString).StartsWith("MAC") Then
                         newComputer = False
                     Else
-                        Dim line As Array
 
-                        line = serviceFinder.Split(tmpTxt)
+                        If Not tmpTxt.Equals("") Then
 
-                        If line(3).Equals("open") Then
-                            openPorts.Add(Integer.Parse(line(1)))
+                            Dim line As Array
+
+                            line = serviceFinder.Split(tmpTxt)
+
+                            If line(3).Equals("open") Then
+
+                                openPorts.Add(Integer.Parse(line(1)))
+
+                            End If
+
+                        Else
+
+                            newComputer = False
+
                         End If
 
                     End If
 
                 ElseIf ipFinder.IsMatch(tmpTxt) Then
+
                     Dim ip As Array
 
                     ip = ipFinder.Split(tmpTxt)
@@ -93,7 +105,9 @@ Namespace DBScanner
             Next
 
             If openPorts.Count = 0 Then
+
                 Return Nothing
+
             End If
 
             Return openPorts

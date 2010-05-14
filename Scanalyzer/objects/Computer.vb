@@ -9,7 +9,8 @@
         Public Sub New(ByVal ip As String)
 
             Me.ip = ip
-            databasesInstances = New ArrayList
+            Me.databasesInstances = New ArrayList
+            Me.openPorts = New ArrayList
 
         End Sub
 
@@ -46,11 +47,27 @@
 
         End Function
 
+        Public Sub addOpenPorts(ByRef ports As ArrayList)
+
+            For Each port In ports
+
+                Me.addOpenPort(port)
+
+            Next
+
+        End Sub
+
         Public Sub addOpenPort(ByRef portNumber As Integer)
 
             Me.openPorts.Add(portNumber)
 
         End Sub
+
+        Public Function getOpenPorts() As Array
+
+            Return Me.openPorts.ToArray
+
+        End Function
 
     End Class
 
