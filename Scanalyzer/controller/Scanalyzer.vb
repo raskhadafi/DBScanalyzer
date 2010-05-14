@@ -77,6 +77,32 @@ Namespace Controller
 
         End Function
 
+        Public Function checkIfLeastOneDatabaseinstanceCheckedAndFilled() As Boolean
+
+            For Each computer In Me.computers
+
+                For Each db In computer.getDatabaseInstances
+
+                    If db.getSelection Then
+
+                        Return True
+
+                    End If
+
+                Next
+
+            Next
+
+            Return False
+
+        End Function
+
+        Public Sub startReadAnalyzeAndShowData()
+
+
+
+        End Sub
+
     End Class
 
 End Namespace

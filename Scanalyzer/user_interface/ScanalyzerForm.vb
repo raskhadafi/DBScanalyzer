@@ -3,6 +3,7 @@
     Private settings As New Helpers.Setting
     Private initializationSetup As InitializationForm
     Private scanalyzer As Controller.Scanalyzer
+    Private state As ScanalyzerState = ScanalyzerState.waitForInitialization
 
     Public Sub New()
 
@@ -46,6 +47,7 @@
 
         Me.initializationSetup = New InitializationForm(Me.settings, Me)
         Me.initializationSetup.Show()
+        Me.state = ScanalyzerState.waitForScanning
 
     End Sub
 
@@ -77,10 +79,26 @@
 
     Private Sub btnStartScanalyzer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartScanalyzer.Click
 
-        Me.showBtnStartScanalyzer(False)
-        Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me)
-        Me.scanalyzer.startScanning()
-        Me.showFoundComputersAndDatabaseinstaces()
+        Select Case Me.state
+
+            Case ScanalyzerState.waitForScanning
+
+                Me.showBtnStartScanalyzer(False)
+                Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me)
+                Me.scanalyzer.startScanning()
+                Me.showFoundComputersAndDatabaseinstaces()
+                Me.state = ScanalyzerState.waitForAnalyzing
+
+            Case ScanalyzerState.waitForAnalyzing
+
+                If Me.scanalyzer.checkIfLeastOneDatabaseinstanceCheckedAndFilled() Then
+
+                    Me.showBtnStartScanalyzer(False)
+                    Me.scanalyzer.startReadAnalyzeAndShowData()
+
+                End If
+
+        End Select
 
     End Sub
 
@@ -98,6 +116,7 @@
 
         Me.showAllSettings(False)
         Me.showDatabaseinstances(True)
+        Me.showBtnStartScanalyzer(True)
 
     End Sub
 
@@ -124,5 +143,13 @@
         End Select
 
     End Sub
+
+    Public Enum ScanalyzerState
+
+        waitForInitialization
+        waitForScanning
+        waitForAnalyzing
+
+    End Enum
 
 End Class
