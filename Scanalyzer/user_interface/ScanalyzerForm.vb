@@ -66,6 +66,13 @@
 
         Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me)
         Me.scanalyzer.startScanning()
+        Me.showFoundComputersAndDatabaseinstaces()
+
+    End Sub
+
+    Private Sub showFoundComputersAndDatabaseinstaces()
+
+
 
     End Sub
 

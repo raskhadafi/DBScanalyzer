@@ -63,9 +63,9 @@
 
         End Sub
 
-        Public Function getOpenPorts() As Array
+        Public Function getOpenPorts() As ArrayList
 
-            Return Me.openPorts.ToArray
+            Return Me.openPorts
 
         End Function
 

@@ -39,6 +39,20 @@ Namespace Controller
 
             Next
 
+            For Each computer In Me.computers
+
+                Dim ping As DBPingStrategies.DBPingStrategy
+
+                ping = New DBPingStrategies.MySQLPingStrategy
+
+                For Each port In ping.checkPorts(computer.getIp, computer.getOpenPorts)
+
+                    computer.addDatabaseInstance(port, Objects.DatabaseInstance.DatabaseEnum.mysql)
+
+                Next
+
+            Next
+
         End Sub
 
     End Class
