@@ -55,6 +55,12 @@ Namespace Controller
 
         End Sub
 
+        Public Function getComputers() As List(Of Objects.Computer)
+
+            Return Me.computers
+
+        End Function
+
     End Class
 
 End Namespace

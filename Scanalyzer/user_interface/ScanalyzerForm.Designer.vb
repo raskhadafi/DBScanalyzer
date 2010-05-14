@@ -36,6 +36,7 @@ Partial Class ScanalyzerForm
         Me.lblMetrics = New System.Windows.Forms.Label
         Me.txtMetrics = New System.Windows.Forms.Label
         Me.btnStartScanalyzer = New System.Windows.Forms.Button
+        Me.chklstBox = New System.Windows.Forms.CheckedListBox
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -143,11 +144,22 @@ Partial Class ScanalyzerForm
         Me.btnStartScanalyzer.Text = "Start Scanning"
         Me.btnStartScanalyzer.UseVisualStyleBackColor = True
         '
+        'chklstBox
+        '
+        Me.chklstBox.CheckOnClick = True
+        Me.chklstBox.FormattingEnabled = True
+        Me.chklstBox.Location = New System.Drawing.Point(12, 35)
+        Me.chklstBox.Name = "chklstBox"
+        Me.chklstBox.Size = New System.Drawing.Size(198, 94)
+        Me.chklstBox.TabIndex = 8
+        Me.chklstBox.Visible = False
+        '
         'ScanalyzerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(523, 353)
+        Me.Controls.Add(Me.chklstBox)
         Me.Controls.Add(Me.btnStartScanalyzer)
         Me.Controls.Add(Me.txtMetrics)
         Me.Controls.Add(Me.lblMetrics)
@@ -179,5 +191,6 @@ Partial Class ScanalyzerForm
     Friend WithEvents lblMetrics As System.Windows.Forms.Label
     Friend WithEvents txtMetrics As System.Windows.Forms.Label
     Friend WithEvents btnStartScanalyzer As System.Windows.Forms.Button
+    Friend WithEvents chklstBox As System.Windows.Forms.CheckedListBox
 
 End Class

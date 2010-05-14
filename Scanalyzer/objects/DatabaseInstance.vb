@@ -7,13 +7,33 @@
         Private password As String
         Private databaseName As String
         Private type As DatabaseEnum
+        Private selected As Boolean
 
         Public Sub New(ByVal port As Integer, ByVal type As DatabaseEnum)
 
             Me.port = port
             Me.type = type
+            Me.selected = False
 
         End Sub
+
+        Public Function getDatabaseType() As String
+
+            Return Me.type.ToString
+
+        End Function
+
+        Public Sub setSelection(ByRef selected As Boolean)
+
+            Me.selected = selected
+
+        End Sub
+
+        Public Function getSelection() As Boolean
+
+            Return Me.selected
+
+        End Function
 
         Public Sub addCredentials(ByVal user As String, ByVal password As String)
 

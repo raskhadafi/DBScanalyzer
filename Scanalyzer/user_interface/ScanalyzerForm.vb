@@ -11,6 +11,13 @@
 
         ' Add any initialization after the InitializeComponent() call.
         Me.showAllSettings(False)
+        Me.showDatabaseinstances(False)
+
+    End Sub
+
+    Private Sub showDatabaseinstances(ByRef show As Boolean)
+
+        Me.chklstBox.Visible = show
 
     End Sub
 
@@ -58,12 +65,19 @@
         Me.txtReferences.Visible = show
         Me.txtMetrics.Visible = show
         Me.lblMetrics.Visible = show
+        Me.showBtnStartScanalyzer(show)
+
+    End Sub
+
+    Private Sub showBtnStartScanalyzer(ByRef show As Boolean)
+
         Me.btnStartScanalyzer.Visible = show
 
     End Sub
 
     Private Sub btnStartScanalyzer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartScanalyzer.Click
 
+        Me.showBtnStartScanalyzer(False)
         Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me)
         Me.scanalyzer.startScanning()
         Me.showFoundComputersAndDatabaseinstaces()
@@ -71,6 +85,23 @@
     End Sub
 
     Private Sub showFoundComputersAndDatabaseinstaces()
+
+        For Each computer In Me.scanalyzer.getComputers
+
+            For Each instance In computer.getDatabaseInstances
+
+                Me.chklstBox.Items.Add(computer.getIp + ": " + instance.getDatabaseType, instance.getSelection)
+
+            Next
+
+        Next
+
+        Me.showAllSettings(False)
+        Me.showDatabaseinstances(True)
+
+    End Sub
+
+    Private Sub chklstBox_ItemCheck(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemCheckEventArgs) Handles chklstBox.ItemCheck
 
 
 

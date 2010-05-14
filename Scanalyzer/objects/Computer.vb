@@ -3,16 +3,22 @@
     Public Class Computer
 
         Private ip As String
-        Private databasesInstances As ArrayList
+        Private databasesInstances As List(Of DatabaseInstance)
         Private openPorts As ArrayList
 
         Public Sub New(ByVal ip As String)
 
             Me.ip = ip
-            Me.databasesInstances = New ArrayList
+            Me.databasesInstances = New List(Of DatabaseInstance)
             Me.openPorts = New ArrayList
 
         End Sub
+
+        Public Function getDatabaseInstances() As List(Of DatabaseInstance)
+
+            Return Me.databasesInstances
+
+        End Function
 
         Public Function getInstance(ByRef position As Integer) As DatabaseInstance
 
