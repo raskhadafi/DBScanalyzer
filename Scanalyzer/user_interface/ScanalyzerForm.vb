@@ -57,6 +57,7 @@
         Me.txtReferences.Visible = show
         Me.txtMetrics.Visible = show
         Me.lblMetrics.Visible = show
+        Me.btnStartScanalyzer.Visible = show
 
     End Sub
 

@@ -35,6 +35,7 @@ Partial Class ScanalyzerForm
         Me.txtReferences = New System.Windows.Forms.Label
         Me.lblMetrics = New System.Windows.Forms.Label
         Me.txtMetrics = New System.Windows.Forms.Label
+        Me.btnStartScanalyzer = New System.Windows.Forms.Button
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -133,11 +134,21 @@ Partial Class ScanalyzerForm
         Me.txtMetrics.TabIndex = 6
         Me.txtMetrics.Text = "Label1"
         '
+        'btnStartScanalyzer
+        '
+        Me.btnStartScanalyzer.Location = New System.Drawing.Point(425, 35)
+        Me.btnStartScanalyzer.Name = "btnStartScanalyzer"
+        Me.btnStartScanalyzer.Size = New System.Drawing.Size(86, 23)
+        Me.btnStartScanalyzer.TabIndex = 7
+        Me.btnStartScanalyzer.Text = "Start Scanning"
+        Me.btnStartScanalyzer.UseVisualStyleBackColor = True
+        '
         'ScanalyzerForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(523, 353)
+        Me.Controls.Add(Me.btnStartScanalyzer)
         Me.Controls.Add(Me.txtMetrics)
         Me.Controls.Add(Me.lblMetrics)
         Me.Controls.Add(Me.txtReferences)
@@ -167,5 +178,6 @@ Partial Class ScanalyzerForm
     Friend WithEvents txtReferences As System.Windows.Forms.Label
     Friend WithEvents lblMetrics As System.Windows.Forms.Label
     Friend WithEvents txtMetrics As System.Windows.Forms.Label
+    Friend WithEvents btnStartScanalyzer As System.Windows.Forms.Button
 
 End Class
