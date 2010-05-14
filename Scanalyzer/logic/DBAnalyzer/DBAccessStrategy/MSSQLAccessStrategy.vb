@@ -3,7 +3,7 @@ Imports Scanalyzer.Objects
 
 Namespace DBanalyzer
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
         Public Class MSSQLAccessStrategy
             Inherits DBAccessStrategy

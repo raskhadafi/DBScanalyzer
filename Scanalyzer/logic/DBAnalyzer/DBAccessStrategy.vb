@@ -2,7 +2,7 @@
 
 Namespace DBanalyzer
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
         Public MustInherit Class DBAccessStrategy
 

@@ -1,6 +1,6 @@
 ﻿Namespace DBanalyzer
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
         Public Class OracleAccessStrategy
 

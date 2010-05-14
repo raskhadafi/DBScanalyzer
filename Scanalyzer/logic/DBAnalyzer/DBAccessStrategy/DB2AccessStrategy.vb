@@ -3,7 +3,7 @@ Imports Scanalyzer.Objects
 
 Namespace DBanalyzer
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
         Public Class DB2AccessStrategy
             Inherits DBAccessStrategy
@@ -57,7 +57,7 @@ Namespace DBanalyzer
                 Try
 
                     Dim reader As DB2DataReader = command.ExecuteReader()
-                    
+
                     While reader.Read
                         returnList.Add(reader.GetString(0))
                     End While
