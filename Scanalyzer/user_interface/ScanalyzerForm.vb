@@ -103,12 +103,25 @@
 
     Private Sub chklstBox_ItemCheck(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemCheckEventArgs) Handles chklstBox.ItemCheck
 
-        Dim loginDataForm As ScanalyzerLoginForm
         Dim datas As Array = Me.chklstBox.Items.Item(e.Index).ToString.Split(":")
         Dim computer As Objects.Computer = Me.scanalyzer.getComputer(datas(0))
 
-        loginDataForm = New ScanalyzerLoginForm(computer.getDatabaseInstance(datas(1)))
-        loginDataForm.Show()
+        Select Case e.NewValue
+
+            Case CheckState.Checked
+
+                Dim loginDataForm As ScanalyzerLoginForm
+
+                loginDataForm = New ScanalyzerLoginForm(computer.getDatabaseInstance(datas(1)))
+                loginDataForm.Show()
+
+            Case CheckState.Unchecked
+
+                Dim db As Objects.DatabaseInstance = computer.getDatabaseInstance(datas(1))
+
+                db.setSelection(False)
+
+        End Select
 
     End Sub
 
