@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports Scanalyzer.DBScanner.DBPingStrategy
+Imports Scanalyzer.DBScanner.DBPingStrategies
 
 
 '''<summary>
