@@ -3,7 +3,7 @@
 
 Namespace DBScanner
 
-    Namespace DBPingStrategy
+    Namespace DBPingStrategies
 
         Public Class OraclePingStrategy
             Inherits DBPingStrategy

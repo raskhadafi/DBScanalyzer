@@ -2,7 +2,7 @@
 
 Namespace DBScanner
 
-    Namespace DBPingStrategy
+    Namespace DBPingStrategies
 
         Public Class DB2PingStrategy
             Inherits DBPingStrategy

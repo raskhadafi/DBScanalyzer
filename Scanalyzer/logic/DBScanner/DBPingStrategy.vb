@@ -1,6 +1,6 @@
 ﻿Namespace DBScanner
 
-    Namespace DBPingStrategy
+    Namespace DBPingStrategies
 
         Public MustInherit Class DBPingStrategy
 
