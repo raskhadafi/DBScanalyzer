@@ -17,6 +17,18 @@
 
         End Sub
 
+        Public Sub setPassword(ByVal password As String)
+
+            Me.password = password
+
+        End Sub
+
+        Public Sub setUser(ByVal user As String)
+
+            Me.user = user
+
+        End Sub
+
         Public Function getDatabaseType() As String
 
             Return Me.type.ToString

@@ -61,6 +61,22 @@ Namespace Controller
 
         End Function
 
+        Public Function getComputer(ByVal ip As String) As Objects.Computer
+
+            For Each computer In Me.computers
+
+                If computer.getIp = ip Then
+
+                    Return computer
+
+                End If
+
+            Next
+
+            Return Nothing
+
+        End Function
+
     End Class
 
 End Namespace

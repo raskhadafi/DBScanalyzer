@@ -90,7 +90,7 @@
 
             For Each instance In computer.getDatabaseInstances
 
-                Me.chklstBox.Items.Add(computer.getIp + ": " + instance.getDatabaseType, instance.getSelection)
+                Me.chklstBox.Items.Add(computer.getIp + ":" + instance.getPort + ":" + instance.getDatabaseType, instance.getSelection)
 
             Next
 
@@ -103,7 +103,12 @@
 
     Private Sub chklstBox_ItemCheck(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemCheckEventArgs) Handles chklstBox.ItemCheck
 
+        Dim loginDataForm As ScanalyzerLoginForm
+        Dim datas As Array = Me.chklstBox.Items.Item(e.Index).ToString.Split(":")
+        Dim computer As Objects.Computer = Me.scanalyzer.getComputer(datas(0))
 
+        loginDataForm = New ScanalyzerLoginForm(computer.getDatabaseInstance(datas(1)))
+        loginDataForm.Show()
 
     End Sub
 

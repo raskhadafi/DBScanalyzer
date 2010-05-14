@@ -75,6 +75,22 @@
 
         End Function
 
+        Public Function getDatabaseInstance(ByRef port As Integer)
+
+            For Each database In Me.databasesInstances
+
+                If database.getPort = port Then
+
+                    Return database
+
+                End If
+
+            Next
+
+            Return Nothing
+
+        End Function
+
     End Class
 
 End Namespace
