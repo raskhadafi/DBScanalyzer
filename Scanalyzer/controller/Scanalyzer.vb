@@ -104,7 +104,7 @@ Namespace Controller
 
             schemaAnalyzer = New DBanalyzer.SchemaAnalyzer(Me.computers)
             schemaAnalyzer.getSchemasOfComputers()
-            dataAnalyzer = New DBanalyzer.DataAnalyzer
+            dataAnalyzer = New DBanalyzer.DataAnalyzer(Me.computers)
 
 
         End Sub
