@@ -38,6 +38,12 @@
 
         End Function
 
+        Public Sub increaseEqualsToDataBy(ByVal up As Integer)
+
+            Me.equalsToData += up
+
+        End Sub
+
     End Class
 
 End Namespace

@@ -3,10 +3,12 @@
     Public Class SchemaAnalyzer
 
         Private computers As List(Of Objects.Computer)
+        Private settings As Helpers.Setting
 
-        Public Sub New(ByRef computers As List(Of Objects.Computer))
+        Public Sub New(ByRef computers As List(Of Objects.Computer), ByVal settings As Helpers.Setting)
 
             Me.computers = computers
+            Me.settings = settings
 
         End Sub
 
@@ -20,7 +22,7 @@
 
                     Dim access As DBAccessStrategies.DBAccessStrategy
 
-                    access = getDBAccessStrategy(db.getDatabaseType)
+                    access = Helpers.Helper.getDBAccessStrategy(db.getDatabaseType)
 
                     If access.openConnection(computer, position) Then
 
@@ -49,23 +51,33 @@
 
         End Sub
 
-        Private Function getDBAccessStrategy(ByVal type As Objects.DatabaseInstance.DatabaseEnum) As DBAccessStrategies.DBAccessStrategy
+        Public Sub analyzeSchema()
 
-            Dim access As DBAccessStrategies.DBAccessStrategy
+            For Each computer In Me.computers
 
-            access = Nothing
+                For Each databaseInstance In computer.getDatabaseInstances
 
-            Select Case type
+                    For Each database In databaseInstance.getDatabases
 
-                Case Objects.DatabaseInstance.DatabaseEnum.mysql
+                        For Each table In database.getTables
 
-                    access = New DBAccessStrategies.MySQLAccessStrategy
+                            database.increaseEqualsToDataBy(10)
 
-            End Select
+                            For Each column In table.getColumns
 
-            Return access
+                                table.increaseEqualsToDataBy(19)
 
-        End Function
+                            Next
+
+                        Next
+
+                    Next
+
+                Next
+
+            Next
+
+        End Sub
 
     End Class
 

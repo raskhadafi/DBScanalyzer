@@ -30,6 +30,18 @@
 
         End Sub
 
+        Public Function getColumns() As List(Of String)
+
+            Return Me.columns
+
+        End Function
+
+        Public Sub increaseEqualsToDataBy(ByVal up As Integer)
+
+            Me.equalsToData += up
+
+        End Sub
+
     End Class
 
 End Namespace

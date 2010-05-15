@@ -101,11 +101,17 @@ Namespace Controller
 
             Dim schemaAnalyzer As DBanalyzer.SchemaAnalyzer
             Dim dataAnalyzer As DBanalyzer.DataAnalyzer
+            Dim reportVisualizer As View.ReportVisualizer
 
-            schemaAnalyzer = New DBanalyzer.SchemaAnalyzer(Me.computers)
+            schemaAnalyzer = New DBanalyzer.SchemaAnalyzer(Me.computers, Me.settings)
             schemaAnalyzer.getSchemasOfComputers()
-            dataAnalyzer = New DBanalyzer.DataAnalyzer(Me.computers)
+            schemaAnalyzer.analyzeSchema()
 
+            dataAnalyzer = New DBanalyzer.DataAnalyzer(Me.computers, Me.settings)
+            dataAnalyzer.analyzeContent()
+
+            reportVisualizer = New View.ReportVisualizer(Me.computers)
+            reportVisualizer.show()
 
         End Sub
 
