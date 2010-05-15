@@ -112,7 +112,7 @@ Namespace DBanalyzer
                 Dim computer As Computer = computerIn
 
                 databaseInstance = computer.getInstance(databaseInstancePosition)
-                Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort() + ";"
+                Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort().ToString + ";"
                 connection.ConnectionString = Me.connectionString
 
                 Try

@@ -144,7 +144,7 @@ Namespace DBanalyzer
 
                 Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
 
-                Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
+                Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort.ToString + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
                 connection = New SqlConnection(Me.connectionString)
 
                 Try
