@@ -99,6 +99,12 @@ Namespace Controller
 
         Public Sub startReadAnalyzeAndShowData()
 
+            Dim schemaAnalyzer As DBanalyzer.SchemaAnalyzer
+            Dim dataAnalyzer As DBanalyzer.DataAnalyzer
+
+            schemaAnalyzer = New DBanalyzer.SchemaAnalyzer(Me.computers)
+            schemaAnalyzer.getSchemasOfComputers()
+            dataAnalyzer = New DBanalyzer.DataAnalyzer
 
 
         End Sub

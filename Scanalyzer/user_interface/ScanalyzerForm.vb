@@ -108,7 +108,7 @@
 
             For Each instance In computer.getDatabaseInstances
 
-                Me.chklstBox.Items.Add(computer.getIp + ":" + instance.getPort + ":" + instance.getDatabaseType, instance.getSelection)
+                Me.chklstBox.Items.Add(computer.getIp + ":" + instance.getPort.ToString + ":" + instance.getDatabaseType.ToString, instance.getSelection)
 
             Next
 
