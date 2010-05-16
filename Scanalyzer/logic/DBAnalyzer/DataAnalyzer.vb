@@ -12,7 +12,7 @@
 
         End Sub
 
-        Public Sub analyzeContent()
+        Public Sub analyzeColumnData()
 
             Dim access As DBAccessStrategies.DBAccessStrategy
 

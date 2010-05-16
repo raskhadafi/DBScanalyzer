@@ -108,7 +108,7 @@ Namespace Controller
             schemaAnalyzer.analyzeSchema()
 
             dataAnalyzer = New DBanalyzer.DataAnalyzer(Me.computers, Me.settings)
-            dataAnalyzer.analyzeContent()
+            dataAnalyzer.analyzeColumnData()
 
             reportVisualizer = New View.ReportVisualizer(Me.computers)
             reportVisualizer.show()
