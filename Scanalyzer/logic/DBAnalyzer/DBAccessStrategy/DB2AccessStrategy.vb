@@ -76,7 +76,7 @@ Namespace DBanalyzer
                 Dim computer As Computer = computerIn
 
                 databaseInstance = computer.getInstance(databaseInstancePosition)
-                Me.connectionString = "Server=" + computer.getIp() + ":" + databaseInstance.getPort().ToString + ";Database=" + databaseInstance.getDatabaseName() + ";UID=" + databaseInstance.getUser() + ";PWD=" + databaseInstance.getPassword() + ";"
+                Me.connectionString = "Server=" + computer.getIp() + ":" + databaseInstance.getPort().ToString + ";Database=" + databaseInstance.getName() + ";UID=" + databaseInstance.getUser() + ";PWD=" + databaseInstance.getPassword() + ";"
                 Me.connection = New DB2Connection(Me.connectionString)
 
                 Try

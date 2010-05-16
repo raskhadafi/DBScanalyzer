@@ -25,7 +25,7 @@
 
         End Function
 
-        Public Sub setDatabaseNames(ByVal names As ArrayList)
+        Public Sub addDatabases(ByVal names As ArrayList)
 
             For Each entry In names
 
@@ -98,7 +98,7 @@
 
         End Function
 
-        Public Function getDatabaseName() As String
+        Public Function getName() As String
 
             Return Me.name
 

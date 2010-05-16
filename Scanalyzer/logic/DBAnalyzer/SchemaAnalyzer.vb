@@ -26,7 +26,7 @@
 
                     If access.openConnection(computer, position) Then
 
-                        db.setDatabaseNames(access.getDatabaseNames())
+                        db.addDatabases(access.getDatabaseNames())
 
                         For Each database In db.getDatabases
 

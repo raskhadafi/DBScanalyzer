@@ -124,7 +124,7 @@ Public Class DB2AccessStrategyTest
 
         actualOpen = target.openConnection(computer, 0)
         actualDatabaseNames = target.getDatabaseNames()
-        actualTableNames = target.getTableNames(computer.getInstance(0).getDatabaseName)
+        actualTableNames = target.getTableNames(computer.getInstance(0).getName)
         actualClose = target.closeConnection()
 
         Assert.AreEqual(expected, actualOpen)
