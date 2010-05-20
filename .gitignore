@@ -6,3 +6,4 @@ Scanalyzer/LocalTestRun.testrunconfig
 *Thumbs.db
 Scanalyzer/ScanalyzerUnitTests/obj/*
 Scanalyzer/ScanalyzerUnitTests/bin/*
+*vbproj.user
