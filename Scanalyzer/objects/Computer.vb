@@ -75,7 +75,7 @@
 
         End Function
 
-        Public Function getDatabaseInstance(ByRef port As Integer)
+        Public Function getDatabaseInstance(ByRef port As Integer) As DatabaseInstance
 
             For Each database In Me.databasesInstances
 

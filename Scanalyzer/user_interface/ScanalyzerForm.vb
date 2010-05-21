@@ -1,4 +1,6 @@
-﻿Public Class ScanalyzerForm
+﻿Imports Scanalyzer.DBScanners
+
+Public Class ScanalyzerForm
 
     Private settings As New Helpers.Setting
     Private initializationSetup As InitializationForm
@@ -129,10 +131,9 @@
 
             Case CheckState.Checked
 
-                Dim loginDataForm As ScanalyzerLoginForm
+                Dim loginData As DBCredentials
 
-                loginDataForm = New ScanalyzerLoginForm(computer.getDatabaseInstance(datas(1)))
-                loginDataForm.Show()
+                loginData = New DBCredentials(computer.getDatabaseInstance(datas(1)))
 
             Case CheckState.Unchecked
 
