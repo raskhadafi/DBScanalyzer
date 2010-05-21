@@ -26,6 +26,7 @@ Namespace Controller
 
             Dim dbScanner As DBScanners.DBScanner
 
+            Me.loggerOutput.Focus()
             dbScanner = New DBScanners.DBScanner(Me.computers, Me.settings, Me.loggerOutput)
             Me.loggerOutput.updateLogger("start scan after computers")
             dbScanner.scanAfterComputers()
@@ -33,6 +34,7 @@ Namespace Controller
             dbScanner.scanAfterMySQL()
             Me.loggerOutput.updateLogger("check found computers for mssql dbs")
             dbScanner.scanAfterMSSQL()
+            Me.owner.Focus()
 
         End Sub
 
@@ -84,11 +86,13 @@ Namespace Controller
             Dim reportVisualizer As View.ReportVisualizer
 
             analyzer = New DBAnalyzer(Me.computers, Me.settings, Me.loggerOutput)
-            Me.loggerOutput.updateLogger("start analyze")
+            Me.loggerOutput.updateLogger("start analyze schema")
             analyzer.analyzeSchema()
+            Me.loggerOutput.updateLogger("start analyze data")
+            analyzer.analyzeData()
             Me.loggerOutput.updateLogger("generate report")
             reportVisualizer = New View.ReportVisualizer(Me.computers)
-            reportVisualizer.show()
+            reportVisualizer.showReport()
 
         End Sub
 

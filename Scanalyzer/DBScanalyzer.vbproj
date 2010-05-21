@@ -186,6 +186,7 @@
       <DependentUpon>ScanalyzerReportForm.vb</DependentUpon>
     </Compile>
     <Compile Include="user_interface\ScanalyzerReportForm.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="view\ReportVisualizer.vb" />
   </ItemGroup>

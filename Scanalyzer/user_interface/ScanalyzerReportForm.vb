@@ -1,7 +1,12 @@
-﻿Namespace UserInterface
+﻿Public Class ScanalyzerReportForm
 
-    Public Class ScanalyzerReportForm
+    Public Sub New(ByVal result As String)
 
-    End Class
+        InitializeComponent()
+        Me.txtReport.Text = result
+        Me.Show()
+        Me.Focus()
 
-End Namespace
+    End Sub
+
+End Class
