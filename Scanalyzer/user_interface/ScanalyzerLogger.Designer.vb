@@ -32,7 +32,7 @@ Partial Class ScanalyzerLogger
         Me.txtOutput.Multiline = True
         Me.txtOutput.Name = "txtOutput"
         Me.txtOutput.ReadOnly = True
-        Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal
+        Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.txtOutput.Size = New System.Drawing.Size(581, 372)
         Me.txtOutput.TabIndex = 0
         '

@@ -42,6 +42,12 @@
 
         End Sub
 
+        Public Function getEquals() As Integer
+
+            Return Me.equalsToData
+
+        End Function
+
     End Class
 
 End Namespace

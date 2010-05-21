@@ -14,6 +14,12 @@
 
         End Sub
 
+        Public Function getEquals() As Integer
+
+            Return Me.equalsToData
+
+        End Function
+
         Public Function getName() As String
 
             Return Me.name

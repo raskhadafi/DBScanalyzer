@@ -23,17 +23,18 @@ Partial Class ScanalyzerReportForm
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerReportForm))
-        Me.txtReport = New System.Windows.Forms.Label
+        Me.txtReport = New System.Windows.Forms.TextBox
         Me.SuspendLayout()
         '
         'txtReport
         '
-        Me.txtReport.AutoSize = True
-        Me.txtReport.Location = New System.Drawing.Point(12, 9)
+        Me.txtReport.Location = New System.Drawing.Point(12, 12)
+        Me.txtReport.Multiline = True
         Me.txtReport.Name = "txtReport"
-        Me.txtReport.Size = New System.Drawing.Size(39, 13)
+        Me.txtReport.ReadOnly = True
+        Me.txtReport.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtReport.Size = New System.Drawing.Size(674, 398)
         Me.txtReport.TabIndex = 0
-        Me.txtReport.Text = "Label1"
         '
         'ScanalyzerReportForm
         '
@@ -48,5 +49,5 @@ Partial Class ScanalyzerReportForm
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtReport As System.Windows.Forms.Label
+    Friend WithEvents txtReport As System.Windows.Forms.TextBox
 End Class
