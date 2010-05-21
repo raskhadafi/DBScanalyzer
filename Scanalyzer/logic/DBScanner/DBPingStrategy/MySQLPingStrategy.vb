@@ -1,6 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
 
-Namespace DBScanner
+Namespace DBScanners
 
     Namespace DBPingStrategies
 

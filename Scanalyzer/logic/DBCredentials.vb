@@ -1,4 +1,4 @@
-﻿Namespace DBScanner
+﻿Namespace DBScanners
 
     Public Class DBCredentials
 

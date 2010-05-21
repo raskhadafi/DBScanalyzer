@@ -1,4 +1,4 @@
-﻿Imports Scanalyzer.DBScanner
+﻿Imports Scanalyzer.DBScanners
 
 Namespace Controller
 

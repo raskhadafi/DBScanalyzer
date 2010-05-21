@@ -1,6 +1,6 @@
 ﻿Imports System.Data.SqlClient
 
-Namespace DBScanner
+Namespace DBScanners
 
     Namespace DBPingStrategies
 

@@ -3,7 +3,7 @@ Imports System.Net.NetworkInformation
 Imports System.IO
 Imports System.Text.RegularExpressions
 
-Namespace DBScanner
+Namespace DBScanners
 
     Public Class ComputerPing
 

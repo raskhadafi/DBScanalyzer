@@ -1,6 +1,6 @@
 ﻿Imports IBM.Data.DB2
 
-Namespace DBScanner
+Namespace DBScanners
 
     Namespace DBPingStrategies
 

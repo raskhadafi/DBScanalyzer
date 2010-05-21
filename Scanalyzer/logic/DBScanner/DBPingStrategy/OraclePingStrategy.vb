@@ -1,7 +1,7 @@
 ﻿Imports Oracle.DataAccess.Client
 'Imports System.Data.OracleClient
 
-Namespace DBScanner
+Namespace DBScanners
 
     Namespace DBPingStrategies
 
