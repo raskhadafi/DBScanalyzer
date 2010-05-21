@@ -2,9 +2,9 @@
 
     Public Module Helper
 
-        Public Function getDBAccessStrategy(ByVal type As Objects.DatabaseInstance.DatabaseEnum) As DBanalyzer.DBAccessStrategies.DBAccessStrategy
+        Public Function getDBAccessStrategy(ByVal type As Objects.DatabaseInstance.DatabaseEnum) As DBanalyzers.DBAccessStrategies.DBAccessStrategy
 
-            Dim access As DBanalyzer.DBAccessStrategies.DBAccessStrategy
+            Dim access As DBanalyzers.DBAccessStrategies.DBAccessStrategy
 
             access = Nothing
 
@@ -12,7 +12,7 @@
 
                 Case Objects.DatabaseInstance.DatabaseEnum.mysql
 
-                    access = New DBanalyzer.DBAccessStrategies.MySQLAccessStrategy
+                    access = New DBanalyzers.DBAccessStrategies.MySQLAccessStrategy
 
             End Select
 

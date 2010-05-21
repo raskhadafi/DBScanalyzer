@@ -1,4 +1,4 @@
-﻿Namespace DBanalyzer
+﻿Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 

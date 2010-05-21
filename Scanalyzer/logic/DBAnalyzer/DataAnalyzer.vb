@@ -1,4 +1,4 @@
-﻿Namespace DBanalyzer
+﻿Namespace DBanalyzers
 
     Public Class DataAnalyzer
 

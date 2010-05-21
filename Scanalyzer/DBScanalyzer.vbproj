@@ -115,7 +115,7 @@
     <Compile Include="helpers\ReferenceSelectionArrayList.vb" />
     <Compile Include="helpers\SQLiteHelper.vb" />
     <Compile Include="logic\ComputerPing.vb" />
-    <Compile Include="logic\DBAnalyzer.vb" />
+    <Compile Include="logic\DBAnalyzer\DBAnalyzer.vb" />
     <Compile Include="logic\DBAnalyzer\DataAnalyzer.vb" />
     <Compile Include="logic\DBAnalyzer\DBAccessStrategy.vb" />
     <Compile Include="logic\DBAnalyzer\DBAccessStrategy\DB2AccessStrategy.vb" />

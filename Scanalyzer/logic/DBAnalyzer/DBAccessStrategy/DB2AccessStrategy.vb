@@ -1,7 +1,7 @@
 ﻿Imports IBM.Data.DB2
 Imports Scanalyzer.Objects
 
-Namespace DBanalyzer
+Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 

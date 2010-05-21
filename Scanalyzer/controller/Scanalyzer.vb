@@ -78,15 +78,15 @@ Namespace Controller
 
         Public Sub startReadAnalyzeAndShowData()
 
-            Dim schemaAnalyzer As DBanalyzer.SchemaAnalyzer
-            Dim dataAnalyzer As DBanalyzer.DataAnalyzer
+            Dim schemaAnalyzer As DBanalyzers.SchemaAnalyzer
+            Dim dataAnalyzer As DBanalyzers.DataAnalyzer
             Dim reportVisualizer As View.ReportVisualizer
 
-            schemaAnalyzer = New DBanalyzer.SchemaAnalyzer(Me.computers, Me.settings)
+            schemaAnalyzer = New DBanalyzers.SchemaAnalyzer(Me.computers, Me.settings)
             schemaAnalyzer.getSchemasOfComputers()
             schemaAnalyzer.analyzeSchema()
 
-            dataAnalyzer = New DBanalyzer.DataAnalyzer(Me.computers, Me.settings)
+            dataAnalyzer = New DBanalyzers.DataAnalyzer(Me.computers, Me.settings)
             dataAnalyzer.analyzeColumnData()
 
             reportVisualizer = New View.ReportVisualizer(Me.computers)

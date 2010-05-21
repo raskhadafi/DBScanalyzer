@@ -1,6 +1,6 @@
 ﻿Imports Scanalyzer.Objects
 
-Namespace DBanalyzer
+Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 

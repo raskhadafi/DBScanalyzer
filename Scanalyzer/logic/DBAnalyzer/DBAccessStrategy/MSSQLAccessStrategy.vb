@@ -1,7 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports Scanalyzer.Objects
 
-Namespace DBanalyzer
+Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 
