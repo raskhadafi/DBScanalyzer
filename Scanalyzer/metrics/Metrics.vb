@@ -2,7 +2,7 @@
 
 Namespace Metrics
 
-    Public Class Metrics
+    Public Module Metrics
 
 
         Public Function checkIfEmail(ByVal email As String) As Integer
@@ -138,6 +138,6 @@ Namespace Metrics
 
         End Function
 
-    End Class
+    End Module
 
 End Namespace

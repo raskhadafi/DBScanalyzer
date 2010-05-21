@@ -138,6 +138,32 @@ Namespace Helpers
 
         End Function
 
+        Public Function getReferencesForStreet() As ArrayList
+
+            Dim references As ArrayList = New ArrayList
+
+            For Each ref In Me.references
+
+                If ref.isSelected Then
+
+                    If ref.reference = "street" Then
+
+                        For Each lang In ref.selectedLanguages
+
+                            references.Add(ref.reference + "_" + lang)
+
+                        Next
+
+                    End If
+
+                End If
+
+            Next
+
+            Return references
+
+        End Function
+
     End Class
 
 End Namespace
