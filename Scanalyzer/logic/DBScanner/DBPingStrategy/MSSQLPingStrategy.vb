@@ -22,16 +22,26 @@ Namespace DBScanners
                     connection = New SqlConnection(connectionString)
 
                     Try
+
                         connection.Open()
+
                     Catch ex As TimeoutException
 
+
+
                     Catch ex As OverflowException
+
+
 
                     Catch ex As SqlException
 
                         If ex.Number = 18456 Then
                             mssqlPorts.Add(i)
                         End If
+
+                    Catch ex As Exception
+
+
 
                     End Try
 

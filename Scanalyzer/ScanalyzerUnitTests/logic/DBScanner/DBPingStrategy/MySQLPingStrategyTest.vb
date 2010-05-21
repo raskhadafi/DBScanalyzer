@@ -49,7 +49,7 @@ Public Class MySQLPingStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.ipMySqlServer = "192.168.56.3"
+        Me.ipMySqlServer = "192.168.56.4"
 
     End Sub
     '
