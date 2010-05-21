@@ -5,7 +5,7 @@ Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 
-        Public Class MSSQLAccessStrategy
+        Friend Class MSSQLAccessStrategy
             Inherits DBAccessStrategy
 
             Private connection As SqlConnection

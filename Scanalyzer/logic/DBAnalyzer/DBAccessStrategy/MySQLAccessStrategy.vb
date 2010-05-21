@@ -5,7 +5,7 @@ Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 
-        Public Class MySQLAccessStrategy
+        Friend Class MySQLAccessStrategy
             Inherits DBAccessStrategy
 
             Private connection As New MySqlConnection

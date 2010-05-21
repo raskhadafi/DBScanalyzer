@@ -1,6 +1,6 @@
 ﻿Namespace DBanalyzers
 
-    Public Class DataAnalyzer
+    Friend Class DataAnalyzer
 
         Private computers As List(Of Objects.Computer)
         Private settings As Helpers.Setting
