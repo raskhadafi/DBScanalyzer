@@ -91,7 +91,7 @@ Namespace Controller
             Me.loggerOutput.updateLogger("start analyze data")
             analyzer.analyzeData()
             Me.loggerOutput.updateLogger("generate report")
-            reportVisualizer = New View.ReportVisualizer(Me.computers)
+            reportVisualizer = New View.ReportVisualizer(Me.computers, Me.loggerOutput)
             reportVisualizer.showReport()
 
         End Sub
