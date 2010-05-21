@@ -1,4 +1,6 @@
 ﻿Imports Scanalyzer.DBScanners
+Imports Scanalyzer.DBanalyzers
+
 
 Namespace Controller
 
@@ -78,17 +80,13 @@ Namespace Controller
 
         Public Sub startReadAnalyzeAndShowData()
 
-            Dim schemaAnalyzer As DBanalyzers.SchemaAnalyzer
-            Dim dataAnalyzer As DBanalyzers.DataAnalyzer
+            Dim analyzer As DBAnalyzer
             Dim reportVisualizer As View.ReportVisualizer
 
-            schemaAnalyzer = New DBanalyzers.SchemaAnalyzer(Me.computers, Me.settings)
-            schemaAnalyzer.getSchemasOfComputers()
-            schemaAnalyzer.analyzeSchema()
-
-            dataAnalyzer = New DBanalyzers.DataAnalyzer(Me.computers, Me.settings)
-            dataAnalyzer.analyzeColumnData()
-
+            analyzer = New DBAnalyzer(Me.computers, Me.settings, Me.loggerOutput)
+            Me.loggerOutput.updateLogger("start analyze")
+            analyzer.analyzeSchema()
+            Me.loggerOutput.updateLogger("generate report")
             reportVisualizer = New View.ReportVisualizer(Me.computers)
             reportVisualizer.show()
 
