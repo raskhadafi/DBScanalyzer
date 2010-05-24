@@ -14,21 +14,27 @@
 
         Public Sub analyzeColumnData()
 
-            Dim access As DBAccessStrategies.DBAccessStrategy
-
             For Each computer In Me.computers
 
                 For Each databaseInstance In computer.getDatabaseInstances
 
-                    access = Helpers.Helper.getDBAccessStrategy(databaseInstance.getDatabaseType)
-
                     For Each database In databaseInstance.getDatabases
+
+                        
 
                         For Each table In database.getTables
 
+                            Dim access As DBAccessStrategies.DBAccessStrategy
+                            Dim tableCount As Integer = 0
+
+                            access = Helpers.Helper.getDBAccessStrategy(databaseInstance.getDatabaseType)
+                            access.openConnection(computer, databaseInstance)
+                            tableCount = access.getTableCount(database.getName, table.getName)
+                            access.closeConnection()
+
                             For Each column In table.getColumns
 
-                                analyze(access.getColumn(database.getName, table.getName, column.getName), table)
+                                analyze(computer, databaseInstance, database, table, column, tableCount)
 
                             Next
 
@@ -42,11 +48,95 @@
 
         End Sub
 
-        Private Sub analyze(ByVal entries As ArrayList, ByRef table As Scanalyzer.Objects.Table)
+        Private Sub analyze(ByVal computer As Objects.Computer, ByVal databaseInstance As Objects.DatabaseInstance, ByRef database As Objects.Database, ByRef table As Objects.Table, ByRef column As Objects.Column, ByVal tableCount As Integer)
+
+            Dim access As DBAccessStrategies.DBAccessStrategy
+            Dim entries As List(Of String) = New List(Of String)
+            Dim value As Boolean = Nothing
+            Dim total As Integer = 0
+            Dim totalFound As Integer = 0
+            Dim checkIfDateTotal As Integer = 0
+            Dim checkIfEmailTotal As Integer = 0
+            Dim checkIfGenderTotal As Integer = 0
+            Dim checkIfStreetTotal As Integer = 0
+
+            access = Helpers.Helper.getDBAccessStrategy(databaseInstance.getDatabaseType)
+            access.openConnection(computer, databaseInstance)
+            ' read and analyze in steps
+            access.closeConnection()
 
             For Each entry In entries
 
+                For Each metric In Me.settings.getSelectedMetrics
 
+                    Select Case metric
+
+                        Case Helpers.Settings.Metric.checkIfDate
+
+                            If Metrics.checkIfDate(entry) Then
+
+                                checkIfDateTotal += 1
+
+                            End If
+
+                        Case Helpers.Settings.Metric.checkIfEmail
+
+                            If Metrics.checkIfEmail(entry) Then
+
+                                checkIfEmailTotal += 1
+
+                            End If
+
+                        Case Helpers.Settings.Metric.checkIfGender
+
+                            If Metrics.checkIfGender(entry) Then
+
+                                checkIfGenderTotal += 1
+
+                            End If
+
+                        Case Helpers.Settings.Metric.checkIfStreet
+
+                            If Metrics.checkIfStreet(entry) Then
+
+                                checkIfStreetTotal += 1
+
+                            End If
+
+                    End Select
+
+                Next
+
+
+                If checkIfDateTotal > checkIfEmailTotal & checkIfDateTotal > checkIfGenderTotal & checkIfDateTotal > checkIfEmailTotal Then
+
+                    totalFound = checkIfDateTotal
+
+                ElseIf checkIfEmailTotal > checkIfDateTotal & checkIfEmailTotal > checkIfGenderTotal & checkIfEmailTotal > checkIfStreetTotal Then
+
+                    totalFound = checkIfEmailTotal
+
+                ElseIf checkIfGenderTotal > checkIfDateTotal & checkIfGenderTotal > checkIfEmailTotal & checkIfGenderTotal > checkIfStreetTotal Then
+
+                    totalFound = checkIfGenderTotal
+
+                ElseIf checkIfStreetTotal > checkIfDateTotal & checkIfStreetTotal > checkIfEmailTotal & checkIfStreetTotal > checkIfGenderTotal Then
+
+                    totalFound = checkIfStreetTotal
+
+                Else
+
+                    totalFound = 0
+
+                End If
+
+                If total > 0 & totalFound > 0 Then
+
+                    totalFound = totalFound / total
+
+                End If
+
+                column.setFound(totalFound)
 
             Next
 

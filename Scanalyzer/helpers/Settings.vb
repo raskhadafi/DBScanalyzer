@@ -44,6 +44,12 @@ Namespace Helpers
 
         End Function
 
+        Public Function getSelectedMetrics() As Settings.MetricsSelectionArrayList
+
+            Return Me.metrics
+
+        End Function
+
         Public Function getMetrics() As Settings.MetricsSelectionArrayList
 
             Return Me.metrics

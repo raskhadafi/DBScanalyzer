@@ -24,7 +24,7 @@
 
                     access = Helpers.Helper.getDBAccessStrategy(db.getDatabaseType)
 
-                    If access.openConnection(computer, position) Then
+                    If access.openConnection(computer, db) Then
 
                         db.addDatabases(access.getDatabaseNames())
 

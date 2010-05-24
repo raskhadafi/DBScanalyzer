@@ -48,6 +48,12 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
+
+                Return 1
+
+            End Function
+
             Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
                 Dim reader As SqlDataReader
@@ -140,9 +146,7 @@ Namespace DBanalyzers
 
             End Function
 
-            Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
-
-                Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
+            Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstance As DatabaseInstance) As Boolean
 
                 Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort.ToString + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
                 connection = New SqlConnection(Me.connectionString)

@@ -29,6 +29,12 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
+
+                Return 1
+
+            End Function
+
             Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
                 Return Nothing
@@ -70,12 +76,10 @@ Namespace DBanalyzers
 
             End Function
 
-            Public Overrides Function openConnection(ByRef computerIn As Objects.Computer, ByVal databaseInstancePosition As Integer) As Boolean
+            Public Overrides Function openConnection(ByRef computerIn As Objects.Computer, ByVal databaseInstance As DatabaseInstance) As Boolean
 
-                Dim databaseInstance As DatabaseInstance
                 Dim computer As Computer = computerIn
 
-                databaseInstance = computer.getInstance(databaseInstancePosition)
                 Me.connectionString = "Server=" + computer.getIp() + ":" + databaseInstance.getPort().ToString + ";Database=" + databaseInstance.getName() + ";UID=" + databaseInstance.getUser() + ";PWD=" + databaseInstance.getPassword() + ";"
                 Me.connection = New DB2Connection(Me.connectionString)
 

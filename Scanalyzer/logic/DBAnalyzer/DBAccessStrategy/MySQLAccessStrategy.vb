@@ -48,6 +48,36 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
+
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
+                Dim count As Integer = 0
+
+                Try
+
+                    command = New MySqlCommand
+                    command.CommandText = "select count(*) from " + databaseName + "." + tableName
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
+
+                    While reader.Read
+
+                        count = reader.GetValue(0)
+
+                    End While
+
+                    reader.Close()
+
+                Catch ex As Exception
+
+                End Try
+
+                Return count
+
+            End Function
+
             Public Overrides Function getColumnNames(ByVal databaseName As String, ByVal tableName As String) As System.Collections.ArrayList
 
                 Dim reader As MySqlDataReader
@@ -106,28 +136,35 @@ Namespace DBanalyzers
 
             End Function
 
-            Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+            Public Overrides Function openConnection(ByRef computerIn As Computer, ByVal databaseInstance As DatabaseInstance) As Boolean
 
-                Dim databaseInstance As DatabaseInstance
                 Dim computer As Computer = computerIn
 
-                databaseInstance = computer.getInstance(databaseInstancePosition)
                 Me.connectionString = "server=" + computer.getIp() + ";uid=" + databaseInstance.getUser() + ";pwd=" + databaseInstance.getPassword() + ";port=" + databaseInstance.getPort().ToString + ";"
                 connection.ConnectionString = Me.connectionString
 
                 Try
+
                     connection.Open()
+
                     Return True
+
                 Catch ex As MySqlException
 
                     Select Case ex.Number
+
                         Case 0
+
                             MessageBox.Show("Cannot connect to server. Contact administrator")
+
                         Case 1045
+
                             MessageBox.Show("Invalid username/password, please try again")
+
                     End Select
 
                     Return False
+
                 End Try
 
             End Function
