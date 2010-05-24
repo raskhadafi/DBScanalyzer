@@ -18,6 +18,12 @@
 
         End Function
 
+        Public Sub setContainsReferencedata(ByVal value As Boolean)
+
+            Me.containsReferencedata = value
+
+        End Sub
+
     End Class
 
 End Namespace

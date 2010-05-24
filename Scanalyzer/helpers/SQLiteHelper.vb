@@ -11,7 +11,7 @@ Namespace Helpers
 
         Public Sub getReferences(ByRef references As Settings.ReferenceSelectionArrayList)
 
-            Dim dbReferences As ArrayList = New ArrayList
+            Dim dbReferences As List(Of String) = New List(Of String)
             Dim returnArray As New ReferenceSelectionArrayList
 
             initializeSQLiteConnection()
@@ -71,7 +71,7 @@ Namespace Helpers
 
         End Sub
 
-        Private Sub getDataFromQuery(ByRef entries As ArrayList, ByVal columnPosition As Integer)
+        Private Sub getDataFromQuery(ByRef entries As List(Of String), ByVal columnPosition As Integer)
 
             While sqlreader.Read
 
@@ -87,7 +87,7 @@ Namespace Helpers
 
         End Sub
 
-        Public Sub getReferenceData(ByVal tableName As String, ByRef entries As ArrayList)
+        Public Sub getReferenceData(ByVal tableName As String, ByRef entries As List(Of String))
 
             Try
 

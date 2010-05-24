@@ -131,6 +131,7 @@
     <Compile Include="logic\DBScanner\DBPingStrategy\MySQLPingStrategy.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\OraclePingStrategy.vb" />
     <Compile Include="metrics\Metrics.vb" />
+    <Compile Include="objects\Column.vb" />
     <Compile Include="objects\Computer.vb" />
     <Compile Include="objects\Database.vb" />
     <Compile Include="objects\DatabaseInstance.vb" />

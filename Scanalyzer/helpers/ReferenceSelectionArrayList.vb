@@ -130,6 +130,28 @@
 
             End Function
 
+            Public Function getSelectedReferences() As List(Of String)
+
+                Dim references As List(Of String) = New List(Of String)
+
+                For Each ref In Me
+
+                    If ref.isSelected Then
+
+                        For Each lang In ref.selectedLanguages
+
+                            references.Add(ref.reference + "_" + lang.ToString)
+
+                        Next
+
+                    End If
+
+                Next
+
+                Return references
+
+            End Function
+
         End Class
 
     End Namespace

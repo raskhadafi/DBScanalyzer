@@ -4,7 +4,6 @@ Namespace Metrics
 
     Public Module Metrics
 
-
         Public Function checkIfEmail(ByVal email As String) As Integer
 
             Dim emailRecognition As Regex = New Regex("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b")
@@ -106,14 +105,14 @@ Namespace Metrics
         End Function
 
         'check wether String is a Street
-        Public Function checkIfStreet(ByVal streetName As String, ByVal tableNames As ArrayList) As Integer
+        Public Function checkIfStreet(ByVal streetName As String, ByVal tableNames As List(Of String)) As Integer
             ' TODO: write streetchecklogic
 
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
             ' first fill possible refrence strings into arrays, start with one letter, then two letter-arrays and so on
             ' hof would be in the three letter arry, flur in a four-letterarray, street in a six-letter-array and so on
             Dim tableName As String = "street_identifier"
-            Dim streetVariants As ArrayList = New ArrayList
+            Dim streetVariants As List(Of String) = New List(Of String)
             Dim probability As Integer = 0
 
             For Each tableName In tableNames
@@ -135,6 +134,22 @@ Namespace Metrics
             Next
 
             Return probability
+
+        End Function
+
+        Public Function checkIfContains(ByVal name As String, ByVal searched As List(Of String)) As Boolean
+
+            For Each searching In searched
+
+                If name.Contains(searching) Then
+
+                    Return True
+
+                End If
+
+            Next
+
+            Return False
 
         End Function
 

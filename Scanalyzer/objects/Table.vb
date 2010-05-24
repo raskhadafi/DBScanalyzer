@@ -22,6 +22,12 @@
 
         End Function
 
+        Public Sub setContainsReferencedata(ByVal value As Boolean)
+
+            Me.containsReferencedata = value
+
+        End Sub
+
         Public Sub addColumns(ByRef columns As ArrayList)
 
             For Each column In columns

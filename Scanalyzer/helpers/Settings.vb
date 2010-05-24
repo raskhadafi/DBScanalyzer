@@ -100,6 +100,12 @@ Namespace Helpers
 
         End Function
 
+        Public Function getSelectedReferences() As List(Of String)
+
+            Return Me.references.getSelectedReferences
+
+        End Function
+
         Public Sub addIP(ByVal ip As String)
 
             Me.ipInput = ip

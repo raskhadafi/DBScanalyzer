@@ -75,11 +75,9 @@ Public Class MetricsTest
     '''</summary>
     <TestMethod()> _
     Public Sub checkIfDateTest()
-        Dim target As Metrics = New Metrics ' TODO: Initialize to an appropriate value
         Dim input As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.checkIfDate(input)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -88,12 +86,10 @@ Public Class MetricsTest
     '''A test for checkIfEmail
     '''</summary>
     <TestMethod()> _
-    Public Sub checkIfEmailTest()
-        Dim target As Metrics = New Metrics ' TODO: Initialize to an appropriate value
+    Public Sub checkIfEmailTest()' TODO: Initialize to an appropriate value
         Dim email As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.checkIfEmail(email)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -102,13 +98,11 @@ Public Class MetricsTest
     '''A test for checkIfGender
     '''</summary>
     <TestMethod()> _
-    Public Sub checkIfGenderTest()
-        Dim target As Metrics = New Metrics ' TODO: Initialize to an appropriate value
+    Public Sub checkIfGenderTest()' TODO: Initialize to an appropriate value
         Dim data As ArrayList = Nothing ' TODO: Initialize to an appropriate value
         Dim references As ArrayList = Nothing ' TODO: Initialize to an appropriate value
         Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
         Dim actual As Integer
-        actual = target.checkIfGender(data, references)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub
@@ -119,7 +113,6 @@ Public Class MetricsTest
     <TestMethod()> _
     Public Sub checkIfStreetTest()
 
-        Dim target As Metrics = New Metrics()
         Dim streetNameReal As String = "Sonnengrundstrasse"
         Dim streetNameFalse As String = "Horw"
         Dim expectedReal As Integer = 100
@@ -130,8 +123,6 @@ Public Class MetricsTest
 
         tableNames.Add("street_de")
 
-        actualReal = target.checkIfStreet(streetNameReal, tableNames)
-        actualFalse = target.checkIfStreet(streetNameFalse, tableNames)
 
         Assert.AreEqual(expectedReal, actualReal)
         Assert.AreEqual(expectedFalse, actualFalse)

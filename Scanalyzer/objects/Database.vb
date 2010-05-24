@@ -5,12 +5,20 @@
         Private name As String
         Private tables As List(Of Table)
         Private equalsToData As Integer
+        Private containsReferencedata As Boolean
 
         Public Sub New(ByVal name As String)
 
             Me.name = name
             Me.tables = New List(Of Table)
             Me.equalsToData = 0
+            Me.containsReferencedata = False
+
+        End Sub
+
+        Public Sub setContainsReferencedata(ByVal value As Boolean)
+
+            Me.containsReferencedata = value
 
         End Sub
 
