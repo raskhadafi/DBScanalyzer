@@ -115,46 +115,6 @@
 
         End Function
 
-        Private Function analyseTable(ByVal table As Objects.Table) As Integer
-
-            Dim value As Integer = 0
-
-            For Each metric In Me.settings.getMetrics
-
-                Select Case metric
-
-                    Case Helpers.Settings.Metric.checkIfDate
-
-                        value += Metrics.checkIfDate(table.getName)
-
-                    Case Helpers.Settings.Metric.checkIfEmail
-
-                        value += Metrics.Metrics.checkIfEmail(table.getName)
-
-                    Case Helpers.Settings.Metric.checkIfGender
-
-
-
-                    Case Helpers.Settings.Metric.checkIfStreet
-
-                        Dim tableNames As List(Of String) = New List(Of String)
-
-                        For Each ref In Me.settings.getReferencesForStreet
-
-                            Helpers.SQLiteHelper.getReferenceData(ref, tableNames)
-
-                        Next
-
-                        value += Metrics.Metrics.checkIfStreet(table.getName, tableNames)
-
-                End Select
-
-            Next
-
-            Return value
-
-        End Function
-
     End Class
 
 End Namespace
