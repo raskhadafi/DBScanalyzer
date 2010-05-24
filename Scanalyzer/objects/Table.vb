@@ -3,14 +3,16 @@
     Public Class Table
 
         Private name As String
-        Private columns As List(Of String)
+        Private columns As List(Of Column)
         Private equalsToData As Integer
+        Private containsReferencedata As Boolean
 
         Public Sub New(ByVal name As String)
 
             Me.name = name
             Me.equalsToData = 0
-            Me.columns = New List(Of String)
+            Me.columns = New List(Of Column)
+            Me.containsReferencedata = False
 
         End Sub
 
@@ -24,13 +26,13 @@
 
             For Each column In columns
 
-                Me.columns.Add(column.ToString)
+                Me.columns.Add(New Column(column.ToString))
 
             Next
 
         End Sub
 
-        Public Function getColumns() As List(Of String)
+        Public Function getColumns() As List(Of Column)
 
             Return Me.columns
 
