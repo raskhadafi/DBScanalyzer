@@ -15,9 +15,8 @@ Namespace Helpers
             Dim returnArray As New ReferenceSelectionArrayList
 
             initializeSQLiteConnection()
-            executeSQLCommand("SELECT tbl_name FROM sqlite_master WHERE type='table' ORDER BY tbl_name ASC")
+            executeSQLCommand("select table_name from referencebasisdata")
             getDataFromQuery(dbReferences, 0)
-            dbReferences.Remove("sqlite_sequence")
 
             For Each dbRef In dbReferences
 
