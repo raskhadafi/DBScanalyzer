@@ -28,7 +28,7 @@
 
                             For Each column In table.getColumns
 
-                                analyze(access.getColumn(database.getName, table.getName, column), table)
+                                analyze(access.getColumn(database.getName, table.getName, column.getName), table)
 
                             Next
 

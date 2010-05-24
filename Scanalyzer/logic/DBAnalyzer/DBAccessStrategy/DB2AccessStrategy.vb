@@ -5,7 +5,7 @@ Namespace DBanalyzers
 
     Namespace DBAccessStrategies
 
-        Friend Class DB2AccessStrategy
+        Class DB2AccessStrategy
             Inherits DBAccessStrategy
 
             Private connection As New DB2Connection
