@@ -23,6 +23,12 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getColumnLimited(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String, ByVal fromLimit As Integer, ByVal toLimit As Integer) As ArrayList
+
+                Return Nothing
+
+            End Function
+
             Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
                 Return Nothing

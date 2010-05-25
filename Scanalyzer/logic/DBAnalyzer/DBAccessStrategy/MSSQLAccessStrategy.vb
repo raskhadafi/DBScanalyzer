@@ -23,6 +23,31 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getColumnLimited(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String, ByVal fromLimit As Integer, ByVal toLimit As Integer) As ArrayList
+
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
+
+                Try
+                    Dim transaction As SqlTransaction = Me.connection.BeginTransaction
+
+                    command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName + " LIMIT " + fromLimit.ToString + "," + toLimit.ToString, connection, transaction)
+                    command.UpdatedRowSource = UpdateRowSource.Both
+                    reader = command.ExecuteReader
+
+                    While reader.Read()
+                        returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+                    End While
+
+                    reader.Close()
+                Catch ex As Exception
+
+                End Try
+
+                Return returnList
+
+            End Function
+
             Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
                 Dim reader As SqlDataReader

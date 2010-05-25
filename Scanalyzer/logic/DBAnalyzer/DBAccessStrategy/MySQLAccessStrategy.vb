@@ -23,6 +23,34 @@ Namespace DBanalyzers
 
             End Function
 
+            Public Overrides Function getColumnLimited(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String, ByVal fromLimit As Integer, ByVal toLimit As Integer) As ArrayList
+
+                Dim reader As MySqlDataReader
+                Dim returnList As New ArrayList
+
+                Try
+                    Dim transaction As MySqlTransaction = Me.connection.BeginTransaction
+
+                    command = New MySqlCommand("select " + columName + " from " + databaseName + "." + tableName + " limit " + fromLimit.ToString + "," + toLimit.ToString, connection, transaction)
+                    command.UpdatedRowSource = UpdateRowSource.Both
+                    reader = command.ExecuteReader
+
+                    While reader.Read()
+
+                        returnList.Add(reader.GetString(columName))
+
+                    End While
+
+                    reader.Close()
+
+                Catch ex As Exception
+
+                End Try
+
+                Return returnList
+
+            End Function
+
             Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
                 Dim reader As MySqlDataReader
@@ -36,10 +64,13 @@ Namespace DBanalyzers
                     reader = command.ExecuteReader
 
                     While reader.Read()
+
                         returnList.Add(reader.GetString(columName))
+
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
 
                 End Try
