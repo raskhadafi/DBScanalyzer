@@ -8,8 +8,6 @@ Namespace Helpers
         Private ips As List(Of String)
         Private references As Settings.ReferenceSelectionArrayList
         Private metrics As Settings.MetricsSelectionArrayList
-        Public checkIPRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b$")
-        Public checkIPRangeRegex As New Regex("^\b(?:\d{1,3}\.){3}\d{1,3}\b-\b(?:\d{1,3}\.){0}\d{1,3}\b$")
 
 
         Public Sub New()
