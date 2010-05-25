@@ -32,11 +32,15 @@
                             tableCount = access.getTableCount(database.getName, table.getName)
                             access.closeConnection()
 
-                            For Each column In table.getColumns
+                            If tableCount > 0 Then
 
-                                analyze(computer, databaseInstance, database, table, column, tableCount)
+                                For Each column In table.getColumns
 
-                            Next
+                                    analyze(computer, databaseInstance, database, table, column, tableCount)
+
+                                Next
+
+                            End If
 
                         Next
 
@@ -52,6 +56,7 @@
 
             Dim access As DBAccessStrategies.DBAccessStrategy
             Dim entries As List(Of String) = New List(Of String)
+            Dim entriesFromDB As ArrayList
             Dim value As Boolean = Nothing
             Dim total As Integer = 0
             Dim totalFound As Integer = 0
@@ -62,51 +67,54 @@
 
             access = Helpers.Helper.getDBAccessStrategy(databaseInstance.getDatabaseType)
             access.openConnection(computer, databaseInstance)
-            ' read and analyze in steps
-            access.closeConnection()
 
-            For Each entry In entries
+            For i As Integer = 0 To tableCount Step 100
+                entriesFromDB = access.getColumnLimited(database.getName, table.getName, column.getName, i, (i + 99))
+                For Each entry In entriesFromDB
 
-                For Each metric In Me.settings.getSelectedMetrics
+                    For Each metric In Me.settings.getSelectedMetrics
 
-                    Select Case metric
+                        Select Case metric
 
-                        Case Helpers.Settings.Metric.checkIfDate
+                            Case Helpers.Settings.Metric.checkIfDate
 
-                            If Metrics.checkIfDate(entry) Then
+                                If Metrics.checkIfDate(entry) Then
 
-                                checkIfDateTotal += 1
+                                    checkIfDateTotal += 1
 
-                            End If
+                                End If
 
-                        Case Helpers.Settings.Metric.checkIfEmail
+                            Case Helpers.Settings.Metric.checkIfEmail
 
-                            If Metrics.checkIfEmail(entry) Then
+                                If Metrics.checkIfEmail(entry) Then
 
-                                checkIfEmailTotal += 1
+                                    checkIfEmailTotal += 1
 
-                            End If
+                                End If
 
-                        Case Helpers.Settings.Metric.checkIfGender
+                            Case Helpers.Settings.Metric.checkIfGender
 
-                            If Metrics.checkIfGender(entry) Then
+                                If Metrics.checkIfGender(entry) Then
 
-                                checkIfGenderTotal += 1
+                                    checkIfGenderTotal += 1
 
-                            End If
+                                End If
 
-                        Case Helpers.Settings.Metric.checkIfStreet
+                            Case Helpers.Settings.Metric.checkIfStreet
 
-                            If Metrics.checkIfStreet(entry) Then
+                                If Metrics.checkIfStreet(entry) Then
 
-                                checkIfStreetTotal += 1
+                                    checkIfStreetTotal += 1
 
-                            End If
+                                End If
 
-                    End Select
+                        End Select
+
+                    Next
 
                 Next
 
+                access.closeConnection()
 
                 If checkIfDateTotal > checkIfEmailTotal & checkIfDateTotal > checkIfGenderTotal & checkIfDateTotal > checkIfEmailTotal Then
 
@@ -127,6 +135,12 @@
                 Else
 
                     totalFound = 0
+
+                End If
+
+                If checkIfEmailTotal > 0 Then
+
+                    totalFound = checkIfEmailTotal
 
                 End If
 
