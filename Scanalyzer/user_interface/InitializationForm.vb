@@ -368,11 +368,11 @@ Public Class InitializationForm
 
         If Not Me.txtIPRange.Text.Length = 0 Then
 
-            If Me.settings.checkIPRegex.IsMatch(txtIPRange.Text) Then
+            If Helper.checkIPRegex.IsMatch(txtIPRange.Text) Then
 
                 Return True
 
-            ElseIf Me.settings.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
+            ElseIf Helper.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
 
                 Return True
 
@@ -386,11 +386,11 @@ Public Class InitializationForm
 
     Private Sub updateIpInput()
 
-        If Me.settings.checkIPRegex.IsMatch(txtIPRange.Text) Then
+        If Helper.checkIPRegex.IsMatch(txtIPRange.Text) Then
 
             Me.settings.addIP(txtIPRange.Text)
 
-        ElseIf Me.settings.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
+        ElseIf Helper.checkIPRangeRegex.IsMatch(Me.txtIPRange.Text) Then
 
             Me.settings.addIPRange(txtIPRange.Text)
 
