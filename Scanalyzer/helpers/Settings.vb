@@ -8,13 +8,29 @@ Namespace Helpers
         Private ips As List(Of String)
         Private references As Settings.ReferenceSelectionArrayList
         Private metrics As Settings.MetricsSelectionArrayList
+        Private dataAnalyzationLimit As Integer
+        Private anaylzeEverything As Boolean
 
 
         Public Sub New()
 
-            ips = New List(Of String)
+            Me.ips = New List(Of String)
+            Me.dataAnalyzationLimit = 100
+            Me.anaylzeEverything = False
 
         End Sub
+
+        Public Function analyzeEverthing() As Boolean
+
+            Return Me.anaylzeEverything
+
+        End Function
+
+        Public Function getDataAnalyzationLimit() As Integer
+
+            Return Me.dataAnalyzationLimit
+
+        End Function
 
         Public Function getIps() As Array
 
