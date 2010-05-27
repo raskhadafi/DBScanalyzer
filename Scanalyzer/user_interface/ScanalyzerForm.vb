@@ -39,9 +39,11 @@ Public Class ScanalyzerForm
 
     End Sub
 
-    Private Sub ReferenzdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ReferenzdatenToolStripMenuItem.Click
+    Private Sub ReferenzdatenToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DirectAnalyzationToolStripMenuItem.Click
 
+        Dim directAnalyzerForm As ScanalyzerDirectAnalyzation
 
+        directAnalyzerForm = New ScanalyzerDirectAnalyzation
 
     End Sub
 

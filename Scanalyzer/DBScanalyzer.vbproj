@@ -149,6 +149,12 @@
     <Compile Include="user_interface\InitializationForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="user_interface\ScanalyzerDirectAnalyzation.Designer.vb">
+      <DependentUpon>ScanalyzerDirectAnalyzation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="user_interface\ScanalyzerDirectAnalyzation.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="user_interface\ScanalyzerForm.vb">
       <SubType>Form</SubType>
     </Compile>
@@ -198,6 +204,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="user_interface\InitializationForm.resx">
       <DependentUpon>InitializationForm.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="user_interface\ScanalyzerDirectAnalyzation.resx">
+      <DependentUpon>ScanalyzerDirectAnalyzation.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="user_interface\ScanalyzerForm.resx">
@@ -269,20 +279,20 @@
   <ItemGroup>
     <PublishFile Include="IBM.Data.U2.Ucinet">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="user_interface\DBScanalyzerHelp.htm">
       <Visible>False</Visible>
-      <PublishState>Exclude</PublishState>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Exclude</PublishState>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

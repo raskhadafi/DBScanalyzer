@@ -25,7 +25,7 @@ Partial Class ScanalyzerForm
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerForm))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.InitializeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.ReferenzdatenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
+        Me.DirectAnalyzationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
@@ -42,7 +42,7 @@ Partial Class ScanalyzerForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitializeToolStripMenuItem, Me.ReferenzdatenToolStripMenuItem, Me.FileToolStripMenuItem, Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitializeToolStripMenuItem, Me.DirectAnalyzationToolStripMenuItem, Me.FileToolStripMenuItem, Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(523, 24)
@@ -56,11 +56,11 @@ Partial Class ScanalyzerForm
         Me.InitializeToolStripMenuItem.Size = New System.Drawing.Size(58, 20)
         Me.InitializeToolStripMenuItem.Text = "Initialize"
         '
-        'ReferenzdatenToolStripMenuItem
+        'DirectAnalyzationToolStripMenuItem
         '
-        Me.ReferenzdatenToolStripMenuItem.Name = "ReferenzdatenToolStripMenuItem"
-        Me.ReferenzdatenToolStripMenuItem.Size = New System.Drawing.Size(74, 20)
-        Me.ReferenzdatenToolStripMenuItem.Text = "References"
+        Me.DirectAnalyzationToolStripMenuItem.Name = "DirectAnalyzationToolStripMenuItem"
+        Me.DirectAnalyzationToolStripMenuItem.Size = New System.Drawing.Size(89, 20)
+        Me.DirectAnalyzationToolStripMenuItem.Text = "Direct Analysis"
         '
         'FileToolStripMenuItem
         '
@@ -182,7 +182,7 @@ Partial Class ScanalyzerForm
     Friend WithEvents MenuStrip1 As System.Windows.Forms.MenuStrip
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ReferenzdatenToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents DirectAnalyzationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InitializeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblIpRange As System.Windows.Forms.Label

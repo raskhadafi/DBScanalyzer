@@ -70,7 +70,13 @@
                             For Each column In table.getColumns
 
                                 columnContainsReferencedata = column.getContainsRefernecedata
-                                column.setEquals(calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata))
+
+                                If column.getFound > 0 Then
+
+                                    column.setEquals(calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata))
+
+                                End If
+
                                 tableTotal += column.getEquals
                                 tableTotalCount += 1
 
