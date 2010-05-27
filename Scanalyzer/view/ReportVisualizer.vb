@@ -38,11 +38,11 @@
 
                     For Each database In databaseInstance.getDatabases
 
-                        text += TABSPACER + TABSPACER + "Database-Name: " + database.getName + TABSPACER + "equals: " + database.getEquals.ToString + vbNewLine
+                        text += TABSPACER + TABSPACER + "Database-Name: " + database.getName + TABSPACER + "equals: " + database.getEquals.ToString + "%" + vbNewLine
 
                         For Each table In database.getTables
 
-                            text += TABSPACER + TABSPACER + TABSPACER + table.getName + ": " + table.getEquals.ToString + vbNewLine
+                            text += TABSPACER + TABSPACER + TABSPACER + table.getName + ": " + table.getEquals.ToString + "%" + vbNewLine
 
                         Next
 
