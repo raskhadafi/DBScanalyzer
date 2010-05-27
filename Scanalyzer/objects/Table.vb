@@ -6,6 +6,7 @@
         Private columns As List(Of Column)
         Private equalsToData As Integer
         Private containsReferencedata As Boolean
+        Private totalFound As Integer
 
         Public Sub New(ByVal name As String)
 
@@ -13,6 +14,7 @@
             Me.equalsToData = 0
             Me.columns = New List(Of Column)
             Me.containsReferencedata = False
+            Me.totalFound = 0
 
         End Sub
 
@@ -27,6 +29,12 @@
             Me.containsReferencedata = value
 
         End Sub
+
+        Public Function getContainsRefernecedata() As Boolean
+
+            Return Me.containsReferencedata
+
+        End Function
 
         Public Sub addColumns(ByRef columns As ArrayList)
 
@@ -44,15 +52,27 @@
 
         End Function
 
-        Public Sub increaseEqualsToDataBy(ByVal up As Integer)
+        Public Sub setEquals(ByVal value As Integer)
 
-            Me.equalsToData += up
+            Me.equalsToData = value
 
         End Sub
 
         Public Function getEquals() As Integer
 
             Return Me.equalsToData
+
+        End Function
+
+        Public Sub setFound(ByVal totalFound As Integer)
+
+            Me.totalFound = totalFound
+
+        End Sub
+
+        Public Function getFound() As Integer
+
+            Return Me.totalFound
 
         End Function
 

@@ -32,6 +32,7 @@
 
             dataAnalyzer = New DataAnalyzer(Me.computers, Me.settings)
             dataAnalyzer.analyzeColumnData()
+            dataAnalyzer.calculateReport()
 
         End Sub
 

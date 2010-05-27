@@ -20,8 +20,6 @@
 
                     For Each database In databaseInstance.getDatabases
 
-                        
-
                         For Each table In database.getTables
 
                             Dim access As DBAccessStrategies.DBAccessStrategy
@@ -60,15 +58,33 @@
 
                     For Each database In databaseInstance.getDatabases
 
+                        Dim dbTotal As Integer = 0
+                        Dim dbTotalCount As Integer = 0
+
                         For Each table In database.getTables
+
+                            Dim columnContainsReferencedata As Boolean
+                            Dim tableTotal As Integer = 0
+                            Dim tableTotalCount As Integer = 0
 
                             For Each column In table.getColumns
 
-
+                                columnContainsReferencedata = column.getContainsRefernecedata
+                                column.setEquals(calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata))
+                                tableTotal += column.getEquals
+                                tableTotalCount += 1
 
                             Next
 
+                            table.setEquals(tableTotal / tableTotalCount)
+                            tableTotal = 0
+                            tableTotalCount = 0
+                            dbTotal = table.getEquals
+                            dbTotalCount += 1
+
                         Next
+
+                        database.setEquals(dbTotal / dbTotalCount)
 
                     Next
 
@@ -77,6 +93,36 @@
             Next
 
         End Sub
+
+        Private Function calculateEquals(ByVal foundTotalColumn As Integer, ByVal factorDatabase As Boolean, ByVal factorTable As Boolean, ByVal factorColumn As Boolean) As Integer
+
+            Dim fDatbase As Integer = 0
+            Dim fTable As Integer = 0
+            Dim fColumn As Integer = 0
+
+            If factorDatabase Then
+
+                fDatbase = Me.settings.getFDatabase
+
+            End If
+
+
+            If factorTable Then
+
+                fTable = Me.settings.getFTable
+
+            End If
+
+            If factorColumn Then
+
+                fColumn = Me.settings.getFColumn
+
+            End If
+
+
+            Return foundTotalColumn + (100 - foundTotalColumn) * (fDatbase + fTable + fColumn)
+
+        End Function
 
         Private Sub analyze(ByVal computer As Objects.Computer, ByVal databaseInstance As Objects.DatabaseInstance, ByRef database As Objects.Database, ByRef table As Objects.Table, ByRef column As Objects.Column, ByVal tableCount As Integer)
 

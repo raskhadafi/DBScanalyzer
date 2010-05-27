@@ -10,15 +10,38 @@ Namespace Helpers
         Private metrics As Settings.MetricsSelectionArrayList
         Private dataAnalyzationLimit As Integer
         Private anaylzeEverything As Boolean
-
+        Private fDatabase As Integer
+        Private fTable As Integer
+        Private fColumn As Integer
 
         Public Sub New()
 
             Me.ips = New List(Of String)
             Me.dataAnalyzationLimit = 100
             Me.anaylzeEverything = False
+            Me.fDatabase = 0.1
+            Me.fTable = 0.2
+            Me.fColumn = 0.3
 
         End Sub
+
+        Public Function getFDatabase() As Integer
+
+            Return Me.fDatabase
+
+        End Function
+
+        Public Function getFTable() As Integer
+
+            Return Me.fTable
+
+        End Function
+
+        Public Function getFColumn() As Integer
+
+            Return Me.fColumn
+
+        End Function
 
         Public Function analyzeEverthing() As Boolean
 
