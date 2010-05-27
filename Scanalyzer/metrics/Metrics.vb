@@ -21,7 +21,7 @@ Namespace Metrics
 
         End Function
 
-        Public Function checkIfGender(ByVal data As String) As Integer
+        Public Function checkIfGender(ByVal data As String) As Boolean
 
             'Dim entries As ArrayList = data
             Dim propability As Integer = 0
@@ -86,7 +86,7 @@ Namespace Metrics
         'check whether String is a Date
         'return true or false
 
-        Public Function checkIfDate(ByVal input As String) As Integer
+        Public Function checkIfDate(ByVal input As String) As Boolean
             'TODO: write datechecklogic
 
             ' to check:
@@ -106,7 +106,7 @@ Namespace Metrics
         End Function
 
         'check wether String is a Street
-        Public Function checkIfStreet(ByVal streetName As String) As Integer
+        Public Function checkIfStreet(ByVal streetName As String) As Boolean
             ' TODO: write streetchecklogic
 
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
