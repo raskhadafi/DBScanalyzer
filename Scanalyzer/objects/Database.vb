@@ -4,10 +4,9 @@
 
         Private name As String
         Private tables As List(Of Table)
-        Private equalsToData As Integer
+        Private equalsToData As Decimal
         Private containsReferencedata As Boolean
-        Private totalFound As Integer
-        Private totalFoundCount As Integer
+        Private totalFound As Decimal
 
         Public Sub New(ByVal name As String)
 
@@ -16,7 +15,6 @@
             Me.equalsToData = 0
             Me.containsReferencedata = False
             Me.totalFound = 0
-            Me.totalFoundCount = 0
 
         End Sub
 
@@ -32,7 +30,7 @@
 
         End Function
 
-        Public Function getEquals() As Integer
+        Public Function getEquals() As Decimal
 
             Return Me.equalsToData
 
@@ -74,13 +72,13 @@
 
         End Sub
 
-        Public Sub setFound(ByVal totalFound As Integer)
+        Public Sub setFound(ByVal totalFound As Decimal)
 
             Me.totalFound = totalFound
 
         End Sub
 
-        Public Function getFound() As Integer
+        Public Function getFound() As Decimal
 
             Return Me.totalFound
 

@@ -4,9 +4,9 @@
 
         Private name As String
         Private columns As List(Of Column)
-        Private equalsToData As Integer
+        Private equalsToData As Decimal
         Private containsReferencedata As Boolean
-        Private totalFound As Integer
+        Private totalFound As Decimal
 
         Public Sub New(ByVal name As String)
 
@@ -52,13 +52,13 @@
 
         End Function
 
-        Public Sub setEquals(ByVal value As Integer)
+        Public Sub setEquals(ByVal value As Decimal)
 
             Me.equalsToData = value
 
         End Sub
 
-        Public Function getEquals() As Integer
+        Public Function getEquals() As Decimal
 
             Return Me.equalsToData
 
@@ -70,7 +70,7 @@
 
         End Sub
 
-        Public Function getFound() As Integer
+        Public Function getFound() As Decimal
 
             Return Me.totalFound
 

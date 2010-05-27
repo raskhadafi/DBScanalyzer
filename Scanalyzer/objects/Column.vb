@@ -4,8 +4,8 @@
 
         Private name As String
         Private containsReferencedata As Boolean
-        Private totalFound As Integer
-        Private equalsToData As Integer
+        Private totalFound As Decimal
+        Private equalsToData As Decimal
 
         Public Sub New(ByVal name As String)
 
@@ -34,25 +34,25 @@
 
         End Function
 
-        Public Sub setFound(ByVal totalFound As Integer)
+        Public Sub setFound(ByVal totalFound As Decimal)
 
             Me.totalFound = totalFound
 
         End Sub
 
-        Public Function getFound() As Integer
+        Public Function getFound() As Decimal
 
             Return Me.totalFound
 
         End Function
 
-        Public Sub setEquals(ByVal value As Integer)
+        Public Sub setEquals(ByVal value As Decimal)
 
             Me.equalsToData = value
 
         End Sub
 
-        Public Function getEquals() As Integer
+        Public Function getEquals() As Decimal
 
             Return Me.equalsToData
 

@@ -58,14 +58,14 @@
 
                     For Each database In databaseInstance.getDatabases
 
-                        Dim dbTotal As Integer = 0
-                        Dim dbTotalCount As Integer = 0
+                        Dim dbTotal As Decimal = 0
+                        Dim dbTotalCount As Decimal = 0
 
                         For Each table In database.getTables
 
                             Dim columnContainsReferencedata As Boolean
-                            Dim tableTotal As Integer = 0
-                            Dim tableTotalCount As Integer = 0
+                            Dim tableTotal As Decimal = 0
+                            Dim tableTotalCount As Decimal = 0
 
                             For Each column In table.getColumns
 
@@ -73,7 +73,13 @@
 
                                 If column.getFound > 0 Then
 
-                                    column.setEquals(calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata))
+                                    Dim equal As Decimal = calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata)
+
+                                    If equal > 0 Then
+
+                                        column.setEquals(equal)
+
+                                    End If
 
                                 End If
 
@@ -100,11 +106,11 @@
 
         End Sub
 
-        Private Function calculateEquals(ByVal foundTotalColumn As Integer, ByVal factorDatabase As Boolean, ByVal factorTable As Boolean, ByVal factorColumn As Boolean) As Integer
+        Private Function calculateEquals(ByVal foundTotalColumn As Decimal, ByVal factorDatabase As Boolean, ByVal factorTable As Boolean, ByVal factorColumn As Boolean) As Decimal
 
-            Dim fDatbase As Integer = 0
-            Dim fTable As Integer = 0
-            Dim fColumn As Integer = 0
+            Dim fDatbase As Decimal = 0
+            Dim fTable As Decimal = 0
+            Dim fColumn As Decimal = 0
 
             If factorDatabase Then
 
@@ -137,8 +143,8 @@
             Dim entriesFromDB As ArrayList
             Dim totalToAnalyze As Integer
             Dim value As Boolean = Nothing
-            Dim total As Integer = 0
-            Dim totalFound As Integer = 0
+            Dim total As Decimal = 0
+            Dim count As Integer = 0
             Dim checkIfDateTotal As Integer = 0
             Dim checkIfEmailTotal As Integer = 0
             Dim checkIfGenderTotal As Integer = 0
@@ -162,6 +168,8 @@
             For i As Integer = 0 To totalToAnalyze Step 100
                 entriesFromDB = access.getColumnLimited(database.getName, table.getName, column.getName, i, (i + 99))
                 For Each entry In entriesFromDB
+
+                    count += 1
 
                     For Each metric In Me.settings.getSelectedMetrics
 
@@ -206,29 +214,35 @@
                 Next
 
                 access.closeConnection()
-                column.setFound(getTotalOfFoundMetrics(checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal))
+                total = getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal)
+
+                If total > 0 Then
+
+                    column.setFound(total)
+
+                End If
 
             Next
 
         End Sub
 
-        Private Function getTotalOfFoundMetrics(ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer) As Integer
+        Private Function getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer) As Decimal
 
             If checkIfEmailTotal > 0 Then
 
-                Return checkIfEmailTotal
+                Return (checkIfEmailTotal / count) * 100
 
             ElseIf checkIfDateTotal > 0 Then
 
-                Return checkIfDateTotal
+                Return (checkIfDateTotal / count) * 100
 
             ElseIf checkIfGenderTotal > 0 Then
 
-                Return checkIfGenderTotal
+                Return (checkIfGenderTotal / count) * 100
 
             ElseIf checkIfStreetTotal > 0 Then
 
-                Return checkIfStreetTotal
+                Return (checkIfStreetTotal / count) * 100
 
             End If
 
