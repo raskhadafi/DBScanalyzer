@@ -22,6 +22,13 @@ Namespace Controller
 
         End Sub
 
+        Public Sub New(ByRef settings As Helpers.Setting, ByVal ownerForm As ScanalyzerForm, ByVal computer As Objects.Computer)
+
+            Me.New(settings, ownerForm)
+            Me.computers.Add(computer)
+
+        End Sub
+
         Public Sub startScanning()
 
             Dim dbScanner As DBScanners.DBScanner

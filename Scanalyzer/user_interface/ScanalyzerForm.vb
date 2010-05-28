@@ -6,6 +6,7 @@ Public Class ScanalyzerForm
     Private initializationSetup As InitializationForm
     Private scanalyzer As Controller.Scanalyzer
     Private state As ScanalyzerState = ScanalyzerState.waitForInitialization
+    Private directAnalyzationComputer As Objects.Computer
 
     Public Sub New()
 
@@ -43,7 +44,9 @@ Public Class ScanalyzerForm
 
         Dim directAnalyzerForm As ScanalyzerDirectAnalyzation
 
-        directAnalyzerForm = New ScanalyzerDirectAnalyzation
+        directAnalyzerForm = New ScanalyzerDirectAnalyzation(Me)
+        directAnalyzerForm.Show()
+        directAnalyzerForm.Focus()
 
     End Sub
 
@@ -81,6 +84,12 @@ Public Class ScanalyzerForm
 
     End Sub
 
+    Public Sub setDirectAnalyzation(ByRef computer As Objects.Computer)
+
+        Me.directAnalyzationComputer = computer
+
+    End Sub
+
     Private Sub btnStartScanalyzer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnStartScanalyzer.Click
 
         Select Case Me.state
@@ -93,6 +102,12 @@ Public Class ScanalyzerForm
                 Me.showFoundComputersAndDatabaseinstaces()
                 Me.state = ScanalyzerState.waitForAnalyzing
 
+            Case ScanalyzerState.waitForDirectAnalyzing
+
+                Me.scanalyzer = New Controller.Scanalyzer(Me.settings, Me, Me.directAnalyzationComputer)
+                Me.showBtnStartScanalyzer(False)
+                Me.scanalyzer.startReadAnalyzeAndShowData()
+
             Case ScanalyzerState.waitForAnalyzing
 
                 If Me.scanalyzer.checkIfLeastOneDatabaseinstanceCheckedAndFilled() Then
@@ -103,6 +118,12 @@ Public Class ScanalyzerForm
                 End If
 
         End Select
+
+    End Sub
+
+    Public Sub setStateToDirectAnalyzation()
+
+        Me.state = ScanalyzerState.waitForDirectAnalyzing
 
     End Sub
 
@@ -152,6 +173,7 @@ Public Class ScanalyzerForm
         waitForInitialization
         waitForScanning
         waitForAnalyzing
+        waitForDirectAnalyzing
 
     End Enum
 
