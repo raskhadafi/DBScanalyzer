@@ -42,6 +42,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtIP.Name = "txtIP"
         Me.txtIP.Size = New System.Drawing.Size(100, 20)
         Me.txtIP.TabIndex = 0
+        Me.txtIP.Text = "192.168.56.3"
         '
         'Label1
         '
@@ -76,6 +77,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtUsr.Name = "txtUsr"
         Me.txtUsr.Size = New System.Drawing.Size(100, 20)
         Me.txtUsr.TabIndex = 2
+        Me.txtUsr.Text = "dbtest"
         '
         'txtPwd
         '
@@ -83,6 +85,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtPwd.Name = "txtPwd"
         Me.txtPwd.Size = New System.Drawing.Size(100, 20)
         Me.txtPwd.TabIndex = 3
+        Me.txtPwd.Text = "dbtest"
         '
         'Label4
         '
@@ -96,6 +99,8 @@ Partial Class ScanalyzerDirectAnalyzation
         'RadioButton1
         '
         Me.RadioButton1.AutoSize = True
+        Me.RadioButton1.Checked = True
+        Me.RadioButton1.Enabled = False
         Me.RadioButton1.Location = New System.Drawing.Point(113, 175)
         Me.RadioButton1.Name = "RadioButton1"
         Me.RadioButton1.Size = New System.Drawing.Size(51, 17)
@@ -110,6 +115,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtPort.Name = "txtPort"
         Me.txtPort.Size = New System.Drawing.Size(100, 20)
         Me.txtPort.TabIndex = 1
+        Me.txtPort.Text = "3307"
         '
         'Label5
         '
