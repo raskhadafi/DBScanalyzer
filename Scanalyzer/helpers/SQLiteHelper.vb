@@ -102,6 +102,21 @@ Namespace Helpers
 
         End Sub
 
+        Public Sub getReferencedataForMetrics(ByVal metricName As String, ByRef entries As List(Of String))
+
+            Try
+
+                initializeSQLiteConnection()
+                executeSQLCommand("SELECT table_name FROM metric_data where name = " + metricName)
+                getDataFromQuery(entries, 0)
+                closeSQLiteConnection()
+
+            Catch ex As Exception
+
+            End Try
+
+        End Sub
+
     End Module
 
 End Namespace
