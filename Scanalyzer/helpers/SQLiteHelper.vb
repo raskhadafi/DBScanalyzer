@@ -107,7 +107,7 @@ Namespace Helpers
             Try
 
                 initializeSQLiteConnection()
-                executeSQLCommand("SELECT table_name FROM metric_data where name = " + metricName)
+                executeSQLCommand("SELECT table_name FROM metric_data WHERE name = '" + metricName + "'")
                 getDataFromQuery(entries, 0)
                 closeSQLiteConnection()
 
