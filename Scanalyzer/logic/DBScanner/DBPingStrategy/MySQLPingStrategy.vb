@@ -1,8 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 
-Namespace DBScanner
+Namespace DBScanners
 
-    Namespace DBPingStrategy
+    Namespace DBPingStrategies
 
         Public Class MySQLPingStrategy
             Inherits DBPingStrategy

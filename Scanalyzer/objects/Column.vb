@@ -1,20 +1,25 @@
 ﻿Namespace Objects
 
-    Public Class Table
+    Public Class Column
 
         Private name As String
-        Private columns As List(Of Column)
-        Private equalsToData As Decimal
         Private containsReferencedata As Boolean
         Private totalFound As Decimal
+        Private equalsToData As Decimal
+        Private metric As Helpers.Settings.Metric
 
         Public Sub New(ByVal name As String)
 
             Me.name = name
-            Me.equalsToData = 0
-            Me.columns = New List(Of Column)
             Me.containsReferencedata = False
             Me.totalFound = 0
+            Me.equalsToData = 0
+
+        End Sub
+
+        Public Sub setMetricFound(ByVal metric As Helpers.Settings.Metric)
+
+            Me.metric = metric
 
         End Sub
 
@@ -36,19 +41,15 @@
 
         End Function
 
-        Public Sub addColumns(ByRef columns As ArrayList)
+        Public Sub setFound(ByVal totalFound As Decimal)
 
-            For Each column In columns
-
-                Me.columns.Add(New Column(column.ToString))
-
-            Next
+            Me.totalFound = totalFound
 
         End Sub
 
-        Public Function getColumns() As List(Of Column)
+        Public Function getFound() As Decimal
 
-            Return Me.columns
+            Return Me.totalFound
 
         End Function
 
@@ -61,18 +62,6 @@
         Public Function getEquals() As Decimal
 
             Return Me.equalsToData
-
-        End Function
-
-        Public Sub setFound(ByVal totalFound As Integer)
-
-            Me.totalFound = totalFound
-
-        End Sub
-
-        Public Function getFound() As Decimal
-
-            Return Me.totalFound
 
         End Function
 

@@ -61,7 +61,6 @@ Partial Class ScanalyzerLoginForm
         Me.txtPassword.Name = "txtPassword"
         Me.txtPassword.Size = New System.Drawing.Size(190, 20)
         Me.txtPassword.TabIndex = 2
-        Me.txtPassword.UseSystemPasswordChar = True
         '
         'btnSetCredentials
         '
@@ -84,7 +83,7 @@ Partial Class ScanalyzerLoginForm
         Me.Controls.Add(Me.txtUser)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ScanalyzerLoginForm"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "ScanalyzerLoginForm"
         Me.ResumeLayout(False)
         Me.PerformLayout()

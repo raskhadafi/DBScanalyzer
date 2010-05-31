@@ -1,11 +1,11 @@
 ﻿Imports IBM.Data.DB2
 Imports Scanalyzer.Objects
 
-Namespace DBanalyzer
+Namespace DBanalyzers
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
-        Public Class DB2AccessStrategy
+        Class DB2AccessStrategy
             Inherits DBAccessStrategy
 
             Private connection As New DB2Connection
@@ -23,9 +23,21 @@ Namespace DBanalyzer
 
             End Function
 
+            Public Overrides Function getColumnLimited(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String, ByVal fromLimit As Integer, ByVal toLimit As Integer) As ArrayList
+
+                Return Nothing
+
+            End Function
+
             Public Overrides Function getColumn(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String) As System.Collections.ArrayList
 
                 Return Nothing
+
+            End Function
+
+            Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
+
+                Return 1
 
             End Function
 
@@ -57,7 +69,7 @@ Namespace DBanalyzer
                 Try
 
                     Dim reader As DB2DataReader = command.ExecuteReader()
-                    
+
                     While reader.Read
                         returnList.Add(reader.GetString(0))
                     End While
@@ -70,13 +82,11 @@ Namespace DBanalyzer
 
             End Function
 
-            Public Overrides Function openConnection(ByRef computerIn As Objects.Computer, ByVal databaseInstancePosition As Integer) As Boolean
+            Public Overrides Function openConnection(ByRef computerIn As Objects.Computer, ByVal databaseInstance As DatabaseInstance) As Boolean
 
-                Dim databaseInstance As DatabaseInstance
                 Dim computer As Computer = computerIn
 
-                databaseInstance = computer.getInstance(databaseInstancePosition)
-                Me.connectionString = "Server=" + computer.getIp() + ":" + databaseInstance.getPort() + ";Database=" + databaseInstance.getDatabaseName() + ";UID=" + databaseInstance.getUser() + ";PWD=" + databaseInstance.getPassword() + ";"
+                Me.connectionString = "Server=" + computer.getIp() + ":" + databaseInstance.getPort().ToString + ";Database=" + databaseInstance.getName() + ";UID=" + databaseInstance.getUser() + ";PWD=" + databaseInstance.getPassword() + ";"
                 Me.connection = New DB2Connection(Me.connectionString)
 
                 Try

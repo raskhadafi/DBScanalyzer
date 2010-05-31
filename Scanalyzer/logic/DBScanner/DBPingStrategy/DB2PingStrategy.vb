@@ -1,8 +1,8 @@
 ﻿Imports IBM.Data.DB2
 
-Namespace DBScanner
+Namespace DBScanners
 
-    Namespace DBPingStrategy
+    Namespace DBPingStrategies
 
         Public Class DB2PingStrategy
             Inherits DBPingStrategy

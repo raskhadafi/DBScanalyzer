@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports Scanalyzer.DBanalyzer.DBAccessStrategy
+Imports Scanalyzer.DBanalyzers.DBAccessStrategies
 Imports Scanalyzer.Objects
 
 

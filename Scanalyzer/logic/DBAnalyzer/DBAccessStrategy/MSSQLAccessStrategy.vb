@@ -1,11 +1,11 @@
 ﻿Imports System.Data.SqlClient
 Imports Scanalyzer.Objects
 
-Namespace DBanalyzer
+Namespace DBanalyzers
 
-    Namespace DBAccessStrategy
+    Namespace DBAccessStrategies
 
-        Public Class MSSQLAccessStrategy
+        Class MSSQLAccessStrategy
             Inherits DBAccessStrategy
 
             Private connection As SqlConnection
@@ -20,6 +20,31 @@ Namespace DBanalyzer
                 Else
                     Return False
                 End If
+
+            End Function
+
+            Public Overrides Function getColumnLimited(ByVal databaseName As String, ByVal tableName As String, ByVal columName As String, ByVal fromLimit As Integer, ByVal toLimit As Integer) As ArrayList
+
+                Dim reader As SqlDataReader
+                Dim returnList As New ArrayList
+
+                Try
+                    Dim transaction As SqlTransaction = Me.connection.BeginTransaction
+
+                    command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName + " LIMIT " + fromLimit.ToString + "," + toLimit.ToString, connection, transaction)
+                    command.UpdatedRowSource = UpdateRowSource.Both
+                    reader = command.ExecuteReader
+
+                    While reader.Read()
+                        returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+                    End While
+
+                    reader.Close()
+                Catch ex As Exception
+
+                End Try
+
+                Return returnList
 
             End Function
 
@@ -45,6 +70,12 @@ Namespace DBanalyzer
                 End Try
 
                 Return returnList
+
+            End Function
+
+            Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
+
+                Return 1
 
             End Function
 
@@ -140,11 +171,9 @@ Namespace DBanalyzer
 
             End Function
 
-            Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstancePosition As Integer) As Boolean
+            Public Overrides Function openConnection(ByRef computer As Computer, ByVal databaseInstance As DatabaseInstance) As Boolean
 
-                Dim databaseInstance As DatabaseInstance = computer.getInstance(databaseInstancePosition)
-
-                Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
+                Me.connectionString = "Data Source=" + computer.getIp + "," + databaseInstance.getPort.ToString + ";User Id=" + databaseInstance.getUser + ";Password=" + databaseInstance.getPassword + ";"
                 connection = New SqlConnection(Me.connectionString)
 
                 Try

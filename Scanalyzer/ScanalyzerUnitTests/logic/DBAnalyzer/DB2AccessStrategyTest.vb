@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports Scanalyzer.DBanalyzer.DBAccessStrategy
+Imports Scanalyzer.DBanalyzers.DBAccessStrategies
 Imports Scanalyzer.Objects
 
 
@@ -29,7 +29,7 @@ Public Class DB2AccessStrategyTest
             Return testContextInstance
         End Get
         Set(ByVal value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 
@@ -124,7 +124,7 @@ Public Class DB2AccessStrategyTest
 
         actualOpen = target.openConnection(computer, 0)
         actualDatabaseNames = target.getDatabaseNames()
-        actualTableNames = target.getTableNames(computer.getInstance(0).getDatabaseName)
+        actualTableNames = target.getTableNames(computer.getInstance(0).getName)
         actualClose = target.closeConnection()
 
         Assert.AreEqual(expected, actualOpen)

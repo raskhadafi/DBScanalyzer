@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class ScanalyzerReportForm
+Partial Class ScanalyzerLogger
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
@@ -22,32 +22,32 @@ Partial Class ScanalyzerReportForm
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerReportForm))
-        Me.txtReport = New System.Windows.Forms.TextBox
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ScanalyzerLogger))
+        Me.txtOutput = New System.Windows.Forms.TextBox
         Me.SuspendLayout()
         '
-        'txtReport
+        'txtOutput
         '
-        Me.txtReport.Location = New System.Drawing.Point(12, 12)
-        Me.txtReport.Multiline = True
-        Me.txtReport.Name = "txtReport"
-        Me.txtReport.ReadOnly = True
-        Me.txtReport.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.txtReport.Size = New System.Drawing.Size(674, 398)
-        Me.txtReport.TabIndex = 0
+        Me.txtOutput.Location = New System.Drawing.Point(12, 12)
+        Me.txtOutput.Multiline = True
+        Me.txtOutput.Name = "txtOutput"
+        Me.txtOutput.ReadOnly = True
+        Me.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.txtOutput.Size = New System.Drawing.Size(581, 372)
+        Me.txtOutput.TabIndex = 0
         '
-        'ScanalyzerReportForm
+        'ScanalyzerLogger
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(698, 422)
-        Me.Controls.Add(Me.txtReport)
+        Me.ClientSize = New System.Drawing.Size(605, 396)
+        Me.Controls.Add(Me.txtOutput)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "ScanalyzerReportForm"
-        Me.Text = "ScanalyzerReportForm"
+        Me.Name = "ScanalyzerLogger"
+        Me.Text = "ScanalyzerLogger"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents txtReport As System.Windows.Forms.TextBox
+    Friend WithEvents txtOutput As System.Windows.Forms.TextBox
 End Class

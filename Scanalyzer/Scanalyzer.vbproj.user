@@ -1,5 +1,0 @@
-﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <PropertyGroup>
-    <ReferencePath>C:\Dokumente und Einstellungen\Roman\Eigene Dateien\bda\DBScanalyzer\Scanalyzer\dll\mysql\;C:\Dokumente und Einstellungen\Roman\Eigene Dateien\bda\DBScanalyzer\Scanalyzer\dll\oracle\</ReferencePath>
-  </PropertyGroup>
-</Project>

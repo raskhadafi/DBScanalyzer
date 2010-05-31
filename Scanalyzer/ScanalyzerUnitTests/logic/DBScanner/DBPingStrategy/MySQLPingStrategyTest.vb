@@ -3,7 +3,7 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports Scanalyzer.DBScanner.DBPingStrategy
+Imports Scanalyzer.DBScanners.DBPingStrategies
 
 
 '''<summary>
@@ -49,7 +49,7 @@ Public Class MySQLPingStrategyTest
     <TestInitialize()> _
     Public Sub MyTestInitialize()
 
-        Me.ipMySqlServer = "192.168.56.3"
+        Me.ipMySqlServer = "192.168.56.4"
 
     End Sub
     '
@@ -66,7 +66,7 @@ Public Class MySQLPingStrategyTest
     <TestMethod()> _
     Public Sub tryAllPortsTest()
 
-        Dim computerPing As DBScanner.ComputerPing = New DBScanner.ComputerPing()
+        Dim computerPing As DBScanners.ComputerPing = New DBScanners.ComputerPing()
         Dim target As MySQLPingStrategy = New MySQLPingStrategy()
         Dim openPorts As ArrayList
         Dim actual As ArrayList

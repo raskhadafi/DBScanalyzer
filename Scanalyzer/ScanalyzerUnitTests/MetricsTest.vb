@@ -1,17 +1,15 @@
 ﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
-Imports Scanalyzer
-Imports System.Collections
-Imports Scanalyzer.DBScanners
+Imports Scanalyzer.Metrics
 
 
 
 '''<summary>
-'''This is a test class for ComputerPingTest and is intended
-'''to contain all ComputerPingTest Unit Tests
+'''This is a test class for MetricsTest and is intended
+'''to contain all MetricsTest Unit Tests
 '''</summary>
 <TestClass()> _
-Public Class ComputerPingTest
+Public Class MetricsTest
 
 
     Private testContextInstance As TestContext
@@ -57,36 +55,17 @@ Public Class ComputerPingTest
 
 
     '''<summary>
-    '''A test for pingHost
+    '''A test for checkIfDate
     '''</summary>
     <TestMethod()> _
-    Public Sub pingHostTest()
-
-        Dim target As ComputerPing = New ComputerPing()
-        Dim localIP As Object
-        Dim notavaibleIP As Object
-
-        localIP = target.pingHost("127.0.0.1")
-        notavaibleIP = target.pingHost("192.168.255.50")
-
-        Assert.AreEqual(True, localIP)
-        Assert.AreEqual(False, notavaibleIP)
-
+    Public Sub checkIfDateTest()
+        Dim inputMySQLDate As String = "2006-02-28 16:10:58"
+        Dim inputMySQLDataFalse As String = "20063-02-28 16:10:58"
+        Dim retInputMySQLDate As Boolean
+        Dim retInputMySQLDateFalse As Boolean
+        retInputMySQLDate = Metrics.checkIfDate(inputMySQLDate)
+        retInputMySQLDateFalse = Metrics.checkIfDate(inputMySQLDataFalse)
+        Assert.IsTrue(retInputMySQLDate)
+        Assert.IsFalse(retInputMySQLDateFalse)
     End Sub
-
-    '''<summary>
-    '''A test for openPorts
-    '''</summary>
-    <TestMethod()> _
-    Public Sub openPortsTest()
-
-        Dim target As ComputerPing = New ComputerPing()
-        Dim actual As ArrayList
-
-        actual = target.getOpenPorts("192.168.56.3")
-
-        Assert.AreNotEqual(0, actual.Count)
-
-    End Sub
-
 End Class

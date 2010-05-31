@@ -2,62 +2,60 @@
 
 Namespace Metrics
 
-    Public Class Metrics
+    Public Module Metrics
 
-        Public Function checkIfEmail(ByVal email As String) As Integer
+        Public Function checkIfEmail(ByVal email As String) As Boolean
 
-            Dim emailRecognition As Regex = New Regex("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b")
+            Dim emailRecognition As Regex = New Regex("^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$")
+            ' old regex: New Regex("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b")
 
             If emailRecognition.IsMatch(email) Then
 
-                Return 100
+                Return True
 
             Else
 
-                Return 0
+                Return False
 
             End If
 
         End Function
 
-        Public Function checkIfGender(ByVal data As ArrayList, ByVal references As ArrayList) As Integer
+        Public Function checkIfGender(ByVal data As String) As Boolean
 
-            Dim entries As ArrayList = data
+            'Dim entries As ArrayList = data
             Dim propability As Integer = 0
             Dim foundEntries As Integer = 0
 
-            distinctArray(entries)
+            'distinctArray(entries)
 
             ' When entries have a cardinality of 2 it's 20% propability of being a gender column
-            If entries.Count = 2 Then
+            'If entries.Count = 2 Then
 
-                propability = 20
+            'propability = 20
 
-            End If
+            'End If
 
             ' searches if references are in the entries
-            For Each ref In references
+            'For Each ref In references
 
-                If entries.Contains(ref) Then
+            'If entries.Contains(ref) Then
 
-                    foundEntries += 1
+            'foundEntries += 1
 
-                End If
+            'End If
 
-            Next
+            'Next
 
             ' when entries which matches the references and the cardinality is 2
             ' so it should be by 95% a gender column
             If propability > 0 & foundEntries > 2 Then
 
-                propability = 95
-            Else
-
-                propability += foundEntries * 10
+                Return True
 
             End If
 
-            Return propability
+            Return False
 
         End Function
 
@@ -84,38 +82,72 @@ Namespace Metrics
 
         'check whether String is a Date
         'return true or false
+        Public Function checkIfDate(ByVal input As String) As Boolean
 
-        Public Function checkIfdate()
-            'TODO: write datechecklogic
+            Dim matcher As Regex = New Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}\s{1}[0-9]{2}:[0-9]{2}:[0-9]{2}$")
 
-            ' to check:
-            ' which kinds of formats are possible for dates
-            ' 15.01.2010; 15.1.2010; 15.1.10; 15.01.2010; 
-            ' also dd.mm.yyyy oder dd(one or two digits).mm(one or two digits).yy((one or) two or four digits)
-            ' in the american format, the month comes first and then the day
-            ' the sign which separates dd from yy from yyyy can be a "." or a "/" or a "\"? or ....?
-            '    > check whether there are further possible characters to separate
-            ' 
-            ' research showed, that there is already a date method existing
-            ' gibt es irgendetwas wie todate...?
+            If matcher.IsMatch(input) Then
 
+                Return True
+
+            End If
 
             Return False
 
         End Function
 
         'check wether String is a Street
-        Public Function checkIfStreet()
+        Public Function checkIfStreet(ByVal streetName As String) As Boolean
             ' TODO: write streetchecklogic
 
             ' idea: separate string and and analyze last x characters whether they are street/strasse/flur/gasse/hof/matte/matt/grund/ and so on...
             ' first fill possible refrence strings into arrays, start with one letter, then two letter-arrays and so on
             ' hof would be in the three letter arry, flur in a four-letterarray, street in a six-letter-array and so on
+            Dim streetTables As List(Of String) = New List(Of String)
+            Dim streetReferenceData As List(Of String) = New List(Of String)
+            Dim probability As Integer = 0
 
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfStreet", streetTables)
+
+            For Each table In streetTables
+
+                Helpers.SQLiteHelper.getReferenceData(table, streetReferenceData)
+
+            Next
+
+
+            streetName = streetName.ToLower
+
+            For Each name In streetReferenceData
+
+                If streetName.Contains(name) Then
+
+                    Return True
+
+                End If
+
+            Next
 
             Return False
 
         End Function
-    End Class
+
+        Public Function checkIfContains(ByVal name As String, ByVal searched As List(Of String)) As Boolean
+
+            For Each searching In searched
+
+                If name.Contains(searching) Then
+
+                    Return True
+
+                End If
+
+            Next
+
+            Return False
+
+        End Function
+
+    End Module
 
 End Namespace
