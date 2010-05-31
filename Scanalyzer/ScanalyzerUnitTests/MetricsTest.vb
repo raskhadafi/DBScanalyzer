@@ -1,6 +1,4 @@
-﻿Imports System.Collections
-
-Imports Microsoft.VisualStudio.TestTools.UnitTesting
+﻿Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer.Metrics
 
@@ -57,75 +55,17 @@ Public Class MetricsTest
 
 
     '''<summary>
-    '''A test for distinctArray
-    '''</summary>
-    <TestMethod(), _
-     DeploymentItem("Scanalyzer.exe")> _
-    Public Sub distinctArrayTest()
-        Dim target As Metrics_Accessor = New Metrics_Accessor ' TODO: Initialize to an appropriate value
-        Dim data As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim dataExpected As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        target.distinctArray(data)
-        Assert.AreEqual(dataExpected, data)
-        Assert.Inconclusive("A method that does not return a value cannot be verified.")
-    End Sub
-
-    '''<summary>
     '''A test for checkIfDate
     '''</summary>
     <TestMethod()> _
     Public Sub checkIfDateTest()
-        Dim input As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
-        Dim actual As Integer
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
-    '''A test for checkIfEmail
-    '''</summary>
-    <TestMethod()> _
-    Public Sub checkIfEmailTest()' TODO: Initialize to an appropriate value
-        Dim email As String = String.Empty ' TODO: Initialize to an appropriate value
-        Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
-        Dim actual As Integer
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
-    '''A test for checkIfGender
-    '''</summary>
-    <TestMethod()> _
-    Public Sub checkIfGenderTest()' TODO: Initialize to an appropriate value
-        Dim data As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim references As ArrayList = Nothing ' TODO: Initialize to an appropriate value
-        Dim expected As Integer = 0 ' TODO: Initialize to an appropriate value
-        Dim actual As Integer
-        Assert.AreEqual(expected, actual)
-        Assert.Inconclusive("Verify the correctness of this test method.")
-    End Sub
-
-    '''<summary>
-    '''A test for checkIfStreet
-    '''</summary>
-    <TestMethod()> _
-    Public Sub checkIfStreetTest()
-
-        Dim streetNameReal As String = "Sonnengrundstrasse"
-        Dim streetNameFalse As String = "Horw"
-        Dim expectedReal As Integer = 100
-        Dim expectedFalse As Integer = 0
-        Dim actualReal As Integer
-        Dim actualFalse As Integer
-        Dim tableNames As ArrayList = New ArrayList
-
-        tableNames.Add("street_de")
-
-
-        Assert.AreEqual(expectedReal, actualReal)
-        Assert.AreEqual(expectedFalse, actualFalse)
-
+        Dim inputMySQLDate As String = "2006-02-28 16:10:58"
+        Dim inputMySQLDataFalse As String = "20063-02-28 16:10:58"
+        Dim retInputMySQLDate As Boolean
+        Dim retInputMySQLDateFalse As Boolean
+        retInputMySQLDate = Metrics.checkIfDate(inputMySQLDate)
+        retInputMySQLDateFalse = Metrics.checkIfDate(inputMySQLDataFalse)
+        Assert.IsTrue(retInputMySQLDate)
+        Assert.IsFalse(retInputMySQLDateFalse)
     End Sub
 End Class

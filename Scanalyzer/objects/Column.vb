@@ -6,6 +6,7 @@
         Private containsReferencedata As Boolean
         Private totalFound As Decimal
         Private equalsToData As Decimal
+        Private metric As Helpers.Settings.Metric
 
         Public Sub New(ByVal name As String)
 
@@ -13,6 +14,12 @@
             Me.containsReferencedata = False
             Me.totalFound = 0
             Me.equalsToData = 0
+
+        End Sub
+
+        Public Sub setMetricFound(ByVal metric As Helpers.Settings.Metric)
+
+            Me.metric = metric
 
         End Sub
 

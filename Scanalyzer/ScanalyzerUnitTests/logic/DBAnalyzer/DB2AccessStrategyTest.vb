@@ -29,7 +29,7 @@ Public Class DB2AccessStrategyTest
             Return testContextInstance
         End Get
         Set(ByVal value As TestContext)
-            testContextInstance = Value
+            testContextInstance = value
         End Set
     End Property
 

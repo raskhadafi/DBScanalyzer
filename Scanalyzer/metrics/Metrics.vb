@@ -51,14 +51,11 @@ Namespace Metrics
             ' so it should be by 95% a gender column
             If propability > 0 & foundEntries > 2 Then
 
-                propability = 95
-            Else
-
-                propability += foundEntries * 10
+                Return True
 
             End If
 
-            Return propability
+            Return False
 
         End Function
 
@@ -85,21 +82,15 @@ Namespace Metrics
 
         'check whether String is a Date
         'return true or false
-
         Public Function checkIfDate(ByVal input As String) As Boolean
-            'TODO: write datechecklogic
 
-            ' to check:
-            ' which kinds of formats are possible for dates
-            ' 15.01.2010; 15.1.2010; 15.1.10; 15.01.2010; 
-            ' also dd.mm.yyyy oder dd(one or two digits).mm(one or two digits).yy((one or) two or four digits)
-            ' in the american format, the month comes first and then the day
-            ' the sign which separates dd from yy from yyyy can be a "." or a "/" or a "\"? or ....?
-            '    > check whether there are further possible characters to separate
-            ' 
-            ' research showed, that there is already a date method existing
-            ' gibt es irgendetwas wie todate...?
+            Dim matcher As Regex = New Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}\s{1}[0-9]{2}:[0-9]{2}:[0-9]{2}$")
 
+            If matcher.IsMatch(input) Then
+
+                Return True
+
+            End If
 
             Return False
 

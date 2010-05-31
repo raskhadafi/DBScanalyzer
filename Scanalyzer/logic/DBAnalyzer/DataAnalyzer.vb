@@ -149,6 +149,7 @@
             Dim checkIfEmailTotal As Integer = 0
             Dim checkIfGenderTotal As Integer = 0
             Dim checkIfStreetTotal As Integer = 0
+            Dim metric As Helpers.Settings.Metric
 
 
             If Me.settings.analyzeEverthing Then
@@ -214,11 +215,12 @@
                 Next
 
                 access.closeConnection()
-                total = getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal)
+                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, total, metric)
 
                 If total > 0 Then
 
                     column.setFound(total)
+                    column.setMetricFound(metric)
 
                 End If
 
@@ -226,29 +228,45 @@
 
         End Sub
 
-        Private Function getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer) As Decimal
+        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
 
-            If checkIfEmailTotal > 0 Then
+            Dim finder As MetricDictionary = New MetricDictionary
+            Dim highest As Integer = 0
+            Dim overtwenty As List(Of Integer) = New List(Of Integer)
 
-                Return (checkIfEmailTotal / count) * 100
+            finder.Add(Helpers.Settings.Metric.checkIfDate, checkIfDateTotal)
+            finder.Add(Helpers.Settings.Metric.checkIfEmail, checkIfEmailTotal)
+            finder.Add(Helpers.Settings.Metric.checkIfGender, checkIfGenderTotal)
+            finder.Add(Helpers.Settings.Metric.checkIfStreet, checkIfStreetTotal)
 
-            ElseIf checkIfDateTotal > 0 Then
+            For Each value In finder.Values
 
-                Return (checkIfDateTotal / count) * 100
+                If value > highest Then
 
-            ElseIf checkIfGenderTotal > 0 Then
+                    highest = value
 
-                Return (checkIfGenderTotal / count) * 100
+                End If
 
-            ElseIf checkIfStreetTotal > 0 Then
 
-                Return (checkIfStreetTotal / count) * 100
+                If value > 19 Then
 
-            End If
+                    overtwenty.Add(value)
 
-            Return 0
+                End If
 
-        End Function
+            Next
+
+
+            total = highest
+
+        End Sub
+
+        Private Class MetricDictionary
+            Inherits Dictionary(Of Helpers.Settings.Metric, Integer)
+
+
+
+        End Class
 
     End Class
 

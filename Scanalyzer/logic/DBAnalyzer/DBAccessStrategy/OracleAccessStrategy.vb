@@ -2,7 +2,7 @@
 
     Namespace DBAccessStrategies
 
-        Friend Class OracleAccessStrategy
+        Class OracleAccessStrategy
 
         End Class
 
