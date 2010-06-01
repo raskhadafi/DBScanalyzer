@@ -91,8 +91,15 @@ Namespace Metrics
         Public Function checkIfDate(ByVal input As String) As Boolean
 
             Dim regexs As List(Of String) = New List(Of String)
+            Dim streetTables As List(Of String) = New List(Of String)
 
-            Helpers.SQLiteHelper.getReferenceData("regex_date", regexs)
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfStreet", streetTables)
+
+            For Each tbl In streetTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, regexs)
+
+            Next
 
             For Each exp In regexs
 
