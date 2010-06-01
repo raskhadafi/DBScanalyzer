@@ -171,11 +171,30 @@ Namespace Metrics
 
         Public Function checkIfURI(ByVal uri As String) As Boolean
 
+            Dim urlChecker As Regex = New Regex("((https?|ftp|gopher|telnet|file|notes|ms-help):((//)|(\\\\))+[\w\d:#@%/;$()~_?\+-=\\\.&]*)")
+
+            If urlChecker.IsMatch(uri) Then
+
+                Return True
+
+            End If
+
             Return False
 
         End Function
 
         Public Function checkIfPhone(ByVal phoneNumber As String) As Boolean
+
+            Dim phoneTables As List(Of String) = New List(Of String)
+            Dim areaCodes As List(Of String) = New List(Of String)
+
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfPhone", phoneTables)
+
+            For Each tbl In phoneTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, areaCodes)
+
+            Next
 
             Return False
 
