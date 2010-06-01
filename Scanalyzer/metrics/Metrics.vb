@@ -183,6 +183,27 @@ Namespace Metrics
 
         Public Function checkIfISOcode(ByRef isoCode As String) As Boolean
 
+            Dim isoTables As List(Of String) = New List(Of String)
+            Dim isoCodes As List(Of String) = New List(Of String)
+
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfISOcode", isoTables)
+
+            For Each tbl In isoTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, isoCodes)
+
+            Next
+
+            For Each code In isoCodes
+
+                If code.ToLower = isoCode.ToLower Then
+
+                    Return True
+
+                End If
+
+            Next
+
             Return False
 
         End Function
