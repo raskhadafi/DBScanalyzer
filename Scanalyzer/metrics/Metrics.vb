@@ -90,21 +90,21 @@ Namespace Metrics
         'return true or false
         Public Function checkIfDate(ByVal input As String) As Boolean
 
-            Dim matcher01 As Regex = New Regex("^(\d{4})-((0[1-9])|(1[0-2]))-(0[1-9]|[12][0-9]|3[01])")
-            Dim matcher02 As Regex = New Regex("^(0[1-9]|[12][0-9]|3[01]).((0[1-9])|(1[0-2])).(\d{4})")
-            ' Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}\s{1}[0-9]{2}:[0-9]{2}:[0-9]{2}$")
+            Dim regexs As List(Of String) = New List(Of String)
 
-            If matcher01.IsMatch(input) Then
+            Helpers.SQLiteHelper.getReferenceData("regex_date", regexs)
 
-                Return True
+            For Each exp In regexs
 
-            End If
+                Dim matcher As Regex = New Regex(exp)
 
-            If matcher02.IsMatch(input) Then
+                If matcher.IsMatch(input) Then
 
-                Return True
+                    Return True
 
-            End If
+                End If
+
+            Next
 
             Return False
 
