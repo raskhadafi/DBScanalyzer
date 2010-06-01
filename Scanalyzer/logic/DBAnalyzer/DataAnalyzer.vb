@@ -149,6 +149,9 @@
             Dim checkIfEmailTotal As Integer = 0
             Dim checkIfGenderTotal As Integer = 0
             Dim checkIfStreetTotal As Integer = 0
+            Dim checkIfISOcode As Integer = 0
+            Dim checkIfPhone As Integer = 0
+            Dim checkIfURI As Integer = 0
             Dim metric As Helpers.Settings.Metric
 
 
@@ -208,6 +211,30 @@
 
                                 End If
 
+                            Case Helpers.Settings.Metric.checkIfISOcode
+
+                                If Metrics.checkIfISOcode(entry) Then
+
+                                    checkIfISOcode += 1
+
+                                End If
+
+                            Case Helpers.Settings.Metric.checkIfPhone
+
+                                If Metrics.checkIfPhone(entry) Then
+
+                                    checkIfPhone += 1
+
+                                End If
+
+                            Case Helpers.Settings.Metric.checkIfURI
+
+                                If Metrics.checkIfURI(entry) Then
+
+                                    checkIfURI += 1
+
+                                End If
+
                         End Select
 
                     Next
@@ -215,7 +242,7 @@
                 Next
 
                 access.closeConnection()
-                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, total, metric)
+                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, total, metric)
 
                 If total > 0 Then
 
@@ -228,7 +255,7 @@
 
         End Sub
 
-        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
+        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
 
             Dim finder As MetricDictionary = New MetricDictionary
             Dim highest As Integer = 0
@@ -238,6 +265,9 @@
             finder.Add(Helpers.Settings.Metric.checkIfEmail, checkIfEmailTotal)
             finder.Add(Helpers.Settings.Metric.checkIfGender, checkIfGenderTotal)
             finder.Add(Helpers.Settings.Metric.checkIfStreet, checkIfStreetTotal)
+            finder.Add(Helpers.Settings.Metric.checkIfISOcode, checkIfISOcode)
+            finder.Add(Helpers.Settings.Metric.checkIfPhone, checkIfPhone)
+            finder.Add(Helpers.Settings.Metric.checkIfURI, checkIfURI)
 
             For Each value In finder.Values
 

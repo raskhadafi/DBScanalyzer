@@ -77,6 +77,9 @@
             checkIfEmail
             checkIfGender
             checkIfStreet
+            checkIfURI
+            checkIfPhone
+            checkIfISOcode
 
         End Enum
 
