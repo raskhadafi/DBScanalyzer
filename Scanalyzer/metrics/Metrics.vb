@@ -27,37 +27,36 @@ Namespace Metrics
 
         End Function
 
-        Public Function checkIfGender(ByVal data As String) As Boolean
+        Public Function checkIfGender(ByVal entries As ArrayList) As Boolean
 
             'Dim entries As ArrayList = data
             Dim propability As Integer = 0
             Dim foundEntries As Integer = 0
+            Dim genderTables As List(Of String) = New List(Of String)
+            Dim genderEntries As List(Of String) = New List(Of String)
 
-            'distinctArray(entries)
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfGender", genderTables)
+
+            For Each tbl In genderTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, genderEntries)
+
+            Next
+
+            distinctArray(entries)
 
             ' When entries have a cardinality of 2 it's 20% propability of being a gender column
-            'If entries.Count = 2 Then
+            If entries.Count = 2 Then
 
-            'propability = 20
+                For Each entry In entries
 
-            'End If
+                    If genderEntries.Contains(entry) Then
 
-            ' searches if references are in the entries
-            'For Each ref In references
+                        Return True
 
-            'If entries.Contains(ref) Then
+                    End If
 
-            'foundEntries += 1
-
-            'End If
-
-            'Next
-
-            ' when entries which matches the references and the cardinality is 2
-            ' so it should be by 95% a gender column
-            If propability > 0 & foundEntries > 2 Then
-
-                Return True
+                Next
 
             End If
 

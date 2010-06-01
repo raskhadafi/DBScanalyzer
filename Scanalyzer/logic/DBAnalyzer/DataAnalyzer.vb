@@ -153,6 +153,7 @@
             Dim checkIfPhone As Integer = 0
             Dim checkIfURI As Integer = 0
             Dim metric As Helpers.Settings.Metric
+            Dim genderMetricDone As Boolean = True
 
 
             If Me.settings.analyzeEverthing Then
@@ -197,11 +198,17 @@
 
                             Case Helpers.Settings.Metric.checkIfGender
 
-                                If Metrics.checkIfGender(entry) Then
+                                If genderMetricDone Then
 
-                                    checkIfGenderTotal += 1
+                                    If Metrics.checkIfGender(entriesFromDB) Then
 
+                                        checkIfGenderTotal = totalToAnalyze
+
+                                    End If
+
+                                    genderMetricDone = False
                                 End If
+
 
                             Case Helpers.Settings.Metric.checkIfStreet
 
