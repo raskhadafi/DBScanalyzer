@@ -3,8 +3,8 @@
 Imports Microsoft.VisualStudio.TestTools.UnitTesting
 
 Imports Scanalyzer
-Imports Scanalyzer.DBanalyzers.DBAccessStrategies
 Imports Scanalyzer.Objects
+Imports Scanalyzer.DBanalyzers.DBAccessStrategies
 
 
 
@@ -71,7 +71,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub openAndCloseConnectionTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
         Dim computer As Computer = db2Server
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
@@ -91,7 +91,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub getDatabaseNamesTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
         Dim computer As Computer = db2Server
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
@@ -114,7 +114,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub getTableNamesTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
         Dim computer As Computer = db2Server
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
@@ -140,7 +140,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub getColumnNamesTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
         Dim computer As Computer = db2Server
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
@@ -169,7 +169,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub getColumnTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
         Dim computer As Computer = db2Server
         Dim expected As Boolean = True
         Dim actualOpen As Boolean
@@ -201,7 +201,7 @@ Public Class DB2AccessStrategyTest
     <TestMethod()> _
     Public Sub MySQLAccessStrategyConstructorTest()
 
-        Dim target As DB2AccessStrategy = New DB2AccessStrategy
+        Dim target As DB2AccessStrategy_Accessor = New DB2AccessStrategy_Accessor
 
         Assert.IsNotNull(target)
 

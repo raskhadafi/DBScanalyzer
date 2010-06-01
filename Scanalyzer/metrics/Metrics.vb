@@ -21,6 +21,12 @@ Namespace Metrics
 
         End Function
 
+        Public Function checkIfPlace(ByVal place As String) As Boolean
+
+            Return False
+
+        End Function
+
         Public Function checkIfGender(ByVal data As String) As Boolean
 
             'Dim entries As ArrayList = data
@@ -84,9 +90,17 @@ Namespace Metrics
         'return true or false
         Public Function checkIfDate(ByVal input As String) As Boolean
 
-            Dim matcher As Regex = New Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}\s{1}[0-9]{2}:[0-9]{2}:[0-9]{2}$")
+            Dim matcher01 As Regex = New Regex("^(\d{4})-((0[1-9])|(1[0-2]))-(0[1-9]|[12][0-9]|3[01])")
+            Dim matcher02 As Regex = New Regex("^(0[1-9]|[12][0-9]|3[01]).((0[1-9])|(1[0-2])).(\d{4})")
+            ' Regex("^[0-9]{4}-[0-9]{2}-[0-9]{2}\s{1}[0-9]{2}:[0-9]{2}:[0-9]{2}$")
 
-            If matcher.IsMatch(input) Then
+            If matcher01.IsMatch(input) Then
+
+                Return True
+
+            End If
+
+            If matcher02.IsMatch(input) Then
 
                 Return True
 
@@ -143,6 +157,24 @@ Namespace Metrics
                 End If
 
             Next
+
+            Return False
+
+        End Function
+
+        Public Function checkIfURI(ByVal uri As String) As Boolean
+
+            Return False
+
+        End Function
+
+        Public Function checkIfPhone(ByVal phoneNumber As String) As Boolean
+
+            Return False
+
+        End Function
+
+        Public Function checkIfISOcode(ByRef isoCode As String) As Boolean
 
             Return False
 

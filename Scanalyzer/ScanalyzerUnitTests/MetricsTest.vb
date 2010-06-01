@@ -68,4 +68,110 @@ Public Class MetricsTest
         Assert.IsTrue(retInputMySQLDate)
         Assert.IsFalse(retInputMySQLDateFalse)
     End Sub
+
+    '''<summary>
+    '''A test for checkIfDate
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfDateTest1()
+        Dim input As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfDate(input)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfEmail
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfEmailTest()
+        Dim email As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfEmail(email)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfGender
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfGenderTest()
+        Dim data As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfGender(data)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfISOcode
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfISOcodeTest()
+        Dim isoCode As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim isoCodeExpected As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfISOcode(isoCode)
+        Assert.AreEqual(isoCodeExpected, isoCode)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfPhone
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfPhoneTest()
+        Dim phoneNumber As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfPhone(phoneNumber)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfPlace
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfPlaceTest()
+        Dim place As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfPlace(place)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfStreet
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfStreetTest()
+        Dim streetName As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfStreet(streetName)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
+
+    '''<summary>
+    '''A test for checkIfURI
+    '''</summary>
+    <TestMethod()> _
+    Public Sub checkIfURITest()
+        Dim uri As String = String.Empty ' TODO: Initialize to an appropriate value
+        Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
+        Dim actual As Boolean
+        actual = Metrics.checkIfURI(uri)
+        Assert.AreEqual(expected, actual)
+        Assert.Inconclusive("Verify the correctness of this test method.")
+    End Sub
 End Class

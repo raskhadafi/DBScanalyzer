@@ -17,7 +17,7 @@ Namespace Helpers
         Public Sub New()
 
             Me.ips = New List(Of String)
-            Me.dataAnalyzationLimit = 100
+            Me.dataAnalyzationLimit = 10
             Me.anaylzeEverything = False
             Me.fDatabase = 0.1
             Me.fTable = 0.2

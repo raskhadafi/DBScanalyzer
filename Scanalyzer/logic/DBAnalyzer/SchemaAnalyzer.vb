@@ -1,6 +1,6 @@
 ﻿Namespace DBanalyzers
 
-    Friend Class SchemaAnalyzer
+    Class SchemaAnalyzer
 
         Private computers As List(Of Objects.Computer)
         Private settings As Helpers.Setting
