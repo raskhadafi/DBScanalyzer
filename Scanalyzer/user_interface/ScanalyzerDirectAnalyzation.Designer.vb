@@ -29,11 +29,13 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.Label3 = New System.Windows.Forms.Label
         Me.txtUsr = New System.Windows.Forms.TextBox
         Me.txtPwd = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.RadioButton1 = New System.Windows.Forms.RadioButton
+        Me.btnMysql = New System.Windows.Forms.RadioButton
         Me.txtPort = New System.Windows.Forms.TextBox
         Me.Label5 = New System.Windows.Forms.Label
         Me.btnAnalyze = New System.Windows.Forms.Button
+        Me.dbGroup = New System.Windows.Forms.GroupBox
+        Me.btnMssql = New System.Windows.Forms.RadioButton
+        Me.dbGroup.SuspendLayout()
         Me.SuspendLayout()
         '
         'txtIP
@@ -87,27 +89,15 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtPwd.TabIndex = 3
         Me.txtPwd.Text = "dbtest"
         '
-        'Label4
+        'btnMysql
         '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(16, 175)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
-        Me.Label4.TabIndex = 6
-        Me.Label4.Text = "DatabaseType:"
-        '
-        'RadioButton1
-        '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Checked = True
-        Me.RadioButton1.Enabled = False
-        Me.RadioButton1.Location = New System.Drawing.Point(113, 175)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(51, 17)
-        Me.RadioButton1.TabIndex = 7
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "mysql"
-        Me.RadioButton1.UseVisualStyleBackColor = True
+        Me.btnMysql.AutoSize = True
+        Me.btnMysql.Location = New System.Drawing.Point(15, 29)
+        Me.btnMysql.Name = "btnMysql"
+        Me.btnMysql.Size = New System.Drawing.Size(51, 17)
+        Me.btnMysql.TabIndex = 7
+        Me.btnMysql.Text = "mysql"
+        Me.btnMysql.UseVisualStyleBackColor = True
         '
         'txtPort
         '
@@ -128,23 +118,43 @@ Partial Class ScanalyzerDirectAnalyzation
         '
         'btnAnalyze
         '
-        Me.btnAnalyze.Location = New System.Drawing.Point(138, 246)
+        Me.btnAnalyze.Location = New System.Drawing.Point(138, 245)
         Me.btnAnalyze.Name = "btnAnalyze"
         Me.btnAnalyze.Size = New System.Drawing.Size(75, 23)
         Me.btnAnalyze.TabIndex = 10
         Me.btnAnalyze.Text = "analyze"
         Me.btnAnalyze.UseVisualStyleBackColor = True
         '
+        'dbGroup
+        '
+        Me.dbGroup.Controls.Add(Me.btnMssql)
+        Me.dbGroup.Controls.Add(Me.btnMysql)
+        Me.dbGroup.Location = New System.Drawing.Point(113, 139)
+        Me.dbGroup.Name = "dbGroup"
+        Me.dbGroup.Size = New System.Drawing.Size(100, 100)
+        Me.dbGroup.TabIndex = 11
+        Me.dbGroup.TabStop = False
+        Me.dbGroup.Text = "DatabaseType:"
+        '
+        'btnMssql
+        '
+        Me.btnMssql.AutoSize = True
+        Me.btnMssql.Location = New System.Drawing.Point(15, 52)
+        Me.btnMssql.Name = "btnMssql"
+        Me.btnMssql.Size = New System.Drawing.Size(51, 17)
+        Me.btnMssql.TabIndex = 8
+        Me.btnMssql.Text = "mssql"
+        Me.btnMssql.UseVisualStyleBackColor = True
+        '
         'ScanalyzerDirectAnalyzation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(227, 290)
+        Me.ClientSize = New System.Drawing.Size(229, 282)
+        Me.Controls.Add(Me.dbGroup)
         Me.Controls.Add(Me.btnAnalyze)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.txtPort)
-        Me.Controls.Add(Me.RadioButton1)
-        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.txtPwd)
         Me.Controls.Add(Me.txtUsr)
         Me.Controls.Add(Me.Label3)
@@ -154,6 +164,8 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "ScanalyzerDirectAnalyzation"
         Me.Text = "ScanalyzerDirectAnalyzation"
+        Me.dbGroup.ResumeLayout(False)
+        Me.dbGroup.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -164,9 +176,10 @@ Partial Class ScanalyzerDirectAnalyzation
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents txtUsr As System.Windows.Forms.TextBox
     Friend WithEvents txtPwd As System.Windows.Forms.TextBox
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents RadioButton1 As System.Windows.Forms.RadioButton
+    Friend WithEvents btnMysql As System.Windows.Forms.RadioButton
     Friend WithEvents txtPort As System.Windows.Forms.TextBox
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents btnAnalyze As System.Windows.Forms.Button
+    Friend WithEvents dbGroup As System.Windows.Forms.GroupBox
+    Friend WithEvents btnMssql As System.Windows.Forms.RadioButton
 End Class
