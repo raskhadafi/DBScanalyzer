@@ -19,6 +19,10 @@ Namespace Helpers
 
                     access = New DBanalyzers.DBAccessStrategies.MySQLAccessStrategy
 
+                Case Objects.DatabaseInstance.DatabaseEnum.mssql
+
+                    access = New DBanalyzers.DBAccessStrategies.MSSQLAccessStrategy
+
             End Select
 
             Return access
