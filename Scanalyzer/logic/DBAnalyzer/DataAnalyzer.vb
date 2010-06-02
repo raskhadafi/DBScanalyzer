@@ -152,6 +152,7 @@
             Dim checkIfISOcode As Integer = 0
             Dim checkIfPhone As Integer = 0
             Dim checkIfURI As Integer = 0
+            Dim checkIfCity As Integer = 0
             Dim metric As Helpers.Settings.Metric
             Dim genderMetricDone As Boolean = True
 
@@ -242,6 +243,14 @@
 
                                 End If
 
+                            Case Helpers.Settings.Metric.checkIfCity
+
+                                If Metrics.checkIfCity(entry) Then
+
+                                    checkIfCity += 1
+
+                                End If
+
                         End Select
 
                     Next
@@ -249,7 +258,7 @@
                 Next
 
                 access.closeConnection()
-                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, total, metric)
+                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, checkIfCity, total, metric)
 
                 If total > 0 Then
 
@@ -262,7 +271,7 @@
 
         End Sub
 
-        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
+        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByVal checkIfCity As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
 
             Dim finder As MetricDictionary = New MetricDictionary
             Dim highest As Integer = 0
@@ -275,6 +284,7 @@
             finder.Add(Helpers.Settings.Metric.checkIfISOcode, checkIfISOcode)
             finder.Add(Helpers.Settings.Metric.checkIfPhone, checkIfPhone)
             finder.Add(Helpers.Settings.Metric.checkIfURI, checkIfURI)
+            finder.Add(Helpers.Settings.Metric.checkIfCity, checkIfCity)
 
             For Each value In finder.Values
 

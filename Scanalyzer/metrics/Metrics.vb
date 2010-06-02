@@ -226,6 +226,45 @@ Namespace Metrics
 
         End Function
 
+        Public Function checkIfCity(ByVal city As String) As Boolean
+
+            Dim cityTables As List(Of String) = New List(Of String)
+            Dim cities As List(Of String) = New List(Of String)
+
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfCity", cityTables)
+
+            For Each tbl In cityTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, cities)
+
+            Next
+
+            For Each entry In cities
+
+                If city.ToLower = entry.ToLower Then
+
+                    Return True
+
+                End If
+
+            Next
+
+            Return False
+
+        End Function
+
+        Public Function checkIfName() As Boolean
+
+            Return False
+
+        End Function
+
+        Public Function checkIfPostcode() As Boolean
+
+            Return False
+
+        End Function
+
     End Module
 
 End Namespace

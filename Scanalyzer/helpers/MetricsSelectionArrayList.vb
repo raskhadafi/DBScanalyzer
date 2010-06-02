@@ -80,6 +80,9 @@
             checkIfURI
             checkIfPhone
             checkIfISOcode
+            checkIfCity
+            checkIfName
+            checkIfPostcode
 
         End Enum
 
