@@ -178,7 +178,9 @@ Namespace DBanalyzers
 
                 Try
                     connection.Open()
+
                     Return True
+
                 Catch ex As SqlException
 
                 End Try
