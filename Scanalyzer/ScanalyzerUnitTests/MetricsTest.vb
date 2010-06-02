@@ -103,7 +103,7 @@ Public Class MetricsTest
         Dim data As String = String.Empty ' TODO: Initialize to an appropriate value
         Dim expected As Boolean = False ' TODO: Initialize to an appropriate value
         Dim actual As Boolean
-        actual = Metrics.checkIfGender(data)
+        'actual = Metrics.checkIfGender(data)
         Assert.AreEqual(expected, actual)
         Assert.Inconclusive("Verify the correctness of this test method.")
     End Sub

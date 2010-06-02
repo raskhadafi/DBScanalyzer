@@ -71,10 +71,7 @@
     <Import Include="System.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="logic\DBAnalyzer\DB2AccessStrategyTest.vb" />
-    <Compile Include="logic\DBScanner\DBPingStrategy\DB2PingStrategyTest.vb" />
     <Compile Include="logic\ComputerPingTest.vb" />
-    <Compile Include="logic\DBScanner\DBPingStrategy\OraclePingStrategyTest.vb" />
     <Compile Include="logic\DBScanner\DBPingStrategy\MSSQLPingStrategyTest.vb" />
     <Compile Include="logic\DBAnalyzer\MSSQLAccessStrategyTest.vb" />
     <Compile Include="MetricsTest.vb" />
