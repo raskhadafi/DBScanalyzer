@@ -253,13 +253,56 @@ Namespace Metrics
 
         End Function
 
-        Public Function checkIfName() As Boolean
+        Public Function checkIfName(ByVal name As String) As Boolean
+
+            Dim nameTables As List(Of String) = New List(Of String)
+            Dim names As List(Of String) = New List(Of String)
+
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfName", nameTables)
+
+            For Each tbl In nameTables
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, names)
+
+            Next
+
+            For Each entry In names
+
+                If name.ToLower = entry.ToLower Then
+
+                    Return True
+
+                End If
+
+            Next
 
             Return False
 
         End Function
 
-        Public Function checkIfPostcode() As Boolean
+        Public Function checkIfPostcode(ByVal postcode As String) As Boolean
+
+
+            Dim zipTables As List(Of String) = New List(Of String)
+            Dim zips As List(Of String) = New List(Of String)
+
+            Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfPostcode", zipTables)
+
+            For Each tbl In zips
+
+                Helpers.SQLiteHelper.getReferenceData(tbl, zips)
+
+            Next
+
+            For Each entry In zips
+
+                If postcode.ToLower = entry.ToLower Then
+
+                    Return True
+
+                End If
+
+            Next
 
             Return False
 
