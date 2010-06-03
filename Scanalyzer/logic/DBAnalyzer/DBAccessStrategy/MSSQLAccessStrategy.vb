@@ -153,13 +153,21 @@ Namespace DBanalyzers
 
                 Try
                     command = New SqlCommand
-                    command.CommandText = "USE " + databaseName + ";EXEC sp_tables @table_owner = dbo;"
+                    command.CommandText = "USE " + databaseName + ";EXEC sp_tables;"
                     command.Connection = connection
                     command.Prepare()
                     reader = command.ExecuteReader()
 
                     While reader.Read
-                        returnList.Add(reader.GetValue(reader.GetOrdinal("TABLE_NAME")))
+
+                        Dim owner As String = reader.GetValue(reader.GetOrdinal("TABLE_OWNER"))
+
+                        If Not (owner = "sys" Or owner = "INFORMATION_SCHEMA") Then
+
+                            returnList.Add(reader.GetValue(reader.GetOrdinal("TABLE_NAME")))
+
+                        End If
+
                     End While
 
                     reader.Close()
