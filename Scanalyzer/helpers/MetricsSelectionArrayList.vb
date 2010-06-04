@@ -32,7 +32,11 @@
 
                 For Each metric In System.Enum.GetValues(GetType(Metric))
 
-                    metrics.Add(metric.ToString)
+                    If Not metric = Helpers.Settings.Metric.noMetric Then
+
+                        metrics.Add(metric.ToString)
+
+                    End If
 
                 Next
 
