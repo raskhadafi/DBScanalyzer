@@ -90,7 +90,32 @@ Namespace DBanalyzers
 
             Public Overrides Function getTableCount(ByVal databaseName As String, ByVal tableName As String) As Integer
 
-                Return 1
+                Dim reader As SqlDataReader
+                Dim tableCount As Integer = 0
+
+                Try
+
+                    command = New SqlCommand
+                    command.CommandText = "USE " + databaseName + ";SELECT Count(*) FROM " + tableName + ";"
+                    command.Connection = connection
+                    command.Prepare()
+                    reader = command.ExecuteReader()
+
+                    While reader.Read
+
+                        tableCount = reader.GetValue(0)
+
+                    End While
+
+                    reader.Close()
+
+                Catch ex As Exception
+
+                    Return tableCount
+
+                End Try
+
+                Return tableCount
 
             End Function
 
