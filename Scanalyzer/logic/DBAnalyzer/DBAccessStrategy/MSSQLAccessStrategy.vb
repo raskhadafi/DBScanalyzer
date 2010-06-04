@@ -36,10 +36,13 @@ Namespace DBanalyzers
                     reader = command.ExecuteReader
 
                     While reader.Read()
+
                         returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
 
                 End Try
