@@ -7,6 +7,7 @@
         Private totalFound As Decimal
         Private equalsToData As Decimal
         Private metric As Helpers.Settings.Metric
+        Private rowCount As Integer
 
         Public Sub New(ByVal name As String)
 
@@ -14,8 +15,21 @@
             Me.containsReferencedata = False
             Me.totalFound = 0
             Me.equalsToData = 0
+            Me.rowCount = 0
 
         End Sub
+
+        Public Sub setRowCount(ByVal count As Integer)
+
+            Me.rowCount = count
+
+        End Sub
+
+        Public Function getRowCount() As Integer
+
+            Return Me.rowCount
+
+        End Function
 
         Public Sub setMetricFound(ByVal metric As Helpers.Settings.Metric)
 

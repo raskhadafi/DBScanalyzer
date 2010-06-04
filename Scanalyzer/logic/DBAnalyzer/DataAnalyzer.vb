@@ -73,17 +73,17 @@
 
                                 If column.getFound > 0 Then
 
-                                    Dim equal As Decimal = calculateEquals(column.getFound, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata)
+                                    Dim equal As Decimal = calculateEquals(column.getFound, column.getRowCount, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata)
 
                                     If equal > 0 Then
 
                                         column.setEquals(equal)
+                                        tableTotal += equal
 
                                     End If
 
                                 End If
 
-                                tableTotal += column.getEquals
                                 tableTotalCount += 1
 
                             Next
@@ -106,11 +106,12 @@
 
         End Sub
 
-        Private Function calculateEquals(ByVal foundTotalColumn As Decimal, ByVal factorDatabase As Boolean, ByVal factorTable As Boolean, ByVal factorColumn As Boolean) As Decimal
+        Private Function calculateEquals(ByVal foundTotalColumn As Decimal, ByVal rowCount As Integer, ByVal factorDatabase As Boolean, ByVal factorTable As Boolean, ByVal factorColumn As Boolean) As Decimal
 
             Dim fDatbase As Decimal = 0
             Dim fTable As Decimal = 0
             Dim fColumn As Decimal = 0
+            Dim percent As Decimal = (foundTotalColumn / rowCount) * 100
 
             If factorDatabase Then
 
@@ -132,7 +133,7 @@
             End If
 
 
-            Return foundTotalColumn + (100 - foundTotalColumn) * (fDatbase + fTable + fColumn)
+            Return percent + (100 - percent) * (fDatbase + fTable + fColumn)
 
         End Function
 
@@ -163,11 +164,19 @@
 
             Else
 
-                totalToAnalyze = Me.settings.getDataAnalyzationLimit
+                If tableCount < Me.settings.getDataAnalyzationLimit Then
+
+                    totalToAnalyze = tableCount
+
+                Else
+
+                    totalToAnalyze = Me.settings.getDataAnalyzationLimit
+
+                End If
 
             End If
 
-
+            column.setRowCount(totalToAnalyze)
             access = Helpers.Helper.getDBAccessStrategy(databaseInstance.getDatabaseType)
             access.openConnection(computer, databaseInstance)
 
