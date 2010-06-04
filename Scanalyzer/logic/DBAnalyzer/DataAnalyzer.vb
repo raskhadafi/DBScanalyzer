@@ -80,6 +80,7 @@
                                         column.setEquals(equal)
                                         tableTotal += equal
 
+
                                     End If
 
                                 End If
@@ -88,7 +89,16 @@
 
                             Next
 
-                            table.setEquals(tableTotal / tableTotalCount)
+                            If tableTotalCount = 0 Then
+
+                                table.setEquals(0)
+
+                            Else
+
+                                table.setEquals(tableTotal / tableTotalCount)
+
+                            End If
+
                             tableTotal = 0
                             tableTotalCount = 0
                             dbTotal = table.getEquals
@@ -181,7 +191,17 @@
             access.openConnection(computer, databaseInstance)
 
             For i As Integer = 0 To totalToAnalyze Step 100
-                entriesFromDB = access.getColumnLimited(database.getName, table.getName, column.getName, i, (i + 99))
+
+                Dim thisStep As Integer = i + 99
+
+                If thisStep > totalToAnalyze Then
+
+                    thisStep = totalToAnalyze
+
+                End If
+
+                entriesFromDB = access.getColumnLimited(database.getName, table.getName, column.getName, i, thisStep)
+
                 For Each entry In entriesFromDB
 
                     count += 1
