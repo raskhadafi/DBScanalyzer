@@ -15,10 +15,15 @@ Namespace DBanalyzers
             Public Overrides Function closeConnection() As Boolean
 
                 If connection.State = ConnectionState.Open Then
+
                     connection.Close()
+
                     Return True
+
                 Else
+
                     Return False
+
                 End If
 
             End Function
@@ -29,15 +34,18 @@ Namespace DBanalyzers
                 Dim returnList As New ArrayList
 
                 Try
-                    Dim transaction As SqlTransaction = Me.connection.BeginTransaction
 
-                    command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName + " LIMIT " + fromLimit.ToString + "," + toLimit.ToString, connection, transaction)
+                    Dim transaction As SqlTransaction = Me.connection.BeginTransaction
+                    Dim amount As Integer = toLimit - fromLimit
+                    Dim conn As String = "USE " + databaseName + ";SELECT TOP " + amount.ToString + " [" + columName + "] FROM (SELECT *, ROW_NUMBER() OVER ( ORDER BY (SELECT kcu.COLUMN_NAME FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS kcu INNER JOIN INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS tc ON kcu.CONSTRAINT_CATALOG = tc.CONSTRAINT_CATALOG AND kcu.CONSTRAINT_SCHEMA = tc.CONSTRAINT_SCHEMA AND kcu.CONSTRAINT_NAME = tc.CONSTRAINT_NAME WHERE tc.CONSTRAINT_TYPE = 'PRIMARY KEY' AND tc.TABLE_NAME = '" + tableName + "' ) ) as row_number FROM " + tableName + " ) foo WHERE row_number > " + fromLimit.ToString + ";"
+
+                    command = New SqlCommand(conn, connection, transaction)
                     command.UpdatedRowSource = UpdateRowSource.Both
                     reader = command.ExecuteReader
 
                     While reader.Read()
 
-                        returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+                        returnList.Add(reader.GetValue(reader.GetOrdinal(columName)).ToString)
 
                     End While
 
@@ -57,6 +65,7 @@ Namespace DBanalyzers
                 Dim returnList As New ArrayList
 
                 Try
+
                     Dim transaction As SqlTransaction = Me.connection.BeginTransaction
 
                     command = New SqlCommand("USE " + databaseName + ";SELECT " + columName + " FROM " + tableName, connection, transaction)
@@ -64,10 +73,13 @@ Namespace DBanalyzers
                     reader = command.ExecuteReader
 
                     While reader.Read()
+
                         returnList.Add(reader.GetValue(reader.GetOrdinal(columName)))
+
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
 
                 End Try
@@ -88,6 +100,7 @@ Namespace DBanalyzers
                 Dim returnList As New ArrayList
 
                 Try
+
                     command = New SqlCommand
                     command.CommandText = "USE " + databaseName + ";EXEC sp_columns " + tableName + ";"
                     command.Connection = connection
@@ -95,12 +108,17 @@ Namespace DBanalyzers
                     reader = command.ExecuteReader()
 
                     While reader.Read
+
                         returnList.Add(reader.GetValue(reader.GetOrdinal("COLUMN_NAME")))
+
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
+
                     Return returnList
+
                 End Try
 
                 Return returnList
@@ -113,6 +131,7 @@ Namespace DBanalyzers
                 Dim returnList As New ArrayList
 
                 Try
+
                     command = New SqlCommand
                     command.CommandText = "EXEC sp_databases"
                     command.Connection = connection
@@ -120,12 +139,17 @@ Namespace DBanalyzers
                     reader = command.ExecuteReader()
 
                     While reader.Read
+
                         returnList.Add(reader.GetValue(reader.GetOrdinal("DATABASE_NAME")))
+
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
+
                     Return returnList
+
                 End Try
 
                 removeStandardDatabases(returnList)
@@ -155,6 +179,7 @@ Namespace DBanalyzers
                 Dim returnList As New ArrayList
 
                 Try
+
                     command = New SqlCommand
                     command.CommandText = "USE " + databaseName + ";EXEC sp_tables;"
                     command.Connection = connection
@@ -174,8 +199,11 @@ Namespace DBanalyzers
                     End While
 
                     reader.Close()
+
                 Catch ex As Exception
+
                     Return returnList
+
                 End Try
 
                 Return returnList
