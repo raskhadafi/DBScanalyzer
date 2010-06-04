@@ -44,7 +44,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtIP.Name = "txtIP"
         Me.txtIP.Size = New System.Drawing.Size(100, 20)
         Me.txtIP.TabIndex = 0
-        Me.txtIP.Text = "192.168.56.3"
+        Me.txtIP.Text = "192.168.56.4"
         '
         'Label1
         '
@@ -79,7 +79,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtUsr.Name = "txtUsr"
         Me.txtUsr.Size = New System.Drawing.Size(100, 20)
         Me.txtUsr.TabIndex = 2
-        Me.txtUsr.Text = "dbtest"
+        Me.txtUsr.Text = "dbscanalyzer"
         '
         'txtPwd
         '
@@ -87,7 +87,7 @@ Partial Class ScanalyzerDirectAnalyzation
         Me.txtPwd.Name = "txtPwd"
         Me.txtPwd.Size = New System.Drawing.Size(100, 20)
         Me.txtPwd.TabIndex = 3
-        Me.txtPwd.Text = "dbtest"
+        Me.txtPwd.Text = "dbscanalyzer"
         '
         'btnMysql
         '
