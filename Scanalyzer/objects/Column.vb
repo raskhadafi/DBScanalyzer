@@ -16,6 +16,7 @@
             Me.totalFound = 0
             Me.equalsToData = 0
             Me.rowCount = 0
+            Me.metric = Helpers.Settings.Metric.noMetric
 
         End Sub
 

@@ -73,6 +73,7 @@
 
         Public Enum Metric
 
+            noMetric
             checkIfDate
             checkIfEmail
             checkIfGender
