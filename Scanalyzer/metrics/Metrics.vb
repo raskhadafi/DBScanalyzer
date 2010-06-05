@@ -306,7 +306,7 @@ Namespace Metrics
 
             Helpers.SQLiteHelper.getReferencedataForMetrics("checkIfPostcode", zipTables)
 
-            For Each tbl In zips
+            For Each tbl In zipTables
 
                 Helpers.SQLiteHelper.getReferenceData(tbl, zips)
 
