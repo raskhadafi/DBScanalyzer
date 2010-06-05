@@ -80,6 +80,12 @@
 
         End Function
 
+        Public Function getMetricFound() As Helpers.Settings.Metric
+
+            Return Me.metric
+
+        End Function
+
     End Class
 
 End Namespace

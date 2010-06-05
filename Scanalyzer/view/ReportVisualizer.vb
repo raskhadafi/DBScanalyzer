@@ -44,6 +44,12 @@
 
                             text += TABSPACER + TABSPACER + TABSPACER + table.getName + ": " + table.getEquals.ToString + "%" + vbNewLine
 
+                            For Each column In table.getColumns
+
+                                text += TABSPACER + TABSPACER + TABSPACER + TABSPACER + column.getName + " -> " + column.getMetricFound.ToString + vbNewLine
+
+                            Next
+
                         Next
 
                         text += vbNewLine
