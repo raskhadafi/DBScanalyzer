@@ -314,18 +314,72 @@
             Dim finder As MetricDictionary = New MetricDictionary
             Dim highest As Integer = 0
             Dim overtwenty As List(Of Integer) = New List(Of Integer)
+            Dim values As List(Of Integer) = New List(Of Integer)
 
-            finder.Add(Helpers.Settings.Metric.checkIfDate, checkIfDateTotal)
-            finder.Add(Helpers.Settings.Metric.checkIfEmail, checkIfEmailTotal)
-            finder.Add(Helpers.Settings.Metric.checkIfGender, checkIfGenderTotal)
-            finder.Add(Helpers.Settings.Metric.checkIfStreet, checkIfStreetTotal)
-            finder.Add(Helpers.Settings.Metric.checkIfISOcode, checkIfISOcode)
-            finder.Add(Helpers.Settings.Metric.checkIfPhone, checkIfPhone)
-            finder.Add(Helpers.Settings.Metric.checkIfURI, checkIfURI)
-            finder.Add(Helpers.Settings.Metric.checkIfCity, checkIfCity)
-            finder.Add(Helpers.Settings.Metric.checkIfPostcode, checkIfPostcode)
+            If Not checkIfDateTotal = 0 Then
 
-            For Each value In finder.Values
+                finder.Add(checkIfDateTotal, Helpers.Settings.Metric.checkIfDate)
+                values.Add(checkIfDateTotal)
+
+            End If
+
+            If Not checkIfEmailTotal = 0 Then
+
+                finder.Add(checkIfEmailTotal, Helpers.Settings.Metric.checkIfEmail)
+                values.Add(checkIfEmailTotal)
+
+            End If
+
+            If Not checkIfGenderTotal = 0 Then
+
+                finder.Add(checkIfGenderTotal, Helpers.Settings.Metric.checkIfGender)
+                values.Add(checkIfGenderTotal)
+
+            End If
+
+            If Not checkIfStreetTotal = 0 Then
+
+                finder.Add(checkIfStreetTotal, Helpers.Settings.Metric.checkIfStreet)
+                values.Add(checkIfStreetTotal)
+
+            End If
+
+            If Not checkIfISOcode = 0 Then
+
+                finder.Add(checkIfISOcode, Helpers.Settings.Metric.checkIfISOcode)
+                values.Add(checkIfISOcode)
+
+            End If
+
+            If Not checkIfPhone = 0 Then
+
+                finder.Add(checkIfPhone, Helpers.Settings.Metric.checkIfPhone)
+                values.Add(checkIfPhone)
+
+            End If
+
+            If Not checkIfURI = 0 Then
+
+                finder.Add(checkIfURI, Helpers.Settings.Metric.checkIfURI)
+                values.Add(checkIfURI)
+
+            End If
+
+            If Not checkIfCity = 0 Then
+
+                finder.Add(checkIfCity, Helpers.Settings.Metric.checkIfCity)
+                values.Add(checkIfCity)
+
+            End If
+
+            If Not checkIfPostcode = 0 Then
+
+                finder.Add(checkIfPostcode, Helpers.Settings.Metric.checkIfPostcode)
+                values.Add(checkIfPostcode)
+
+            End If
+
+            For Each value In values
 
                 If value > highest Then
 
@@ -345,10 +399,16 @@
 
             total = highest
 
+            If Not total = 0 Then
+
+                metric = finder.Item(total)
+
+            End If
+
         End Sub
 
         Private Class MetricDictionary
-            Inherits Dictionary(Of Helpers.Settings.Metric, Integer)
+            Inherits Dictionary(Of Integer, Helpers.Settings.Metric)
 
         End Class
 
