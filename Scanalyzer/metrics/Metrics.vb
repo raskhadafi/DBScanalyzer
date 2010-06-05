@@ -195,9 +195,27 @@ Namespace Metrics
 
             Next
 
+            For Each phone In areaCodes
+
+                cleanAreaCode(phone)
+
+                If phoneNumber.Contains(phone) Then
+
+                    Return True
+
+                End If
+
+            Next
+
             Return False
 
         End Function
+
+        Private Sub cleanAreaCode(ByRef phone As String)
+
+            phone = phone.Replace("'", "")
+
+        End Sub
 
         Public Function checkIfISOcode(ByRef isoCode As String) As Boolean
 
