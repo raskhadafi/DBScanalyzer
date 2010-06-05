@@ -165,6 +165,7 @@
             Dim checkIfURI As Integer = 0
             Dim checkIfCity As Integer = 0
             Dim checkIfPostcode As Integer = 0
+            Dim checkIfName As Integer = 0
             Dim metric As Helpers.Settings.Metric
             Dim genderMetricDone As Boolean = True
 
@@ -289,6 +290,14 @@
 
                                 End If
 
+                            Case Helpers.Settings.Metric.checkIfName
+
+                                If Metrics.checkIfName(entry) Then
+
+                                    checkIfName += 1
+
+                                End If
+
                         End Select
 
                     Next
@@ -296,7 +305,7 @@
                 Next
 
                 access.closeConnection()
-                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, checkIfCity, checkIfPostcode, total, metric)
+                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, checkIfCity, checkIfPostcode, checkIfName, total, metric)
 
                 If total > 0 Then
 
@@ -309,7 +318,7 @@
 
         End Sub
 
-        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByVal checkIfCity As Integer, ByVal checkIfPostcode As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
+        Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByVal checkIfCity As Integer, ByVal checkIfPostcode As Integer, ByVal checkIfName As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
 
             Dim finder As MetricDictionary = New MetricDictionary
             Dim highest As Integer = 0
@@ -376,6 +385,13 @@
 
                 finder.Add(checkIfPostcode, Helpers.Settings.Metric.checkIfPostcode)
                 values.Add(checkIfPostcode)
+
+            End If
+
+            If Not checkIfName = 0 Then
+
+                finder.Add(checkIfName, Helpers.Settings.Metric.checkIfName)
+                values.Add(checkIfName)
 
             End If
 
