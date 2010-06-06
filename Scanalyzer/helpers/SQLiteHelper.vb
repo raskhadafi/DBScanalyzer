@@ -55,7 +55,7 @@ Namespace Helpers
         Private Sub initializeSQLiteConnection()
 
             connection = New SQLiteConnection()
-            connection.ConnectionString = "Data Source=C:\Dokumente und Einstellungen\Roman\Eigene Dateien\bda\DBScanalyzer\Scanalyzer\db\reference_data.sqlite;Version=3;New=False;Compress=True;"
+            connection.ConnectionString = "Data Source=" + My.Settings.ProjectRoot + "\Scanalyzer\db\reference_data.sqlite;Version=3;New=False;Compress=True;"
             connection.Open()
 
         End Sub
