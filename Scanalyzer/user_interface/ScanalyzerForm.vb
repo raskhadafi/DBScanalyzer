@@ -177,4 +177,9 @@ Public Class ScanalyzerForm
 
     End Enum
 
+    Private Sub HelpToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles HelpToolStripMenuItem.Click
+
+        System.Diagnostics.Process.Start(My.Settings.ProjectRoot + "\Scanalyzer\user_interface\DBScanalyzerHelp.htm")
+
+    End Sub
 End Class

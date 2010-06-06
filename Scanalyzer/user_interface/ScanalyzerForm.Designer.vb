@@ -26,7 +26,6 @@ Partial Class ScanalyzerForm
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip
         Me.InitializeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.DirectAnalyzationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
         Me.lblIpRange = New System.Windows.Forms.Label
@@ -42,7 +41,7 @@ Partial Class ScanalyzerForm
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitializeToolStripMenuItem, Me.DirectAnalyzationToolStripMenuItem, Me.FileToolStripMenuItem, Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.InitializeToolStripMenuItem, Me.DirectAnalyzationToolStripMenuItem, Me.ToolStripMenuItem1, Me.HelpToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(523, 24)
@@ -61,12 +60,6 @@ Partial Class ScanalyzerForm
         Me.DirectAnalyzationToolStripMenuItem.Name = "DirectAnalyzationToolStripMenuItem"
         Me.DirectAnalyzationToolStripMenuItem.Size = New System.Drawing.Size(89, 20)
         Me.DirectAnalyzationToolStripMenuItem.Text = "Direct Analysis"
-        '
-        'FileToolStripMenuItem
-        '
-        Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
-        Me.FileToolStripMenuItem.Size = New System.Drawing.Size(35, 20)
-        Me.FileToolStripMenuItem.Text = "File"
         '
         'ToolStripMenuItem1
         '
@@ -183,7 +176,6 @@ Partial Class ScanalyzerForm
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HelpToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DirectAnalyzationToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents FileToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InitializeToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents lblIpRange As System.Windows.Forms.Label
     Friend WithEvents txtIpRange As System.Windows.Forms.Label
