@@ -60,12 +60,6 @@
         Public Class ReferenceSelectionArrayList
             Inherits List(Of ReferenceSelection)
 
-            Public Sub addReferenceSelection()
-
-
-
-            End Sub
-
             Public Sub setReferenceAsSelected(ByVal name As String, ByVal language As String)
 
                 Dim reference As ReferenceSelection = Me.getReferenceSelection(name)

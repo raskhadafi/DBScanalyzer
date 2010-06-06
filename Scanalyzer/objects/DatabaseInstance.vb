@@ -5,7 +5,6 @@
         Private port As Integer
         Private user As String
         Private password As String
-        Private name As String
         Private type As DatabaseEnum
         Private selected As Boolean
         Private databases As List(Of Database)
@@ -72,14 +71,6 @@
 
         End Sub
 
-        Public Sub addCredentials(ByVal user As String, ByVal password As String, ByVal databaseName As String)
-
-            Me.user = user
-            Me.password = password
-            Me.name = databaseName
-
-        End Sub
-
         Public Function getUser() As String
 
             Return Me.user
@@ -95,12 +86,6 @@
         Public Function getPort() As Integer
 
             Return Me.port
-
-        End Function
-
-        Public Function getName() As String
-
-            Return Me.name
 
         End Function
 

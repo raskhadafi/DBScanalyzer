@@ -74,12 +74,6 @@
 
         End Sub
 
-        Public Function getEquals() As Decimal
-
-            Return Me.equalsToData
-
-        End Function
-
         Public Function getMetricFound() As Helpers.Settings.Metric
 
             Return Me.metric

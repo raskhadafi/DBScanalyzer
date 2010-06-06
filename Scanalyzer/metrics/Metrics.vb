@@ -21,12 +21,6 @@ Namespace Metrics
 
         End Function
 
-        Public Function checkIfPlace(ByVal place As String) As Boolean
-
-            Return False
-
-        End Function
-
         Public Function checkIfGender(ByVal entries As ArrayList) As Boolean
 
             'Dim entries As ArrayList = data

@@ -6,7 +6,6 @@
         Private columns As List(Of Column)
         Private equalsToData As Decimal
         Private containsReferencedata As Boolean
-        Private totalFound As Decimal
 
         Public Sub New(ByVal name As String)
 
@@ -14,7 +13,6 @@
             Me.equalsToData = 0
             Me.columns = New List(Of Column)
             Me.containsReferencedata = False
-            Me.totalFound = 0
 
         End Sub
 
@@ -61,18 +59,6 @@
         Public Function getEquals() As Decimal
 
             Return Me.equalsToData
-
-        End Function
-
-        Public Sub setFound(ByVal totalFound As Integer)
-
-            Me.totalFound = totalFound
-
-        End Sub
-
-        Public Function getFound() As Decimal
-
-            Return Me.totalFound
 
         End Function
 

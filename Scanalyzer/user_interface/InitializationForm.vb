@@ -36,10 +36,8 @@ Public Class InitializationForm
             Me.state = STATEMACHINE.initializeReferenceSelection
 
         End If
-        ' loads the avaible references and displays the for selection
-        UpdateState()
 
-        ' Add any initialization after the InitializeComponent() call.
+        UpdateState()
 
     End Sub
 
@@ -54,7 +52,6 @@ Public Class InitializationForm
                 Me.loadMetrics()
                 Me.loadIPRange()
                 Me.state = STATEMACHINE.checkReferenceSelection
-
 
             Case STATEMACHINE.initializeReferenceSelection
 

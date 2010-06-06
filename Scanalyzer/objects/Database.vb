@@ -6,7 +6,6 @@
         Private tables As List(Of Table)
         Private equalsToData As Decimal
         Private containsReferencedata As Boolean
-        Private totalFound As Decimal
 
         Public Sub New(ByVal name As String)
 
@@ -14,7 +13,6 @@
             Me.tables = New List(Of Table)
             Me.equalsToData = 0
             Me.containsReferencedata = False
-            Me.totalFound = 0
 
         End Sub
 
@@ -63,24 +61,6 @@
         Public Function getTables() As List(Of Table)
 
             Return Me.tables
-
-        End Function
-
-        Public Sub increaseEqualsToDataBy(ByVal up As Integer)
-
-            Me.equalsToData += up
-
-        End Sub
-
-        Public Sub setFound(ByVal totalFound As Decimal)
-
-            Me.totalFound = totalFound
-
-        End Sub
-
-        Public Function getFound() As Decimal
-
-            Return Me.totalFound
 
         End Function
 

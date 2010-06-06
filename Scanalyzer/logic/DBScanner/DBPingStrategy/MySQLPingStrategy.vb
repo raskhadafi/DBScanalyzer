@@ -16,6 +16,7 @@ Namespace DBScanners
                 Dim mysqlPorts As ArrayList = New ArrayList
 
                 For Each i In ports
+
                     Dim portNumber As Integer = i
                     Dim answer As Boolean = False
 
@@ -23,16 +24,21 @@ Namespace DBScanners
                     connection.ConnectionString = connectionString
 
                     Try
+
                         connection.Open()
+
                     Catch ex As TimeoutException
 
                     Catch ex As MySqlException
 
                         If ex.Number = 1045 Then
+
                             mysqlPorts.Add(i)
+
                         End If
 
                     End Try
+
                 Next
 
                 Return mysqlPorts

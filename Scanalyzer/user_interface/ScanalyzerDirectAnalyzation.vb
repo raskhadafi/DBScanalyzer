@@ -13,7 +13,7 @@
 
         Me.parentClass.setStateToDirectAnalyzation()
         Dim computer As Objects.Computer = New Objects.Computer(Me.txtIP.Text)
-        computer.addDatabaseInstance(Me.txtPort.Text, getDatabaseType)
+        computer.addDatabaseInstance(Me.txtPort.Text, Me.getDatabaseType)
         computer.getDatabaseInstance(Me.txtPort.Text).addCredentials(Me.txtUsr.Text, Me.txtPwd.Text)
         Me.parentClass.setDirectAnalyzation(computer)
         Me.parentClass.Focus()

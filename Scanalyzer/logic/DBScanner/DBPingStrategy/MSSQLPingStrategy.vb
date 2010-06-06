@@ -15,6 +15,7 @@ Namespace DBScanners
                 Dim mssqlPorts As ArrayList = New ArrayList
 
                 For Each i In ports
+
                     Dim portNumber As Integer = i
                     Dim answer As Boolean = False
 
@@ -27,21 +28,17 @@ Namespace DBScanners
 
                     Catch ex As TimeoutException
 
-
-
                     Catch ex As OverflowException
-
-
 
                     Catch ex As SqlException
 
                         If ex.Number = 18456 Then
+
                             mssqlPorts.Add(i)
+
                         End If
 
                     Catch ex As Exception
-
-
 
                     End Try
 

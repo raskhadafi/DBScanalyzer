@@ -34,7 +34,7 @@
 
                                 For Each column In table.getColumns
 
-                                    analyze(computer, databaseInstance, database, table, column, tableCount)
+                                    Me.analyze(computer, databaseInstance, database, table, column, tableCount)
 
                                 Next
 
@@ -73,7 +73,7 @@
 
                                 If column.getFound > 0 Then
 
-                                    Dim equal As Decimal = calculateEquals(column.getFound, column.getRowCount, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata)
+                                    Dim equal As Decimal = Me.calculateEquals(column.getFound, column.getRowCount, database.getContainsRefernecedata, table.getContainsRefernecedata, columnContainsReferencedata)
 
                                     If equal > 0 Then
 
@@ -305,7 +305,7 @@
                 Next
 
                 access.closeConnection()
-                getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, checkIfCity, checkIfPostcode, checkIfName, total, metric)
+                Me.getTotalOfFoundMetrics(count, checkIfDateTotal, checkIfEmailTotal, checkIfGenderTotal, checkIfStreetTotal, checkIfISOcode, checkIfPhone, checkIfURI, checkIfCity, checkIfPostcode, checkIfName, total, metric)
 
                 If total > 0 Then
 
@@ -320,7 +320,7 @@
 
         Private Sub getTotalOfFoundMetrics(ByVal count As Integer, ByVal checkIfDateTotal As Integer, ByVal checkIfEmailTotal As Integer, ByVal checkIfGenderTotal As Integer, ByVal checkIfStreetTotal As Integer, ByVal checkIfISOcode As Integer, ByVal checkIfPhone As Integer, ByVal checkIfURI As Integer, ByVal checkIfCity As Integer, ByVal checkIfPostcode As Integer, ByVal checkIfName As Integer, ByRef total As Integer, ByRef metric As Helpers.Settings.Metric)
 
-            Dim finder As MetricDictionary = New MetricDictionary
+            Dim finder As Dictionary(Of Integer, Helpers.Settings.Metric) = New Dictionary(Of Integer, Helpers.Settings.Metric)
             Dim highest As Integer = 0
             Dim overtwenty As List(Of Integer) = New List(Of Integer)
             Dim values As List(Of Integer) = New List(Of Integer)
@@ -422,11 +422,6 @@
             End If
 
         End Sub
-
-        Private Class MetricDictionary
-            Inherits Dictionary(Of Integer, Helpers.Settings.Metric)
-
-        End Class
 
     End Class
 
