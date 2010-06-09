@@ -55,7 +55,7 @@ Namespace DBScanners
             Dim computerPointer As Integer
             Dim ipFinder As Regex = New Regex("(\b(?:\d{1,3}\.){3}\d{1,3}\b)")
             Dim beginOfPortsFinder As Regex = New Regex("PORT\W*STATE")
-            Dim serviceFinder As Regex = New Regex("^([0-9]*)\/([a-z]*)\W*(open)\W*([\w\D]*)")
+            Dim serviceFinder As Regex = New Regex("^([0-9]*)\/([a-z]*)\W*(open|filtered)\W*([\w\D]*)")
             Dim openPorts As ArrayList = New ArrayList
 
             newComputer = False
